@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Given name:
+  = @teacher.given_name
+%p
+  %b Family name:
+  = @teacher.family_name
+%p
+  %b Birth date:
+  = @teacher.birth_date
+%p
+  %b Sex:
+  = @teacher.sex
+%p
+  %b Nationality:
+  = @teacher.nationality
+%p
+  %b Comment:
+  = @teacher.comment
+
+= link_to 'Edit', edit_teacher_path(@teacher)
+\|
+= link_to 'Back', teachers_path
