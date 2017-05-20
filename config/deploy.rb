@@ -3,7 +3,7 @@ lock "3.8.1"
 set :application, "rangoon"
 set :repo_url, "git@github.com:akirankzw/rangoon.git"
 set :user, "deploy"
-set :deploy_to, "/home/deploy/rangoon"
+set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :pty, true
 set :use_sudo, false
 set :stage, :production
