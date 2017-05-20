@@ -27,5 +27,6 @@ module Rangoon
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.assets.paths << Rails.root.join("node_modules", "@angular", "material", "prebuilt-themes")
   end
 end
