@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520083720) do
+ActiveRecord::Schema.define(version: 20170520091740) do
+
+  create_table "lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
+    t.bigint "teacher_id"
+    t.datetime "start_time"
+    t.boolean "attended"
+    t.boolean "canceled"
+    t.boolean "missed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
+  end
 
   create_table "teachers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
     t.string "given_name"
@@ -35,4 +46,5 @@ ActiveRecord::Schema.define(version: 20170520083720) do
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "lessons", "teachers"
 end
