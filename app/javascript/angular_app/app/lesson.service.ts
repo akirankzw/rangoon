@@ -11,14 +11,13 @@ export class LessonService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
   // TODO:
-  private lessonsUrl = 'teachers/1/lessons.json';
+  private lessonsUrl = 'lessons.json';
 
   constructor(private http: Http) {}
 
-  update(datetime: string, checked: boolean): Promise<any> {
-    const url = `${this.lessonsUrl}`;
+  update(datetime: string, checked: boolean): Promise<Lesson> {
     return this.http
-      .post(url, JSON.stringify({lesson: {teacher_id: 1, start_time: datetime, canceled: !checked}}), { headers: this.headers })
+      .post(this.lessonsUrl, JSON.stringify({lesson: {start_time: datetime, canceled: !checked}}), { headers: this.headers })
       .toPromise()
       .then(response => response)
       .catch(this.handleError);
