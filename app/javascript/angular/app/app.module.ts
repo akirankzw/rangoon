@@ -1,20 +1,21 @@
-import { BrowserModule }           from '@angular/platform-browser';
 import { NgModule }                from '@angular/core';
+import { BrowserModule }           from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpModule } from '@angular/http';
-import { FormsModule }   from '@angular/forms';
-import { MaterialModule, MdNativeDateModule } from '@angular/material';
-
-import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard.component';
+import { HttpModule }              from '@angular/http';
+import { FormsModule }             from '@angular/forms';
+import { MaterialModule }          from '@angular/material';
+import { MdNativeDateModule }      from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { AppComponent }            from './app.component';
+import { DashboardComponent }      from './dashboard.component';
 import { PageNotFoundComponent }   from './not-found.component';
-import { SignupComponent } from './sign-up.component';
-import { UserSignupComponent } from './user-sign-up.component';
+import { SignupComponent }         from './sign-up.component';
+import { UserSignupComponent }     from './user-sign-up.component';
+import { TeachersComponent }       from './teachers.component';
 
-import { LessonService } from './lesson.service';
+import { LessonService }           from './lesson.service';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { LessonService } from './lesson.service';
     DashboardComponent,
     PageNotFoundComponent,
     SignupComponent,
-    UserSignupComponent
+    UserSignupComponent,
+    TeachersComponent
   ],
   providers: [
     LessonService

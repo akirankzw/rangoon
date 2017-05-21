@@ -5,10 +5,12 @@ import { DashboardComponent } from './dashboard.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { SignupComponent } from './sign-up.component';
 import { UserSignupComponent } from './user-sign-up.component';
+import { TeachersComponent } from './teachers.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'teachers/sign_up', component: SignupComponent },
+  { path: 'teachers/:id', component: TeachersComponent },
   { path: 'users/sign_up', component: UserSignupComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

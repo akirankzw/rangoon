@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     passwords: 'teachers/passwords',
     confirmations: 'teacher/confirmations'
   }
-  resources :teachers, only: [:index, :show, :edit, :update], defaults: { format: :json }
-
+  resources :teachers, only: [:index, :show, :edit, :update]
   resources :lessons, only: [:index, :show, :create]
 end

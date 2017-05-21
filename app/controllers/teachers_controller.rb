@@ -1,13 +1,11 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update]
-  respond_to :json
 
   def index
     @teachers = Teacher.all
   end
 
   def show
-    respond_with @teacher
   end
 
   def edit
