@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Given name:
+  = @user.given_name
+%p
+  %b Family name:
+  = @user.family_name
+%p
+  %b Birhdate:
+  = @user.birhdate
+%p
+  %b Sex:
+  = @user.sex
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path
