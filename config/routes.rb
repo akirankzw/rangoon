@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "dashboard#index"
+  root to: 'dashboard#index'
 
   get :dashboard, controller: :dashboard, action: :index
 
@@ -9,14 +9,21 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     confirmations: 'user/confirmations'
   }
-  resources :users
 
-  devise_for :teachers, controllers: {
-    sessions: 'teachers/sessions',
-    registrations: 'teachers/registrations',
-    passwords: 'teachers/passwords',
-    confirmations: 'teacher/confirmations'
-  }
+  namespace :admin do
+    get 'teachers/dashboard', controller: :teachers, action: :index
+  end
+
+  scope '/admin' do
+    devise_for :teachers, controllers: {
+      sessions: 'teachers/sessions',
+      registrations: 'teachers/registrations',
+      passwords: 'teachers/passwords',
+      confirmations: 'teacher/confirmations'
+    }
+  end
+
+  resources :users
   resources :teachers, only: [:index, :show, :edit, :update]
   resources :lessons, only: [:index, :show, :create]
 end

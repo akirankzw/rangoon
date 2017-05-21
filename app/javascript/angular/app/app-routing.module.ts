@@ -9,12 +9,12 @@ import { TeachersComponent }     from './teachers.component';
 import { UsersComponent }        from './users.component';
 
 const routes: Routes = [
-  { path: 'dashboard',        component: DashboardComponent },
-  { path: 'teachers/sign_up', component: SignupComponent },
-  { path: 'teachers/:id',     component: TeachersComponent },
-  { path: 'users/sign_up',    component: UserSignupComponent },
-  { path: 'users/:id',        component: UsersComponent },
-  { path: '**',               component: PageNotFoundComponent }
+  { path: 'admin/teachers/dashboard', component: DashboardComponent },
+  { path: 'teachers/sign_up',          component: SignupComponent },
+  { path: 'teachers/:id',              component: TeachersComponent },
+  { path: 'users/sign_up',             component: UserSignupComponent },
+  { path: 'users/:id',                 component: UsersComponent },
+  { path: '**',                        component: PageNotFoundComponent }
 ];
 
 @NgModule({
