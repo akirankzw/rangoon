@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Teacher } from './teacher';
 
 @Component({
-  selector: 'signup',
+  selector: 'sign-up',
   template: `
 <form class="form" (ngSubmit)="onSubmit()" action="/teachers" method="post" #teacherForm="ngForm">
   <md-input-container class="full-width">

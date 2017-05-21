@@ -5,13 +5,17 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    passwords: 'users/passwords',
+    confirmations: 'user/confirmations'
   }
   resources :users
 
   devise_for :teachers, controllers: {
     sessions: 'teachers/sessions',
-    registrations: 'teachers/registrations'
+    registrations: 'teachers/registrations',
+    passwords: 'teachers/passwords',
+    confirmations: 'teacher/confirmations'
   }
   resources :teachers
 

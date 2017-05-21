@@ -11,9 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { PageNotFoundComponent }   from './not-found.component';
 import { SignupComponent } from './sign-up.component';
+import { UserSignupComponent } from './user-sign-up.component';
 
 import { LessonService } from './lesson.service';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule, MdNativeDateModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { MaterialModule } from '@angular/material';
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
+    MdNativeDateModule,
     HttpModule,
     FormsModule
   ],
@@ -29,6 +31,7 @@ import { MaterialModule } from '@angular/material';
     DashboardComponent,
     PageNotFoundComponent,
     SignupComponent,
+    UserSignupComponent
   ],
   providers: [
     LessonService
