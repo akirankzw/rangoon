@@ -14,6 +14,7 @@ import { PageNotFoundComponent }   from './not-found.component';
 import { SignupComponent }         from './sign-up.component';
 import { TeachersComponent }       from './teachers.component';
 import { UsersComponent }          from './users.component';
+import { BookDialogComponent }     from './book-dialog.component';
 
 import { LessonService }           from './lesson.service';
 
@@ -33,12 +34,15 @@ import { LessonService }           from './lesson.service';
     PageNotFoundComponent,
     SignupComponent,
     TeachersComponent,
-    UsersComponent
+    UsersComponent,
+    BookDialogComponent
   ],
   providers: [
     LessonService
-  ]
-  ,
+  ],
+  entryComponents: [
+    BookDialogComponent
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}
