@@ -12,7 +12,6 @@ import { AppComponent }            from './app.component';
 import { DashboardComponent }      from './dashboard.component';
 import { PageNotFoundComponent }   from './not-found.component';
 import { SignupComponent }         from './sign-up.component';
-import { UserSignupComponent }     from './user-sign-up.component';
 import { TeachersComponent }       from './teachers.component';
 import { UsersComponent }          from './users.component';
 
@@ -33,7 +32,6 @@ import { LessonService }           from './lesson.service';
     DashboardComponent,
     PageNotFoundComponent,
     SignupComponent,
-    UserSignupComponent,
     TeachersComponent,
     UsersComponent
   ],
