@@ -4,7 +4,7 @@ import { Teacher } from './teacher';
 @Component({
   selector: 'sign-up',
   template: `
-<form class="form" (ngSubmit)="onSubmit()" action="/teachers" method="post" #teacherForm="ngForm">
+<form class="form" (ngSubmit)="onSubmit()" action="/admin/teachers" method="post" #teacherForm="ngForm">
   <md-input-container class="full-width">
     <input mdInput type="email" [(ngModel)]="model.email" name="teacher[email]" placeholder="メールアドレス" required #email="ngModel">
   </md-input-container>
