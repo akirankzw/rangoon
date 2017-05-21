@@ -3,11 +3,21 @@
 %p.alert
   = alert
 
-- if user_signed_in?
-  %li
-    = current_user.email
-  %li
-    = link_to('Logout', destroy_user_session_path)
+- if request.path =~ /^\/admin/
+  - if teacher_signed_in?
+    %li
+      = current_teacher.email
+    %li
+      = link_to('Log Out', destroy_teacher_session_path)
+  - else
+    %li
+      = link_to('Log In', new_teacher_session_path)
 - else
-  %li
-    = link_to('Login', new_user_session_path)
+  - if user_signed_in?
+    %li
+      = current_user.email
+    %li
+      = link_to('Log Out', destroy_user_session_path)
+  - else
+    %li
+      = link_to('Log In', new_user_session_path)
