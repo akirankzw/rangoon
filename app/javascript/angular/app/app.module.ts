@@ -3,6 +3,7 @@ import { NgModule }                from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { FormsModule }   from '@angular/forms';
+import { MaterialModule, MdNativeDateModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard.component';
@@ -14,7 +15,6 @@ import { SignupComponent } from './sign-up.component';
 import { UserSignupComponent } from './user-sign-up.component';
 
 import { LessonService } from './lesson.service';
-import { MaterialModule, MdNativeDateModule } from '@angular/material';
 
 @NgModule({
   imports: [

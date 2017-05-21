@@ -1,32 +1,16 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  before_action :set_teacher, only: [:show, :edit, :update]
+  respond_to :json
 
   def index
     @teachers = Teacher.all
   end
 
   def show
-  end
-
-  def new
-    @teacher = Teacher.new
+    respond_with @teacher
   end
 
   def edit
-  end
-
-  def create
-    @teacher = Teacher.new(teacher_params)
-
-    respond_to do |format|
-      if @teacher.save
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }
-        format.json { render :show, status: :created, location: @teacher }
-      else
-        format.html { render :new }
-        format.json { render json: @teacher.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   def update
@@ -38,14 +22,6 @@ class TeachersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @teacher.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def destroy
-    @teacher.destroy
-    respond_to do |format|
-      format.html { redirect_to teachers_url, notice: 'Teacher was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
