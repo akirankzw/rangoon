@@ -9,6 +9,9 @@ import * as moment from 'moment';
 @Component({
   selector: 'dashboard',
   template: `
+<md-tab-group>
+
+<md-tab label="Schedule">
 <table>
   <tr>
     <th></th>
@@ -23,7 +26,12 @@ import * as moment from 'moment';
       <md-checkbox (change)="toggle(lesson, $event)" [checked]="!lesson.canceled" [disabled]="lesson.disabled"></md-checkbox>
     </td>
   </tr>
-</table>`
+</table>
+</md-tab>
+<md-tab label="Account Settings">
+</md-tab>
+</md-tab-group>`
+
 })
 
 export class DashboardComponent implements OnInit {
@@ -40,7 +48,6 @@ export class DashboardComponent implements OnInit {
     '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30',
     '22:00', '22:30', '23:00', '23:30'
   ];
-
 
   toggle(data: any, event: any): void {
     this.lessonService.update(data.start_time, event.checked)
