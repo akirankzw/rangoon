@@ -1,23 +1,49 @@
 import { Component } from '@angular/core';
+import { Headers, Http } from '@angular/http';
 import { MdDialog, MdDialogRef } from '@angular/material';
+import { Lesson } from './lesson';
 
 @Component({
   selector: 'book-dialog',
   template: `
-    <form (ngSubmit)="onSubmit($event)" action="/lessons" method="post" #bookForm="ngForm">
-    <md-input-container class="example-full-width">
-    <textarea mdInput placeholder="comment"></textarea>
+  {{message}}
+    <form method="post" #bookForm="ngForm">
+    <input type="hidden" name="book[lesson_id]" value="{{lesson.lesson_id}}">
+    <p>
+    <md-input-container class="full-width">
+    <textarea mdInput placeholder="comment" name="book[comment]"></textarea>
     </md-input-container>
-    <button type="submit" md-raised-button>Submit</button>
-    <button type="button" md-raised-button (click)="bookForm.reset()">Reset</button>
+    </p>
+    <p>
+    <button type="submit" (click)="onSubmit(lesson)" md-raised-button>Submit</button>
+    <button type="button" md-raised-button (click)="bookForm.reset()">Cancel</button>
+    </p>
     </form>`
 
 })
 
 export class BookDialogComponent {
-  constructor(public dialogRef: MdDialogRef<BookDialogComponent>) { }
+  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private bookUrl = '/books.json';
+  lesson: Lesson;
+  message = '';
 
-  onSubmit(event): void {
-    console.log(event);
+  constructor(
+    public dialogRef: MdDialogRef<BookDialogComponent>,
+    private http: Http
+  ) {}
+
+  onSubmit(lesson): Promise<any> {
+    // document.forms[0].submit();
+    return this.http
+      .post(this.bookUrl, JSON.stringify({book: { lesson_id: lesson.lesson_id }}), { headers: this.headers })
+      .toPromise()
+      .then(response => { this.message = response.json().message; })
+      .catch(this.handleError);
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
   }
 }

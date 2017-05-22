@@ -1,10 +1,10 @@
 class LessonsController < ApplicationController
-  protect_from_forgery with: :exception, with: :null_session, only: Proc.new { |c| c.request.format.json? }
+  protect_from_forgery with: :null_session, only: Proc.new { |c| c.request.format.json? }
   before_action :authenticate_teacher!, only: [:create]
   before_action :set_lesson, only: [:show]
 
   def index
-    @lessons = Lesson.all
+    @lessons = Lesson.where(teacher_id: 1).includes(:book)
   end
 
   def show

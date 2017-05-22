@@ -21,7 +21,7 @@ import * as moment from 'moment';
   <tr *ngFor="let interval of intervals;let i = index">
     <td>{{interval}}</td>
     <td *ngFor="let lesson of lessons[i]">
-      <button md-raised-button (click)="openDialog()" *ngIf="!lesson.canceled">Book</button>
+      <button md-raised-button (click)="openDialog(lesson)" color="{{lesson.color}}" *ngIf="!lesson.canceled">Book</button>
     </td>
   </tr>
 </table>`
@@ -35,6 +35,12 @@ export class TeachersComponent implements OnInit {
     public dialog: MdDialog
   ) {}
 
+  getColor(lesson: Lesson) {
+    let color = 'primary';
+    if (lesson.book_id !== null) color = 'accent';
+    return color;
+  }
+
   days = [0, 1, 2, 3, 4, 5, 6].map(function(x) { return moment().add(x, 'days') });
 
   intervals = [
@@ -46,8 +52,9 @@ export class TeachersComponent implements OnInit {
   ];
 
 
-  openDialog() {
+  openDialog(lesson: Lesson) {
     let dialogRef = this.dialog.open(BookDialogComponent);
+    dialogRef.componentInstance.lesson = lesson;
     dialogRef.afterClosed()
       .subscribe(result => { console.log(result); });
   }
@@ -61,10 +68,15 @@ export class TeachersComponent implements OnInit {
           for (let day of this.days) {
             let dt = day.format(`YYYY-MM-DDT${interval}:00Z`);
             let lesson = lessons.find(function(x: any) { return moment.parseZone(x.start_time).local().format() === dt });
+            console.log(lesson);
             array.push({
+              lesson_id: (lesson === undefined || lesson.canceled) ? 0 : lesson.lesson_id,
               start_time: dt,
               canceled: (lesson === undefined || lesson.canceled) ? true : false,
-              disabled: now.utc().diff(dt, 'hours') > -2
+              disabled: now.utc().diff(dt, 'hours') > -2,
+              user_id: (lesson === undefined) ? null : lesson.user_id,
+              teacher_id: (lesson === undefined) ? null : lesson.teacher_id,
+              color: (lesson !== undefined && lesson.user_id) ? 'primary' : 'accent'
             });
           }
           this.lessons.push(array);

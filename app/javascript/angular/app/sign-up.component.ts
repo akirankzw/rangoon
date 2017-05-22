@@ -57,6 +57,7 @@ export class SignupComponent {
 
   onSubmit() {
     this.submitted = true;
+    // authenticity_token
     document.forms[1].appendChild(document.forms[0].elements[1]);
     document.forms[1].submit();
   }
