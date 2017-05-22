@@ -38,7 +38,11 @@ export class BookDialogComponent {
     return this.http
       .post(this.bookUrl, JSON.stringify({book: { lesson_id: lesson.lesson_id }}), { headers: this.headers })
       .toPromise()
-      .then(response => { this.message = response.json().message; })
+      .then(response => {
+        this.message = response.json().message;
+        lesson.color = 'primary';
+        lesson.text = 'BOOKED';
+      })
       .catch(this.handleError);
   }
 

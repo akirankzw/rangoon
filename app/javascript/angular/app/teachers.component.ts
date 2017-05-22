@@ -21,7 +21,7 @@ import * as moment from 'moment';
   <tr *ngFor="let interval of intervals;let i = index">
     <td>{{interval}}</td>
     <td *ngFor="let lesson of lessons[i]">
-      <button md-raised-button (click)="openDialog(lesson)" color="{{lesson.color}}" *ngIf="!lesson.canceled">Book</button>
+    <button md-raised-button (click)="openDialog(lesson)" [(color)]="lesson.color" *ngIf="!lesson.canceled">{{lesson.text}}</button>
     </td>
   </tr>
 </table>`
@@ -70,13 +70,14 @@ export class TeachersComponent implements OnInit {
             let lesson = lessons.find(function(x: any) { return moment.parseZone(x.start_time).local().format() === dt });
             console.log(lesson);
             array.push({
-              lesson_id: (lesson === undefined || lesson.canceled) ? 0 : lesson.lesson_id,
+              lesson_id:  lesson === undefined ? 0 : lesson.lesson_id,
+              canceled:   lesson === undefined ? true : lesson.canceled,
+              user_id:    lesson === undefined ? null : lesson.user_id,
+              teacher_id: lesson === undefined ? null : lesson.teacher_id,
+              color:      lesson !== undefined && lesson.user_id ? 'primary' : 'accent',
+              text:       lesson !== undefined && lesson.user_id ? 'BOOKED' : 'BOOK',
+              disabled:   now.utc().diff(dt, 'hours') > -2,
               start_time: dt,
-              canceled: (lesson === undefined || lesson.canceled) ? true : false,
-              disabled: now.utc().diff(dt, 'hours') > -2,
-              user_id: (lesson === undefined) ? null : lesson.user_id,
-              teacher_id: (lesson === undefined) ? null : lesson.teacher_id,
-              color: (lesson !== undefined && lesson.user_id) ? 'primary' : 'accent'
             });
           }
           this.lessons.push(array);
