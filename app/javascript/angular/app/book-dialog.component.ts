@@ -6,20 +6,20 @@ import { Lesson } from './lesson';
 @Component({
   selector: 'book-dialog',
   template: `
-  {{message}}
-    <form method="post" #bookForm="ngForm">
-    <input type="hidden" name="book[lesson_id]" value="{{lesson.lesson_id}}">
-    <p>
+{{message}}
+<form method="post" #bookForm="ngForm">
+  <input type="hidden" name="book[lesson_id]" value="{{lesson.lesson_id}}">
+  <p>
     <md-input-container class="full-width">
-    <textarea mdInput placeholder="comment" name="book[comment]"></textarea>
+      <textarea mdInput placeholder="comment" name="book[comment]"></textarea>
     </md-input-container>
-    </p>
-    <p>
+  </p>
+  <p>
     <button type="submit" (click)="onSubmit(lesson)" md-raised-button>Submit</button>
     <button type="button" md-raised-button (click)="bookForm.reset()">Cancel</button>
-    </p>
-    </form>`
-
+  </p>
+</form>
+`
 })
 
 export class BookDialogComponent {
@@ -34,7 +34,6 @@ export class BookDialogComponent {
   ) {}
 
   onSubmit(lesson): Promise<any> {
-    // document.forms[0].submit();
     return this.http
       .post(this.bookUrl, JSON.stringify({book: { lesson_id: lesson.lesson_id }}), { headers: this.headers })
       .toPromise()
