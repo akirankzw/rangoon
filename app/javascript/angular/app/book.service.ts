@@ -13,7 +13,7 @@ export class BookService {
 
   constructor(private http: Http) {}
 
-  getBooks(): Promise<any> {
+  getBooks(): Promise<Book[]> {
     return this.http.get(this.booksUrl)
       .toPromise()
       .then(response => response.json().data as Book[])

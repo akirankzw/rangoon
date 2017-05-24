@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BookService } from './book.service';
+import { Book } from './book';
 
 @Component({
   selector: 'users',
@@ -44,7 +45,7 @@ import { BookService } from './book.service';
 })
 
 export class UsersComponent implements OnInit {
-  books: any[] = [];
+  books: Book[] = [];
 
   constructor(private bookService: BookService) {}
   getBooks(): void {
