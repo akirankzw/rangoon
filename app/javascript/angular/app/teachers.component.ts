@@ -35,12 +35,6 @@ export class TeachersComponent implements OnInit {
     public dialog: MdDialog
   ) {}
 
-  getColor(lesson: Lesson) {
-    let color = 'primary';
-    if (lesson.book_id !== null) color = 'accent';
-    return color;
-  }
-
   days = [0, 1, 2, 3, 4, 5, 6].map(function(x) { return moment().add(x, 'days') });
 
   intervals = [
@@ -75,7 +69,7 @@ export class TeachersComponent implements OnInit {
               user_id:    lesson === undefined ? null : lesson.user_id,
               teacher_id: lesson === undefined ? null : lesson.teacher_id,
               color:      lesson !== undefined && lesson.user_id ? 'primary' : 'accent',
-              text:       lesson !== undefined && lesson.user_id ? 'BOOKED' : 'BOOK',
+              text:       lesson !== undefined && lesson.user_id ? 'OPEN' : 'BOOK',
               disabled:   now.utc().diff(dt, 'hours') > -2,
               start_time: dt,
             });

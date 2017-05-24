@@ -41,7 +41,7 @@ export class BookDialogComponent {
       .then(response => {
         this.message = response.json().message;
         lesson.color = 'primary';
-        lesson.text = 'BOOKED';
+        lesson.text = 'BOOK';
       })
       .catch(this.handleError);
   }
