@@ -17,6 +17,7 @@ import { UsersComponent }          from './users.component';
 import { BookDialogComponent }     from './book-dialog.component';
 
 import { LessonService }           from './lesson.service';
+import { BookService }             from './book.service';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { LessonService }           from './lesson.service';
     BookDialogComponent
   ],
   providers: [
-    LessonService
+    LessonService,
+    BookService
   ],
   entryComponents: [
     BookDialogComponent

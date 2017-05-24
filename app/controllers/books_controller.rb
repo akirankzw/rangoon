@@ -1,8 +1,9 @@
 class BooksController < ApplicationController
   protect_from_forgery with: :exception, with: :null_session, only: Proc.new { |c| c.request.format.json? }
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!
 
   def index
+    @lessons = Lesson.joins(:book, :teacher).where(Book.arel_table[:user_id].eq(current_user.id))
   end
 
   def show
