@@ -23,16 +23,15 @@ export class LessonService {
       .catch(this.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
-  }
-
-  // getLessons(): Promise<Lesson[]> {
-  getLessons(): Promise<any> {
+  getLessons(): Promise<Lesson[]> {
     return this.http.get(this.lessonsUrl)
       .toPromise()
       .then(response => response.json().data as Lesson[])
       .catch(this.handleError);
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
   }
 }

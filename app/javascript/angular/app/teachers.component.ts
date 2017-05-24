@@ -58,10 +58,10 @@ export class TeachersComponent implements OnInit {
     this.lessonService.getLessons()
       .then(lessons => {
         for (let interval of this.intervals) {
-          let array = [];
+          let array: Lesson[] = [];
           for (let day of this.days) {
             let dt = day.format(`YYYY-MM-DDT${interval}:00Z`);
-            let lesson = lessons.find(function(x: any) { return moment.parseZone(x.start_time).local().format() === dt });
+            let lesson: Lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_time).local().format() === dt });
             console.log(lesson);
             array.push({
               lesson_id:  lesson === undefined ? 0 : lesson.lesson_id,
