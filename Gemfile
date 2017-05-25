@@ -21,6 +21,7 @@ gem 'aws-sdk'
 gem 'devise'
 gem 'kaminari'
 gem 'haml-rails'
+gem 'mailgun-ruby'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
