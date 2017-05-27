@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526234228) do
+ActiveRecord::Schema.define(version: 20170527124818) do
 
   create_table "account_settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
     t.bigint "user_id"
@@ -29,6 +29,23 @@ ActiveRecord::Schema.define(version: 20170526234228) do
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_books_on_lesson_id"
     t.index ["user_id"], name: "index_books_on_user_id"
+  end
+
+  create_table "charges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
+    t.bigint "user_id"
+    t.string "email"
+    t.string "stripe_token"
+    t.date "end_date"
+    t.string "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_charges_on_user_id"
+  end
+
+  create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
+    t.string "plan"
+    t.string "name"
+    t.integer "price"
   end
 
   create_table "lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
@@ -97,5 +114,6 @@ ActiveRecord::Schema.define(version: 20170526234228) do
   add_foreign_key "account_settings", "users"
   add_foreign_key "books", "lessons"
   add_foreign_key "books", "users"
+  add_foreign_key "charges", "users"
   add_foreign_key "lessons", "teachers"
 end

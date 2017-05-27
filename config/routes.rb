@@ -23,7 +23,11 @@ Rails.application.routes.draw do
     }
   end
 
-  resources :charges # , only: [:new, :create]
+  resources :charges, only: [:new, :create] do
+    collection do
+      post :webhook
+    end
+  end
   resources :users
   resources :teachers, only: [:index, :show, :edit, :update]
   resources :lessons, only: [:index, :show, :create]

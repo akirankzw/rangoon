@@ -74,4 +74,6 @@ Rails.application.configure do
     s3_host_name: 's3-ap-northeast-1.amazonaws.com',
     s3_region: ENV['AWS_REGION']
   }
+
+  config.web_console.whitelisted_ips = '0.0.0.0/0'
 end
