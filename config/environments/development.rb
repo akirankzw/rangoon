@@ -67,4 +67,11 @@ Rails.application.configure do
     api_key: ENV['MAILGUN_API_KEY'],
     domain: 'ihearsayenglish.com'
   }
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    bucket: 'rangoon-dev',
+    s3_host_name: 's3-ap-northeast-1.amazonaws.com',
+    s3_region: ENV['AWS_REGION']
+  }
 end
