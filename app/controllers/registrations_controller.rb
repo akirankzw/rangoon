@@ -1,4 +1,4 @@
-class ChargesController < ApplicationController
+class RegistrationsController < ApplicationController
   protect_from_forgery except: :webhook
 
   def new
@@ -16,7 +16,7 @@ class ChargesController < ApplicationController
       description: 'レッスン月額費用',
       currency: 'jpy'
     )
-    @charge = Charge.new(email: params[:stripeEmail], stripe_token: params[:stripeToken], user_id: current_user.id, customer_id: customer.id)
+    @charge = Registration.new(email: params[:stripeEmail], stripe_token: params[:stripeToken], user_id: current_user.id, customer_id: customer.id)
     @charge.save!
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -27,7 +27,7 @@ class ChargesController < ApplicationController
     event = Stripe::Event.retrieve(params[:id])
     case event.type
     when 'invoice.payment_succeeded'
-      Charge.find_by_customer_id(event.data.object.customer).renew
+      Registration.find_by_customer_id(event.data.object.customer).renew
     end
     render status: :ok, json: 'success'
   end

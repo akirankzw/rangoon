@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     }
   end
 
-  resources :charges, only: [:new, :create] do
+  resources :registrations, only: [:new, :create] do
     collection do
       post :webhook
     end

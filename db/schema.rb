@@ -31,20 +31,9 @@ ActiveRecord::Schema.define(version: 20170527124818) do
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 
-  create_table "charges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
-    t.bigint "user_id"
-    t.string "email"
-    t.string "stripe_token"
-    t.date "end_date"
-    t.string "customer_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_charges_on_user_id"
-  end
-
   create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
     t.string "plan"
-    t.string "name"
+    t.string "title"
     t.integer "price"
   end
 
@@ -57,6 +46,17 @@ ActiveRecord::Schema.define(version: 20170527124818) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
+  end
+
+  create_table "registrations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
+    t.bigint "user_id"
+    t.string "email"
+    t.string "stripe_token"
+    t.date "end_date"
+    t.string "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_registrations_on_user_id"
   end
 
   create_table "teachers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
@@ -114,6 +114,6 @@ ActiveRecord::Schema.define(version: 20170527124818) do
   add_foreign_key "account_settings", "users"
   add_foreign_key "books", "lessons"
   add_foreign_key "books", "users"
-  add_foreign_key "charges", "users"
   add_foreign_key "lessons", "teachers"
+  add_foreign_key "registrations", "users"
 end
