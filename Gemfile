@@ -23,6 +23,7 @@ gem 'kaminari'
 gem 'haml-rails'
 gem 'mailgun-ruby'
 gem 'paperclip'
+gem 'stripe'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

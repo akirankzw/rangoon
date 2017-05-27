@@ -2,17 +2,3 @@
   = notice
 %p.alert
   = alert
-
-- if request.path =~ /^\/admin/
-  - if teacher_signed_in?
-    %li
-      = current_teacher.email
-    %li
-      = link_to('Log Out', destroy_teacher_session_path)
-  - else
-    %li
-      = link_to('Log In', new_teacher_session_path)
-- else
-  - unless user_signed_in?
-    %li
-      = link_to('Log In', new_user_session_path)
