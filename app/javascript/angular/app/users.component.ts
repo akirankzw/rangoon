@@ -18,6 +18,9 @@ import { Book } from './book';
     <a routerLink="/teachers/1"><md-icon class="icon">assignment</md-icon></a>
   </md-toolbar-row>
 </md-toolbar>
+
+<md-tab-group>
+<md-tab label="予約一覧">
 <table>
   <tr>
     <td>id</td>
@@ -26,7 +29,6 @@ import { Book } from './book';
     <td>user id</td>
     <td>teacher id</td>
     <td>teacher name</td>
-    <td>comment</td>
     <td>comment</td>
     <td>canceled</td>
   <tr>
@@ -41,6 +43,13 @@ import { Book } from './book';
     <td>{{book.canceled}}</td>
   </tr>
 </table>
+</md-tab>
+
+  <md-tab label="アカウント">
+
+  </md-tab>
+
+</md-tab-group>
 <router-outlet></router-outlet>
 `
 })
