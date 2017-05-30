@@ -45,7 +45,6 @@ export class BookDialogComponent {
         this.message = response.json().message;
         // REFACTOR
         if (response.json().status === 'ok') {
-          lesson.color = 'primary';
           lesson.text = 'BOOK';
           lesson.user_id = response.json().user_id;
         }

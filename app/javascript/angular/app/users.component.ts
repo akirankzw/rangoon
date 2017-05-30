@@ -10,7 +10,7 @@ import { User } from './user';
 @Component({
   selector: 'users',
   template: `
-<md-toolbar color="primary">
+<md-toolbar color="accent">
   <md-toolbar-row>
     <span class="spacer"></span>
     <md-icon class="icon">favorite</md-icon>
