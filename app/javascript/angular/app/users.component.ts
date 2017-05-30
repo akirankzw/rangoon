@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit }from '@angular/core';
+import { ActivatedRoute }   from '@angular/router';
 
 import { BookService } from './book.service';
 import { UserService } from './user.service';
@@ -15,7 +16,7 @@ import { User } from './user';
     <md-icon class="icon">favorite</md-icon>
     <a href="/users/sign_out"><md-icon class="icon">exit_to_app</md-icon></a>
     <a routerLink="/dashboard"><md-icon class="icon">dashboard</md-icon></a>
-    <a routerLink="/users/:id"><md-icon class="icon">home</md-icon></a>
+    <a [routerLink]="['/users', user.id]"><md-icon class="icon">home</md-icon></a>
     <md-icon class="icon">build</md-icon>
     <md-icon class="icon">note_add</md-icon>
     <a routerLink="/teachers/1"><md-icon class="icon">assignment</md-icon></a>
@@ -71,7 +72,8 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private userService: UserService
+    private userService: UserService,
+    private route: ActivatedRoute
   ) {}
 
   getBooks(): void {
@@ -88,6 +90,8 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => this.user.id = +params['id']);
+
     this.getBooks();
     this.getUser();
   }
