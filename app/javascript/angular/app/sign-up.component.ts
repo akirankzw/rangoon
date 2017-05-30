@@ -53,7 +53,7 @@ export class SignupComponent {
     { value: 'female-1', viewValue: 'female' }
   ]
 
-  model = new User(1, 'test@example.com', 'Taro', 'Suzuki', '', '', '', '');
+  model = new User(1, 'test@example.com', 'Taro', 'Suzuki', '', '', '', ''); // TODO
 
   onSubmit() {
     this.submitted = true;

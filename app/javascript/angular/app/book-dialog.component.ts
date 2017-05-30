@@ -16,10 +16,14 @@ import { Lesson } from './lesson';
   </p>
   <p>
     <button type="submit" (click)="onSubmit(lesson)" md-raised-button>Submit</button>
-    <button type="button" md-raised-button (click)="bookForm.reset()">Cancel</button>
+    <button type="button" md-dialog-close md-raised-button>Close</button>
   </p>
-</form>
-`
+</form>`,
+  styles: [`
+textarea {
+  width: 550px;
+  height: 220px;
+}`]
 })
 
 export class BookDialogComponent {

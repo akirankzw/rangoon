@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BookService } from './book.service';
+import { UserService } from './user.service';
+
 import { Book } from './book';
+import { User } from './user';
 
 @Component({
   selector: 'users',
@@ -46,7 +49,15 @@ import { Book } from './book';
 </md-tab>
 
   <md-tab label="アカウント">
-
+    <form action="/users/1" method="post">
+    <input [(ngModel)]="user.end_date" name="user[registration][end_date]" placeholder="end_date">
+    <input [(ngModel)]="user.given_name" name="user[given_name]" placeholder="given_name">
+    <input [(ngModel)]="user.family_name" name="user[family_name]" placeholder="family_name">
+    <input [(ngModel)]="user.birthdate" name="user[birthdate]" placeholder="birthdate">
+    <input [(ngModel)]="user.sex" name="user[sex]" placeholder="sex">
+    <input [(ngModel)]="user.email" name="user[email]" placeholder="email">
+    <img src="{{user.avatar}}">
+    </form>
   </md-tab>
 
 </md-tab-group>
@@ -56,14 +67,28 @@ import { Book } from './book';
 
 export class UsersComponent implements OnInit {
   books: Book[] = [];
+  user: User = new User(0, '', '', '', '', '', '', ''); // TODO
 
-  constructor(private bookService: BookService) {}
+  constructor(
+    private bookService: BookService,
+    private userService: UserService
+  ) {}
+
   getBooks(): void {
     this.bookService.getBooks()
       .then(books => { this.books = books; })
   }
 
+  getUser(): void {
+    this.userService.getUser()
+      .then(user => { this.user = user; })
+  }
+
+  onSubmit() {
+  }
+
   ngOnInit(): void {
     this.getBooks();
+    this.getUser();
   }
 }
