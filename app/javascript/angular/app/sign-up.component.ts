@@ -46,7 +46,7 @@ import { User } from './user';
 
 export class SignupComponent {
   submitted = false;
-  selectedvalue: string;
+  selectedValue: string;
 
   gender = [
     { value: 'male-0', viewValue: 'male' },

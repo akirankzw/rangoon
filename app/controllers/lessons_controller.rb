@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show]
 
   def index
-    @lessons = Lesson.where(teacher_id: 1).includes(:book)
+    @lessons = Lesson.this_week(Time.zone.now).where(teacher_id: 1).includes(:book)
   end
 
   def show
