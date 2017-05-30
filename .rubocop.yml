@@ -1,0 +1,12 @@
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 200
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+Style/EmptyMethod:
+  Enabled: false
+Style/SymbolArray:
+  Enabled: false
+Style/MethodLength:
+  Max: 20

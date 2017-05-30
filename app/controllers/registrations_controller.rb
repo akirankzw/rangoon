@@ -30,7 +30,7 @@ class RegistrationsController < ApplicationController
     {
       email:       params[:stripeEmail],
       source:      params[:stripeToken],
-      plan:        Course.first.plan,
+      plan:        Course.first.plan
     }
   end
 end

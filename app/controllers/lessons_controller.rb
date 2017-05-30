@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  protect_from_forgery with: :null_session, only: Proc.new { |c| c.request.format.json? }
+  protect_from_forgery with: :null_session, only: proc { |c| c.request.format.json? }
   before_action :authenticate_teacher!, only: [:create]
   before_action :set_lesson, only: [:show]
 
@@ -27,11 +27,12 @@ class LessonsController < ApplicationController
   end
 
   private
-    def set_lesson
-      @lesson = Lesson.find(params[:id])
-    end
 
-    def lesson_params
-      params.require(:lesson).permit(:teacher_id, :start_time, :attended, :canceled, :missed)
-    end
+  def set_lesson
+    @lesson = Lesson.find(params[:id])
+  end
+
+  def lesson_params
+    params.require(:lesson).permit(:teacher_id, :start_time, :attended, :canceled, :missed)
+  end
 end
