@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   protect_from_forgery with: :exception, with: :null_session, only: Proc.new { |c| c.request.format.json? }
   before_action :authenticate_user!
+  before_action :registered?, only: [:create]
 
   def index
     @lessons = Lesson.joins(:book, :teacher).where(Book.arel_table[:user_id].eq(current_user.id))
@@ -28,5 +29,10 @@ class BooksController < ApplicationController
   private
   def book_params
     params.require(:book).permit(:lesson_id, :comment)
+  end
+
+  def registered?
+    return render json: { status: :not_registered, message: 'お申し込みの確認できませんでした' } if current_user.registration.end_date.nil?
+    return render json: { status: :expired, message: 'お申し込み更新の確認できませんでした' } if current_user.registration.end_date < Time.zone.now
   end
 end
