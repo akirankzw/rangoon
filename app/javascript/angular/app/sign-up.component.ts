@@ -53,7 +53,7 @@ export class SignupComponent {
     { value: 'female-1', viewValue: 'female' }
   ]
 
-  model = new User(1, 'test@example.com', 'Taro', 'Suzuki', '', '', '', ''); // TODO
+  model = new User(0, 'test@example.com', 'Taro', 'Suzuki', '', '', '', ''); // TODO
 
   onSubmit() {
     this.submitted = true;
@@ -63,7 +63,7 @@ export class SignupComponent {
   }
 
   newUser() {
-    this.model = new User(1, '', '', '', '', '', '', '');
+    this.model = new User(0, '', '', '', '', '', '', '');
   }
 
   get diagnostic() { return JSON.stringify(this.model); };

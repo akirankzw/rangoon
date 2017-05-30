@@ -50,7 +50,7 @@ import { User } from './user';
 </md-tab>
 
   <md-tab label="アカウント">
-    <form action="/users/1" method="post">
+    <form [action]="['/users', user.id]" method="post">
     <input [(ngModel)]="user.end_date" name="user[registration][end_date]" placeholder="end_date">
     <input [(ngModel)]="user.given_name" name="user[given_name]" placeholder="given_name">
     <input [(ngModel)]="user.family_name" name="user[family_name]" placeholder="family_name">
@@ -82,7 +82,7 @@ export class UsersComponent implements OnInit {
   }
 
   getUser(): void {
-    this.userService.getUser()
+    this.userService.getUser(this.user.id)
       .then(user => { this.user = user; })
   }
 
@@ -90,7 +90,10 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => this.user.id = +params['id']);
+    this.route.params.subscribe(params => {
+      this.user.id = +params['id'];
+      console.log(this.user);
+    });
 
     this.getBooks();
     this.getUser();

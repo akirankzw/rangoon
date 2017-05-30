@@ -9,12 +9,11 @@ import 'rxjs/add/operator/toPromise';
 
 export class UserService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private userUrl = '/users/1.json';
 
   constructor(private http: Http) {}
 
-  getUser(): Promise<User> {
-    return this.http.get(this.userUrl)
+  getUser(id: number): Promise<User> {
+    return this.http.get(`/users/${id}.json`)
       .toPromise()
       .then(response => response.json().data as User)
       .catch(this.handleError);
