@@ -20,7 +20,7 @@ class BooksController < ApplicationController
     @book.update_attributes(user_id: current_user.id, comment: book_params[:comment])
 
     if @book.errors.empty?
-      render json: { status: :ok, message: 'レッスンを予約しました' }
+      render json: { status: :ok, user_id: @book.user_id, message: 'レッスンを予約しました' }
     else
       render json: @book.errors, status: :unprocessable_entity
     end

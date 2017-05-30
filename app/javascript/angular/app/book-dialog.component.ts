@@ -8,7 +8,7 @@ import { Lesson } from './lesson';
   template: `
 {{message}}
 <form method="post" #bookForm="ngForm">
-  <input type="hidden" name="book[lesson_id]" value="{{lesson.lesson_id}}">
+  <input type="hidden" name="book[lesson_id]" value="{{lesson.id}}">
   <p>
     <md-input-container class="full-width">
       <textarea mdInput placeholder="comment" name="book[comment]"></textarea>
@@ -39,12 +39,16 @@ export class BookDialogComponent {
 
   onSubmit(lesson): Promise<any> {
     return this.http
-      .post(this.bookUrl, JSON.stringify({book: { lesson_id: lesson.lesson_id }}), { headers: this.headers })
+      .post(this.bookUrl, JSON.stringify({book: { lesson_id: lesson.id }}), { headers: this.headers })
       .toPromise()
       .then(response => {
         this.message = response.json().message;
-        lesson.color = 'primary';
-        lesson.text = 'BOOK';
+        // REFACTOR
+        if (response.json().status === 'ok') {
+          lesson.color = 'primary';
+          lesson.text = 'BOOK';
+          lesson.user_id = response.json().user_id;
+        }
       })
       .catch(this.handleError);
   }

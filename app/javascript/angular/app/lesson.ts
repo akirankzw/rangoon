@@ -1,5 +1,5 @@
 export class Lesson {
-  lesson_id: number;
+  id: number;
   canceled?: boolean;
   user_id?: number;
   teacher_id?: number;

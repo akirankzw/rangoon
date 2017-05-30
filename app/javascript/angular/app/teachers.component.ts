@@ -21,7 +21,7 @@ import * as moment from 'moment';
   <tr *ngFor="let interval of intervals;let i = index">
     <td>{{interval}}</td>
     <td *ngFor="let lesson of lessons[i]">
-    <button md-raised-button (click)="openDialog(lesson)" [(color)]="lesson.color" *ngIf="!lesson.canceled">{{lesson.text}}</button>
+    <button md-raised-button (click)="openDialog(lesson)" [(color)]="lesson.color" *ngIf="!lesson.canceled" [disabled]="lesson.user_id">{{lesson.text}}</button>
     </td>
   </tr>
 </table>`
@@ -64,12 +64,12 @@ export class TeachersComponent implements OnInit {
             let lesson: Lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_time).local().format() === dt });
             console.log(lesson);
             array.push({
-              lesson_id:  lesson === undefined ? 0 : lesson.lesson_id,
+              id:         lesson === undefined ? 0 : lesson.id,
               canceled:   lesson === undefined ? true : lesson.canceled,
               user_id:    lesson === undefined ? null : lesson.user_id,
               teacher_id: lesson === undefined ? null : lesson.teacher_id,
               color:      lesson !== undefined && lesson.user_id ? 'primary' : 'accent',
-              text:       lesson !== undefined && lesson.user_id ? 'OPEN' : 'BOOK',
+              text:       lesson !== undefined && lesson.user_id ? 'BOOK' : 'OPEN',
               disabled:   now.utc().diff(dt, 'hours') > -2,
               start_time: dt,
             });

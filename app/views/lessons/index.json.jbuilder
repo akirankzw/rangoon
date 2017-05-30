@@ -1,6 +1,6 @@
 json.data do |json|
   json.array! @lessons do |lesson|
-    json.lesson_id lesson.id
+    json.id lesson.id
     json.teacher_id lesson.teacher_id
     json.start_time lesson.start_time
     json.canceled lesson.canceled
