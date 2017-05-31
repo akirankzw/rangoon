@@ -1,14 +1,14 @@
-import { Component, OnInit }from '@angular/core';
-import { ActivatedRoute }   from '@angular/router';
+import { Component, OnInit }     from '@angular/core';
+import { ActivatedRoute }        from '@angular/router';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
-import { BookService } from './book.service';
-import { UserService } from './user.service';
+import { BookService }   from './book.service';
+import { UserService }   from './user.service';
 import { LessonService } from './lesson.service';
 
-import { Book } from './book';
-import { User } from './user';
-import { Lesson }        from './lesson';
+import { Book }   from './book';
+import { User }   from './user';
+import { Lesson } from './lesson';
 
 import { BookDialogComponent } from './book-dialog.component';
 
@@ -17,18 +17,6 @@ import * as moment from 'moment';
 @Component({
   selector: 'users',
   template: `
-<md-toolbar color="accent">
-  <md-toolbar-row>
-    <span class="spacer"></span>
-    <md-icon class="icon">favorite</md-icon>
-    <a href="/users/sign_out"><md-icon class="icon">exit_to_app</md-icon></a>
-    <a routerLink="/dashboard"><md-icon class="icon">dashboard</md-icon></a>
-    <a [routerLink]="['/users', user.id]"><md-icon class="icon">home</md-icon></a>
-    <md-icon class="icon">build</md-icon>
-    <md-icon class="icon">note_add</md-icon>
-    <!--<a routerLink="/teachers/1" routerLinkActive="active"><md-icon class="icon">assignment</md-icon></a>-->
-  </md-toolbar-row>
-</md-toolbar>
 
 <md-tab-group>
 <md-tab label="予約一覧">

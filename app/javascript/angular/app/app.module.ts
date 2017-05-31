@@ -12,6 +12,7 @@ import { AppComponent }            from './app.component';
 import { DashboardComponent }      from './dashboard.component';
 import { PageNotFoundComponent }   from './not-found.component';
 import { SignupComponent }         from './sign-up.component';
+import { SigninComponent }         from './sign-in.component';
 import { TeachersComponent }       from './teachers.component';
 import { UsersComponent }          from './users.component';
 import { BookDialogComponent }     from './book-dialog.component';
@@ -35,6 +36,7 @@ import { UserService }             from './user.service';
     DashboardComponent,
     PageNotFoundComponent,
     SignupComponent,
+    SigninComponent,
     TeachersComponent,
     UsersComponent,
     BookDialogComponent
