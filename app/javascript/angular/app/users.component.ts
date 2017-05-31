@@ -44,37 +44,32 @@ import * as moment from 'moment';
 
   <md-tab label="アカウント">
     <img src="{{user.avatar}}">
-    <div>
-      <md-input-container>
-        <input mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="user[registration][end_date]" >
-        <button mdSuffix [mdDatepickerToggle]="picker"></button>
-      </md-input-container>
-    </div>
-    <div>
-      <md-input-container>
-        <input mdInput [(ngModel)]="user.given_name" name="user[given_name]" placeholder="given_name">
-      </md-input-container>
-    </div>
-    <div>
-      <md-input-container>
-        <input mdInput [(ngModel)]="user.family_name" name="user[family_name]" placeholder="family_name">
-      </md-input-container>
-    </div>
-    <div>
-      <md-input-container>
-        <input mdInput [mdDatepicker]="picker" [(ngModel)]="user.birthdate" name="user[birthdate]">
-        <button mdSuffix [mdDatepickerToggle]="picker"></button>
-      </md-input-container>
-    </div>
-    <div>
-      <md-select placeholder="sex" [(ngModel)]="user.sex" name="user[sex]" disabled>
-      </md-select>
-    </div>
-    <div>
-      <md-input-container>
-        <input mdInput type="email" [(ngModel)]="user.email" name="user[email]" placeholder="email">
-      </md-input-container>
-    </div>
+  <md-input-container>
+    <input  mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="user[registration][end_date]">
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+  </md-input-container>
+
+  <md-input-container>
+    <input mdInput [(ngModel)]="user.given_name" name="user[given_name]" placeholder="given_name">
+  </md-input-container>
+
+  <md-input-container>
+    <input mdInput [(ngModel)]="user.family_name" name="user[family_name]" placeholder="family_name">
+  </md-input-container>
+
+  <md-input-container>
+    <input mdInput [mdDatepicker]="picker" [(ngModel)]="user.birthdate" name="user[birthdate]">
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+  </md-input-container>
+
+  <md-select placeholder="sex" [(ngModel)]="user.sex" name="user[sex]" disabled>
+  </md-select>
+
+  <md-input-container>
+    <input mdInput type="email" [(ngModel)]="user.email" name="user[email]" placeholder="email">
+  </md-input-container>
+
+
   </md-tab>
 
     <md-tab label="先生のスケジュール">
