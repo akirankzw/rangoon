@@ -7,24 +7,11 @@ import { BookDialogComponent } from './book-dialog.component';
 
 import * as moment from 'moment';
 
+import templateString from './teachers.component.html';
+
 @Component({
   selector: 'teachers',
-  template: `
-<table>
-  <tr>
-    <th></th>
-    <th *ngFor="let day of days">
-      <span class="wday">{{day.format("ddd")}}</span>
-      <span>{{day.format("MMM DD")}}</span>
-    </th>
-  </tr>
-  <tr *ngFor="let interval of intervals;let i = index">
-    <td>{{interval}}</td>
-    <td *ngFor="let lesson of lessons[i]">
-    <button md-raised-button (click)="openDialog(lesson)" *ngIf="!lesson.canceled" color="accent" [disabled]="lesson.user_id">{{lesson.text}}</button>
-    </td>
-  </tr>
-</table>`
+  template: templateString
 })
 
 export class TeachersComponent implements OnInit {

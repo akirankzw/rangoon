@@ -6,31 +6,11 @@ import { LessonService } from './lesson.service';
 
 import * as moment from 'moment';
 
+import templateString from './dashboard.component.html';
+
 @Component({
   selector: 'dashboard',
-  template: `
-<md-tab-group>
-  <md-tab label="Schedule">
-    <table>
-      <tr>
-        <th></th>
-        <th *ngFor="let day of days">
-          <span class="wday">{{day.format("ddd")}}</span>
-          <span>{{day.format("MMM DD")}}</span>
-        </th>
-      </tr>
-      <tr *ngFor="let interval of intervals;let i = index">
-        <td>{{interval}}</td>
-        <td *ngFor="let lesson of lessons[i]">
-          <md-checkbox (change)="toggle(lesson, $event)" [checked]="!lesson.canceled" [disabled]="lesson.disabled"></md-checkbox>
-        </td>
-      </tr>
-    </table>
-  </md-tab>
-  <md-tab label="Account Settings">
-  </md-tab>
-</md-tab-group>
-`
+  template: templateString
 })
 
 export class DashboardComponent implements OnInit {
