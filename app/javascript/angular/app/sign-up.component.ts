@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from './user';
 
-import templateString from './sign.in.component.html';
+import templateString from './sign-up.component.html';
 
 @Component({
   selector: 'sign-up',

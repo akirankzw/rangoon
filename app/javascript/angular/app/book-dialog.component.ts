@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Lesson } from './lesson';
-import templateString from './book.dialog.component.html';
+import templateString from './book-dialog.component.html';
 
 @Component({
   selector: 'book-dialog',
