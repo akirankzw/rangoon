@@ -7,6 +7,7 @@ import { UserComponent }          from './user.component';
 import { UserSigninComponent }    from './user-signin.component';
 import { UserSignupComponent }    from './user-signup.component';
 import { UserDashboardComponent } from './user-dashboard.component';
+import { UserEditComponent }      from './user-edit.component';
 
 import { UserRoutingModule } from './user-routing.module';
 
@@ -21,7 +22,8 @@ import { UserRoutingModule } from './user-routing.module';
     UserComponent,
     UserSigninComponent,
     UserSignupComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    UserEditComponent
   ]
 })
 

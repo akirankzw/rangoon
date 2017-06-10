@@ -5,6 +5,7 @@ import { UserComponent }          from './user.component';
 import { UserSignupComponent }    from './user-signup.component';
 import { UserSigninComponent }    from './user-signin.component';
 import { UserDashboardComponent } from './user-dashboard.component';
+import { UserEditComponent } from './user-edit.component';
 
 const userRoutes: Routes = [
   {
@@ -14,9 +15,10 @@ const userRoutes: Routes = [
       {
         path: '',
         children: [
-          { path: 'sign_in', component: UserSigninComponent },
-          { path: 'sign_up', component: UserSignupComponent },
-          { path: ':id',     component: UserDashboardComponent }
+          { path: 'sign_in',   component: UserSigninComponent },
+          { path: 'sign_up',   component: UserSignupComponent },
+          { path: 'dashboard', component: UserDashboardComponent },
+          { path: ':id',       component: UserEditComponent }
         ]
       }
     ]
