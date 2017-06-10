@@ -9,7 +9,6 @@ import { MdNativeDateModule }      from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent }            from './app.component';
-import { DashboardComponent }      from './dashboard.component';
 import { PageNotFoundComponent }   from './not-found.component';
 import { SignupComponent }         from './sign-up.component';
 import { SigninComponent }         from './sign-in.component';
@@ -21,19 +20,22 @@ import { LessonService }           from './lesson.service';
 import { BookService }             from './book.service';
 import { UserService }             from './user.service';
 
+import { TeacherModule } from './admin/teacher.module';
+
+
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     MaterialModule,
     MdNativeDateModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    TeacherModule,
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
-    DashboardComponent,
     PageNotFoundComponent,
     SignupComponent,
     SigninComponent,
