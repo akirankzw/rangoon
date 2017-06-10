@@ -28,7 +28,11 @@ Rails.application.routes.draw do
       post :webhook
     end
   end
-  resources :users
+  resources :users, except: [:index] do
+    collection do
+      get 'dashboard', action: :index
+    end
+  end
   resources :teachers, only: [:index, :show, :edit, :update]
   resources :lessons, only: [:index, :show, :create]
   resources :books, only: [:index, :show, :create]

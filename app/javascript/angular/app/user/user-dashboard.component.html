@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <td>予約番号</td>
+    <td>日時</td>
+    <td>先生</td>
+    <td>コメント</td>
+    <td>キャンセル</td>
+  <tr>
+  <tr *ngFor="let book of books">
+    <td>{{book.lesson_id}}</td>
+    <td>{{book.datetime}}</td>
+    <td>{{book.teacher_name}}</td>
+    <td>{{book.comment}}</td>
+    <td>{{book.canceled}}</td>
+  </tr>
+</table>

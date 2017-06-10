@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MdCheckboxModule }  from '@angular/material';
 
-import { Lesson }        from './lesson';
-import { LessonService } from './lesson.service';
+import { Lesson }        from '../lesson';
+import { LessonService } from '../lesson.service';
 
 import * as moment from 'moment';
 
-import templateString from './dashboard.component.html';
+import templateString from './teacher-dashboard.component.html';
 
 @Component({
   selector: 'dashboard',
   template: templateString
 })
 
-export class DashboardComponent implements OnInit {
+export class TeacherDashboardComponent implements OnInit {
   lessons: any[] = [];
 
   constructor(private lessonService: LessonService) {}
