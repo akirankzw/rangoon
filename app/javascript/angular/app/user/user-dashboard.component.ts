@@ -2,21 +2,21 @@ import { Component, OnInit }     from '@angular/core';
 import { ActivatedRoute }        from '@angular/router';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
-import { BookService }   from './book.service';
+import { BookService }   from '../book.service';
 
-import { Book }   from './book';
-import { User }   from './user';
+import { Book }   from '../book';
+import { User }   from '../user';
 
 import * as moment from 'moment';
 
-import templateString from './users.component.html';
+import templateString from './user-dashboard.component.html';
 
 @Component({
-  selector: 'users',
+  selector: 'user-dashboard',
   template: templateString
 })
 
-export class UsersComponent implements OnInit {
+export class UserDashboardComponent implements OnInit {
   books: Book[] = [];
 
   user: User = new User(0, '', '', '', '', '', '', ''); // TODO

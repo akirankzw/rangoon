@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { User } from './user';
+import { User } from '../user';
 
-import templateString from './sign-up.component.html';
+import templateString from './user-signup.component.html';
 
 @Component({
-  selector: 'sign-up',
-  template: templateString,
+  template: templateString
 })
 
-export class SignupComponent {
+export class UserSignupComponent {
   submitted = false;
   selectedValue: string;
 

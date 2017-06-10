@@ -10,18 +10,15 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent }            from './app.component';
 import { PageNotFoundComponent }   from './not-found.component';
-import { SignupComponent }         from './sign-up.component';
-import { SigninComponent }         from './sign-in.component';
 import { TeachersComponent }       from './teachers.component';
-import { UsersComponent }          from './users.component';
 import { BookDialogComponent }     from './book-dialog.component';
 
 import { LessonService }           from './lesson.service';
 import { BookService }             from './book.service';
 import { UserService }             from './user.service';
 
+import { UserModule }    from './user/user.module';
 import { TeacherModule } from './admin/teacher.module';
-
 
 @NgModule({
   imports: [
@@ -31,16 +28,14 @@ import { TeacherModule } from './admin/teacher.module';
     MdNativeDateModule,
     HttpModule,
     FormsModule,
+    UserModule,
     TeacherModule,
     AppRoutingModule
   ],
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    SignupComponent,
-    SigninComponent,
     TeachersComponent,
-    UsersComponent,
     BookDialogComponent
   ],
   providers: [
