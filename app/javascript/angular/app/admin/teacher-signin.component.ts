@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component }   from '@angular/core';
 
-import templateString from './sign-in.component.html';
+import templateString from './teacher-signin.component.html';
 
 @Component({
-  selector: 'sign-in',
+  selector: 'teacher-signin',
   template: templateString,
   styles: [``]
 })
 
-export class SigninComponent {
+export class TeacherSigninComponent {
   onSubmit(): void {
     document.forms[1].appendChild(document.forms[0].elements[1]);
     document.forms[1].submit();
