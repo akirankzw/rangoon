@@ -15,14 +15,14 @@ class CreditCardService
     begin
       Stripe::Charge.create(charge_attributes)
     rescue => e
-      logger.error e.message
+      Rails.logger.error e.message
     end
   end
 
   def create_customer
     @customer = Stripe::Customer.create(customer_attributes)
   rescue => e
-    logger.error e.message
+    Rails.logger.error e.message
   end
 
   private

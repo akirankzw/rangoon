@@ -1,0 +1,22 @@
+<p>5,000円（1ヶ月/週5回）</p>
+
+<form action="/registrations" method="post" id="payment-form">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+  <div class="form-row">
+    <label for="card-element">クレジットカード</label>
+    <div id="card-element">
+    </div>
+
+    <div id="card-errors" role="alert"></div>
+  </div>
+
+  <button class="order-submit">お支払いを確定する</button>
+</form>
+
+<%= stylesheet_link_tag "registrations" %>
+<%= javascript_include_tag "https://js.stripe.com/v3/" %>
+<%= javascript_tag do %>
+  window.publishableKey = '<%= Rails.configuration.stripe[:publishable_key] %>'
+<% end %>
+<%= javascript_include_tag "registrations" %>

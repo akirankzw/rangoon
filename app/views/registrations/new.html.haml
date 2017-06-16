@@ -5,4 +5,4 @@
         %p= flash[:error]
     %label.amount
       %span Amount: 100YEN
-  %script{ src: "https://checkout.stripe.com/checkout.js", class: "stripe-button", data: { key: "#{Rails.configuration.stripe[:publishable_key]}", description: "A month's subscription", amount: "100", data: "auto" } }
+  %script{ src: "https://checkout.stripe.com/checkout.js", class: "stripe-button", data: { key: "#{Rails.configuration.stripe[:publishable_key]}", description: "A month's subscription", amount: "100", locale: "auto" } }

@@ -1,5 +1,6 @@
 class RegistrationsController < ApplicationController
   protect_from_forgery except: :webhook
+  before_action :authenticate_user!, except: :webook
 
   def new
   end
