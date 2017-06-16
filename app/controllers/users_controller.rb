@@ -1,19 +1,16 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:update, :destroy]
   before_action :authenticate_user!
 
   def index
   end
 
   def show
-    @user = User.joins(:registration).find(params[:id])
+    @user = User.joins(:registration).find(current_user.id)
   end
 
   def new
     @user = User.new
-  end
-
-  def edit
   end
 
   def create
