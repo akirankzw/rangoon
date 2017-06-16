@@ -9,11 +9,24 @@ import templateString from './user-edit.component.html';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-  template: templateString
+  template: templateString,
+  styles: [
+    `
+      .mat-card {
+        margin: 10px;
+      }
+
+    `
+  ]
 })
 
 export class UserEditComponent implements OnInit {
   user: User = new User(0, '', '', '', '', '', '', '', ''); // TODO
+
+  gender = [
+    { value: 'male', viewValue: '男性' },
+    { value: 'female', viewValue: '女性' }
+  ]
 
   constructor(
     private route: ActivatedRoute,

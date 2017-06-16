@@ -4,10 +4,11 @@
     <table cellspacing="0">
       <tr>
         <td>
-          <md-input-container>
+          <md-input-container *ngIf="user.end_date; else elseBlock">
             <input  mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="user[registration][end_date]" placeholder="利用期限">
             <button mdSuffix [mdDatepickerToggle]="picker"></button>
           </md-input-container>
+          <ng-template #elseBlock>A</ng-template>
         </td>
       </tr>
       <tr>
@@ -35,6 +36,7 @@
       <tr>
         <td>
           <md-select placeholder="sex" [(ngModel)]="user.sex" name="user[sex]" placeholder="性別">
+            <md-option *ngFor="let sex of gender" [value]="sex.value">{{sex.viewValue}}
           </md-select>
         </td>
       </tr>

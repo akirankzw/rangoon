@@ -28,7 +28,8 @@ Rails.application.routes.draw do
       post :webhook
     end
   end
-  resources :users, except: [:index, :edit, :update, :destroy] do
+
+  resource :users, only: :none do
     collection do
       get  'dashboard', action: :index
       get  'profile',   action: :show

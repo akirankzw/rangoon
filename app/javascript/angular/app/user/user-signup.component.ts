@@ -9,12 +9,6 @@ import templateString from './user-signup.component.html';
 
 export class UserSignupComponent {
   submitted = false;
-  selectedValue: string;
-
-  gender = [
-    { value: 'male-0', viewValue: 'male' },
-    { value: 'female-1', viewValue: 'female' }
-  ]
 
   model = new User(0, 'test@example.com', 'Taro', 'Suzuki', '', '', '', ''); // TODO
 
