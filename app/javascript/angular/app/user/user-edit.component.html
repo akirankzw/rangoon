@@ -1,5 +1,6 @@
 <md-card>
-  <form>
+  <form (ngSubmit)="onSubmit()" action="/users/profile" method="post" #userForm="ngForm">
+    <input type="hidden" [(ngModel)]="user.token" name="authenticity_token">
     <table cellspacing="0">
       <tr>
         <td>
@@ -45,5 +46,7 @@
         </td>
       </tr>
     </table>
+    <button type="submit" md-raised-button>Submit</button>
+    <button type="button" md-raised-button (click)="userForm.reset()">Reset</button>
   </form>
 </div>

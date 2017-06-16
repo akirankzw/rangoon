@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
     create_table :users, options: 'ROW_FORMAT=DYNAMIC' do |t|
       t.string :given_name
       t.string :family_name
-      t.date :birhdate
+      t.date :birthdate
       t.boolean :sex
 
       t.timestamps

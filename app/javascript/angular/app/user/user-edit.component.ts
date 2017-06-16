@@ -13,12 +13,16 @@ import 'rxjs/add/operator/switchMap';
 })
 
 export class UserEditComponent implements OnInit {
-  user: User = new User(0, '', '', '', '', '', '', ''); // TODO
+  user: User = new User(0, '', '', '', '', '', '', '', ''); // TODO
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService
   ) { }
+
+  onSubmit() {
+    document.forms[0].submit();
+  }
 
   ngOnInit(): void {
     this.route.params

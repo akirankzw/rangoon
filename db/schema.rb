@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20170527124818) do
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
     t.string "given_name"
     t.string "family_name"
-    t.date "birhdate"
+    t.date "birthdate"
     t.boolean "sex"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
