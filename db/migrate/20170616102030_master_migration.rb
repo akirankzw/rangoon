@@ -89,8 +89,11 @@ class MasterMigration < ActiveRecord::Migration[5.1]
       t.string :stripe_token
       t.date :end_date
       t.string :customer_id
+      t.string :subscription
 
       t.timestamps
     end
+
+    add_index :subscriptions, :customer_id,     unique: true
   end
 end

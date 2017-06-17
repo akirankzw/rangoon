@@ -20,7 +20,7 @@ class SubscriptionsController < ApplicationController
     event = Stripe::Event.retrieve(params[:id])
     case event.type
     when 'invoice.payment_succeeded'
-      Subscription.find_by_customer_id(event.data.object.customer).renew
+      Subscription.find_by_customer_id(event.data.object.customer).renew(event.data.object.subscription)
     end
     render status: :ok, json: 'success'
   end
