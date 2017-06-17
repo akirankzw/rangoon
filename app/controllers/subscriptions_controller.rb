@@ -1,4 +1,4 @@
-class RegistrationsController < ApplicationController
+class SubscriptionsController < ApplicationController
   before_action :authenticate_user!, except: :webhook
   protect_from_forgery except: :webhook
 
@@ -9,8 +9,8 @@ class RegistrationsController < ApplicationController
     payment = CreditCardService.new(stripe_params)
     customer = payment.create_customer
     payment.charge
-    registration = Registration.new(email: params[:stripeEmail], stripe_token: params[:stripeToken], user_id: current_user.id, customer_id: customer.id)
-    registration.save!
+    subscription = Subscription.new(email: params[:stripeEmail], stripe_token: params[:stripeToken], user_id: current_user.id, customer_id: customer.id)
+    subscription.save!
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
@@ -20,7 +20,7 @@ class RegistrationsController < ApplicationController
     event = Stripe::Event.retrieve(params[:id])
     case event.type
     when 'invoice.payment_succeeded'
-      Registration.find_by_customer_id(event.data.object.customer).renew
+      Subscription.find_by_customer_id(event.data.object.customer).renew
     end
     render status: :ok, json: 'success'
   end
@@ -31,7 +31,7 @@ class RegistrationsController < ApplicationController
     {
       email:       params[:stripeEmail],
       source:      params[:stripeToken],
-      plan:        Course.first.plan
+      plan:        Plan.first.title
     }
   end
 end

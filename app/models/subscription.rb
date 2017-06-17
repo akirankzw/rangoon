@@ -1,4 +1,4 @@
-class Registration < ApplicationRecord
+class Subscription < ApplicationRecord
   belongs_to :user
 
   def renew

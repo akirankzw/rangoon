@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.joins(:registration).find(current_user.id)
+    @user = User.joins(:subscription).find(current_user.id)
   end
 
   def update
