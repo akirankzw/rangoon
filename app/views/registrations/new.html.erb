@@ -1,3 +1,12 @@
+<% if current_user.registration.end_date %>
+
+お申し込み済みです。次の引き落とし日は<%= current_user.registration.end_date + 1.month %>の予定です。
+解約する場合は、以下のフォームに記入してください。
+
+
+
+
+<% else %>
 <p>5,000円（1ヶ月/週5回）</p>
 
 <form action="/registrations" method="post" id="payment-form">
@@ -11,7 +20,11 @@
     <div id="card-errors" role="alert"></div>
   </div>
 
-  <button class="order-submit">お支払いを確定する</button>
+  <button class="order-button order-submit">お支払いを確定する</button>
+</form>
+
+<form action="/users/profile">
+  <button class="order-button go-back">戻る</button>
 </form>
 
 <%= stylesheet_link_tag "registrations" %>
@@ -20,3 +33,5 @@
   window.publishableKey = '<%= Rails.configuration.stripe[:publishable_key] %>'
 <% end %>
 <%= javascript_include_tag "registrations" %>
+
+<% end %>
