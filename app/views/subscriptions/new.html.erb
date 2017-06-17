@@ -1,7 +1,12 @@
 <% if current_user.subscription.end_date %>
 
 お申し込み済みです。次の引き落とし日は<%= current_user.subscription.end_date + 1.month %>の予定です。
-解約する場合は、以下のフォームに記入してください。
+解約しますか？
+
+<form action="/subscriptions/unsubscribe" method="post" id="payment-form">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <button class="order-button order-submit">解約する</button>
+</form>
 
 <% else %>
 <p>5,000円（1ヶ月/週5回）</p>
@@ -24,7 +29,6 @@
   <button class="order-button go-back">戻る</button>
 </form>
 
-<%= stylesheet_link_tag "subscriptions" %>
 <%= javascript_include_tag "https://js.stripe.com/v3/" %>
 <%= javascript_tag do %>
   window.publishableKey = '<%= Rails.configuration.stripe[:publishable_key] %>'
@@ -32,3 +36,5 @@
 <%= javascript_include_tag "subscriptions" %>
 
 <% end %>
+
+<%= stylesheet_link_tag "subscriptions" %>

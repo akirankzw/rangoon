@@ -90,6 +90,7 @@ class MasterMigration < ActiveRecord::Migration[5.1]
       t.date :end_date
       t.string :customer_id
       t.string :subscription
+      t.boolean :canceled, default: false
 
       t.timestamps
     end

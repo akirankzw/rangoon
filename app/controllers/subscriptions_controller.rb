@@ -16,11 +16,20 @@ class SubscriptionsController < ApplicationController
     redirect_to new_charge_path
   end
 
+  def unsubscribe
+    Stripe.api_key = Rails.configuration.stripe[:secret_key]
+    subscription = Stripe::Subscription.retrieve(current_user.subscription.subscription)
+    subscription.delete()
+    # subscription.delete(at_period_end: true)
+  end
+
   def webhook
     event = Stripe::Event.retrieve(params[:id])
     case event.type
     when 'invoice.payment_succeeded'
       Subscription.find_by_customer_id(event.data.object.customer).renew(event.data.object.subscription)
+    when 'customer.subscription.deleted'
+      Subscription.find_by_customer_id(event.data.object.customer).delete
     end
     render status: :ok, json: 'success'
   end

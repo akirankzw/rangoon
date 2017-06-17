@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   resources :subscriptions, only: [:new, :create] do
     collection do
+      post :unsubscribe
       post :webhook
     end
   end
