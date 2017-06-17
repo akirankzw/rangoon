@@ -1,24 +1,56 @@
-<md-input-container>
-  <input  mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="user[registration][end_date]">
-  <button mdSuffix [mdDatepickerToggle]="picker"></button>
-</md-input-container>
-
-<md-input-container>
-  <input mdInput [(ngModel)]="user.given_name" name="user[given_name]" placeholder="given_name">
-</md-input-container>
-
-<md-input-container>
-  <input mdInput [(ngModel)]="user.family_name" name="user[family_name]" placeholder="family_name">
-</md-input-container>
-
-<md-input-container>
-  <input mdInput [mdDatepicker]="picker" [(ngModel)]="user.birthdate" name="user[birthdate]">
-  <button mdSuffix [mdDatepickerToggle]="picker"></button>
-</md-input-container>
-
-<md-select placeholder="sex" [(ngModel)]="user.sex" name="user[sex]" disabled>
-</md-select>
-
-<md-input-container>
-  <input mdInput type="email" [(ngModel)]="user.email" name="user[email]" placeholder="email">
-</md-input-container>
+<md-card>
+  <form (ngSubmit)="onSubmit()" action="/users/profile" method="post" #userForm="ngForm">
+    <input type="hidden" [(ngModel)]="user.token" name="authenticity_token">
+    <table cellspacing="0">
+      <tr>
+        <td>
+          <md-input-container *ngIf="user.end_date; else elseBlock">
+            <input  mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="user[subscription][end_date]" placeholder="利用期限">
+            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+          </md-input-container>
+          <ng-template #elseBlock>
+            <a href="/subscriptions/new">お申込み</a>はこちら
+          </ng-template>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container>
+            <input mdInput [(ngModel)]="user.given_name" name="user[given_name]" placeholder="名">
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container>
+            <input mdInput [(ngModel)]="user.family_name" name="user[family_name]" placeholder="姓">
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container>
+            <input mdInput [mdDatepicker]="picker" [(ngModel)]="user.birthdate" name="user[birthdate]" placeholder="誕生日">
+            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-select placeholder="sex" [(ngModel)]="user.sex" name="user[sex]" placeholder="性別">
+            <md-option *ngFor="let sex of gender" [value]="sex.value">{{sex.viewValue}}
+          </md-select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container>
+            <input mdInput type="email" [(ngModel)]="user.email" name="email" disabled>
+          </md-input-container>
+        </td>
+      </tr>
+    </table>
+    <button type="submit" md-raised-button>Submit</button>
+    <button type="button" md-raised-button (click)="userForm.reset()">Reset</button>
+  </form>
+</div>

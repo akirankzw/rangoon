@@ -4,6 +4,13 @@ class Book < ApplicationRecord
 
   after_save :notify_user
 
+  scope :over_booking, lambda { |book, uid|
+    joins(:lesson)
+      .where(user_id: uid)
+      .where('lessons.start_time >= ?', book.lesson.start_time.beginning_of_day)
+      .where('lessons.start_time <= ?', book.lesson.start_time.end_of_day)
+  }
+
   private
 
   def notify_user

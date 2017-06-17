@@ -8,6 +8,7 @@ export class User {
     public password_confirmation: string,
     public birth_date?: string,
     public sex?: string,
-    public avatar?: string
+    public avatar?: string,
+    public token?: string
   ) { }
 }

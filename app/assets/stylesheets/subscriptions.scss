@@ -1,0 +1,33 @@
+.form-row {
+  width: 400px;
+}
+
+.order-button {
+  margin: 10px;
+  border: none;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2),
+  0 2px 2px 0 rgba(0, 0, 0, .14),
+  0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.order-submit {
+  background-color: #ffd740;
+}
+
+.go-back {
+  background-color: #ff990e;
+}
+
+.StripeElement {
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}

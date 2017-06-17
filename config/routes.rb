@@ -23,14 +23,18 @@ Rails.application.routes.draw do
     }
   end
 
-  resources :registrations, only: [:new, :create] do
+  resources :subscriptions, only: [:new, :create] do
     collection do
+      post :unsubscribe
       post :webhook
     end
   end
-  resources :users, except: [:index] do
+
+  resource :users, only: :none do
     collection do
-      get 'dashboard', action: :index
+      get  'dashboard', action: :index
+      get  'profile',   action: :show
+      post 'profile',   action: :update
     end
   end
   resources :teachers, only: [:index, :show, :edit, :update]

@@ -1,0 +1,40 @@
+<% if current_user.subscription.end_date %>
+
+お申し込み済みです。次の引き落とし日は<%= current_user.subscription.end_date + 1.month %>の予定です。
+解約しますか？
+
+<form action="/subscriptions/unsubscribe" method="post" id="payment-form">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <button class="order-button order-submit">解約する</button>
+</form>
+
+<% else %>
+<p>5,000円（1ヶ月/週5回）</p>
+
+<form action="/subscriptions" method="post" id="payment-form">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+  <div class="form-row">
+    <label for="card-element">クレジットカード</label>
+    <div id="card-element">
+    </div>
+
+    <div id="card-errors" role="alert"></div>
+  </div>
+
+  <button class="order-button order-submit">お支払いを確定する</button>
+</form>
+
+<form action="/users/profile">
+  <button class="order-button go-back">戻る</button>
+</form>
+
+<%= javascript_include_tag "https://js.stripe.com/v3/" %>
+<%= javascript_tag do %>
+  window.publishableKey = '<%= Rails.configuration.stripe[:publishable_key] %>'
+<% end %>
+<%= javascript_include_tag "subscriptions" %>
+
+<% end %>
+
+<%= stylesheet_link_tag "subscriptions" %>

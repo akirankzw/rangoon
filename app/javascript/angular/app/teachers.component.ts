@@ -10,7 +10,6 @@ import * as moment from 'moment';
 import templateString from './teachers.component.html';
 
 @Component({
-  selector: 'teachers',
   template: templateString
 })
 

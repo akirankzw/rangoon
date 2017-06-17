@@ -1,8 +1,0 @@
-= form_tag registrations_path do
-  %article
-    - if flash[:error].present?
-      #error_explanation
-        %p= flash[:error]
-    %label.amount
-      %span Amount: 100YEN
-  %script{ src: "https://checkout.stripe.com/checkout.js", class: "stripe-button", data: { key: "#{Rails.configuration.stripe[:publishable_key]}", description: "A month's subscription", amount: "100", data: "auto" } }

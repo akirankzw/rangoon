@@ -1,14 +1,16 @@
+<md-progress-bar mode="indeterminate" color="primary"></md-progress-bar>
+
 <md-toolbar color="primary">
   <md-toolbar-row>
     <span class="spacer"></span>
-    <a href="/users/sign_in"><md-icon class="icon">face</md-icon></a>
-    <a href="/users/sign_out"><md-icon class="icon">exit_to_app</md-icon></a>
-    <a routerLink="/users/dashboard" routerLinkActive="active"><md-icon class="icon">dashboard</md-icon></a>
+    <a href="/users/sign_in"><span mdTooltip="ログイン"><md-icon class="icon">face</md-icon></span></a>
+    <a href="/users/sign_out"><span mdTooltip="ログアウト"><md-icon class="icon">exit_to_app</md-icon></span></a>
+    <a routerLink="/users/dashboard" routerLinkActive="active"><span mdTooltip="ダッシュボード"><md-icon class="icon">dashboard</md-icon></span></a>
     <!-- TODO -->
-    <a [routerLink]="['/users', 1]" routerLinkActive="active"><md-icon class="icon">home</md-icon></a>
+    <a routerLink="/users/profile" routerLinkActive="active"><span mdTooltip="アカウント設定"><md-icon class="icon">home</md-icon></span></a>
 
     <md-icon class="icon">note_add</md-icon>
-    <a routerLink="/teachers/1" routerLinkActive="active"><md-icon class="icon">assignment</md-icon></a>
+    <a routerLink="/teachers/1" routerLinkActive="active"><span mdTooltip="先生のスケジュール"><md-icon class="icon">assignment</md-icon></span></a>
   </md-toolbar-row>
 </md-toolbar>
 

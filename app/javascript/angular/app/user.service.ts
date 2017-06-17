@@ -12,8 +12,8 @@ export class UserService {
 
   constructor(private http: Http) {}
 
-  getUser(id: number): Promise<User> {
-    return this.http.get(`/users/${id}.json`)
+  getUser(): Promise<User> {
+    return this.http.get('/users/profile.json')
       .toPromise()
       .then(response => response.json().data as User)
       .catch(this.handleError);

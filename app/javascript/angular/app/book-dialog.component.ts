@@ -5,7 +5,6 @@ import { Lesson } from './lesson';
 import templateString from './book-dialog.component.html';
 
 @Component({
-  selector: 'book-dialog',
   template: templateString,
   styles: [`
 textarea {
