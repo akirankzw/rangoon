@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one :account_setting, autosave: true
   has_one :registration, autosave: true
+  has_many :books
   before_create :build_account_setting, :build_registration
 
   has_attached_file :avatar, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/assets/missing.png'
