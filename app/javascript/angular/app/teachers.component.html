@@ -1,15 +1,17 @@
-<table>
-  <tr>
-    <th></th>
-    <th *ngFor="let day of days">
-      <span class="wday">{{day.format("ddd")}}</span>
-      <span>{{day.format("MMM DD")}}</span>
-    </th>
-  </tr>
-  <tr *ngFor="let interval of intervals;let i = index">
-    <td>{{interval}}</td>
-    <td *ngFor="let lesson of lessons[i]">
-    <button md-raised-button (click)="openDialog(lesson)" *ngIf="!lesson.canceled" color="accent" [disabled]="lesson.user_id">{{lesson.text}}</button>
-    </td>
-  </tr>
-</table>
+<md-card>
+  <table>
+    <tr>
+      <th></th>
+      <th *ngFor="let day of days">
+        <span class="wday">{{day.format("ddd")}}</span>
+        <span>{{day.format("MMM DD")}}</span>
+      </th>
+    </tr>
+    <tr *ngFor="let interval of intervals;let i = index">
+      <td>{{interval}}</td>
+      <td *ngFor="let lesson of lessons[i]">
+        <button md-raised-button (click)="openDialog(lesson)" *ngIf="!lesson.canceled" color="accent" [disabled]="lesson.user_id">{{lesson.text}}</button>
+      </td>
+    </tr>
+  </table>
+</md-card>
