@@ -9,8 +9,8 @@ class SubscriptionsController < ApplicationController
     payment = CreditCardService.new(stripe_params)
     customer = payment.create_customer
     payment.charge
-    subscription = Subscription.new(email: params[:stripeEmail], stripe_token: params[:stripeToken], user_id: current_user.id, customer_id: customer.id)
-    subscription.save!
+    subscription = current_user.subscription
+    subscription.update!(email: params[:stripeEmail], stripe_token: params[:stripeToken], user_id: current_user.id, customer_id: customer.id)
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
