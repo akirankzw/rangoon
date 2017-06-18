@@ -10,14 +10,7 @@ import templateString from './user-edit.component.html';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-  template: templateString,
-  styles: [
-    `
-      .mat-card {
-        margin: 10px;
-      }
-    `
-  ]
+  template: templateString
 })
 
 export class UserEditComponent implements OnInit {

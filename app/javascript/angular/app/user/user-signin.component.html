@@ -1,10 +1,21 @@
-<form class="form" (ngSubmit)="onSubmit()" action="/users/sign_in" method="post">
-  <md-input-container>
-    <input mdInput type="email" name="user[email]" placeholder="mail address" required>
-  </md-input-container>
-
-  <md-input-container class="full-width">
-    <input mdInput type="password" name="user[password]" placeholder="password" required>
-  </md-input-container>
-  <button type="submit" md-raised-button>Submit</button>
-</form>
+<md-card>
+  <form class="form" (ngSubmit)="onSubmit()" action="/users/sign_in" method="post">
+    <table>
+      <tr>
+        <td>
+          <md-input-container>
+            <input mdInput type="email" name="user[email]" placeholder="mail address" required>
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container class="full-width">
+            <input mdInput type="password" name="user[password]" placeholder="password" required>
+          </md-input-container>
+        </td>
+      </tr>
+    </table>
+    <button type="submit" md-raised-button>Submit</button>
+  </form>
+</md-card>

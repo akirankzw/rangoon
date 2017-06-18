@@ -2,6 +2,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.mat-card {
+  margin: 10px;
+}
+
 .form-row {
   width: 400px;
 }

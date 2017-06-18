@@ -1,24 +1,32 @@
-<form class="form" (ngSubmit)="onSubmit()" action="/users" method="post" #userForm="ngForm">
-  <md-input-container>
-    <input mdInput type="email" [(ngModel)]="model.email" name="user[email]" placeholder="mail address" required #email="ngModel">
-  </md-input-container>
-  <div [hidden]="email.valid || email.pristine" class="alert alert-danger">email is required</div>
-  <table class="full-width" cellspacing="0">
-    <tr>
-      <td>
-        <md-input-container class="full-width">
-          <input mdInput type="password" [(ngModel)]="model.password" name="user[password]" placeholder="password" required #password="ngModel">
-        </md-input-container>
-        <div [hidden]="password.valid || password.pristine" class="alert alert-danger">password is required</div>
-      </td>
-      <td>
-        <md-input-container class="full-width">
-          <input mdInput type="password" [(ngModel)]="model.password_confirmation" name="user[password_confirmation]" placeholder="password" required #password_confirmation="ngModel">
-        </md-input-container>
-        <div [hidden]="password_confirmation.valid || password_confirmation.pristine" class="alert alert-danger">password is required</div>
-      </td>
-    </tr>
-  </table>
-  <button type="submit" md-raised-button [disabled]="!userForm.form.valid">Submit</button>
-  <button type="button" md-raised-button (click)="newUser(); userForm.reset()">Reset</button>
-</form>
+<md-card>
+  <form class="form" (ngSubmit)="onSubmit()" action="/users" method="post" #userForm="ngForm">
+    <table>
+      <tr>
+        <td>
+          <md-input-container>
+            <input mdInput type="email" [(ngModel)]="model.email" name="user[email]" placeholder="mail address" required #email="ngModel">
+          </md-input-container>
+          <div [hidden]="email.valid || email.pristine" class="alert alert-danger">email is required</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container class="full-width">
+            <input mdInput type="password" [(ngModel)]="model.password" name="user[password]" placeholder="password" required #password="ngModel">
+          </md-input-container>
+          <div [hidden]="password.valid || password.pristine" class="alert alert-danger">password is required</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container class="full-width">
+            <input mdInput type="password" [(ngModel)]="model.password_confirmation" name="user[password_confirmation]" placeholder="password" required #password_confirmation="ngModel">
+          </md-input-container>
+          <div [hidden]="password_confirmation.valid || password_confirmation.pristine" class="alert alert-danger">password is required</div>
+        </td>
+      </tr>
+    </table>
+    <button type="submit" md-raised-button [disabled]="!userForm.form.valid">Submit</button>
+    <button type="button" md-raised-button (click)="newUser(); userForm.reset()">Reset</button>
+  </form>
+</md-card>
