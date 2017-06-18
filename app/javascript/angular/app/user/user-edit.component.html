@@ -1,18 +1,18 @@
 <md-card>
+  <md-input-container *ngIf="user.end_date; else elseBlock">
+    <input  mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="user[subscription][end_date]" placeholder="利用期限">
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+  </md-input-container>
+  <md-chip *ngIf="user.canceled" selected="true" color="accent">解約済み</md-chip>
+  <ng-template #elseBlock>
+    <a href="/subscriptions/new">お申込み</a>はこちら
+  </ng-template>
+</md-card>
+
+<md-card>
   <form (ngSubmit)="onSubmit()" action="/users/profile" method="post" #userForm="ngForm">
     <input type="hidden" [(ngModel)]="user.token" name="authenticity_token">
     <table cellspacing="0">
-      <tr>
-        <td>
-          <md-input-container *ngIf="user.end_date; else elseBlock">
-            <input  mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="user[subscription][end_date]" placeholder="利用期限">
-            <button mdSuffix [mdDatepickerToggle]="picker"></button>
-          </md-input-container>
-          <ng-template #elseBlock>
-            <a href="/subscriptions/new">お申込み</a>はこちら
-          </ng-template>
-        </td>
-      </tr>
       <tr>
         <td>
           <md-input-container>

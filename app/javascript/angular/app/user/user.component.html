@@ -11,6 +11,20 @@
 
     <md-icon class="icon">note_add</md-icon>
     <a routerLink="/teachers/1" routerLinkActive="active"><span mdTooltip="先生のスケジュール"><md-icon class="icon">assignment</md-icon></span></a>
+
+    <button md-icon-button [mdMenuTriggerFor]="menu">
+      <md-icon>more_vert</md-icon>
+    </button>
+    <md-menu #menu="mdMenu">
+      <button md-menu-item (click)="gotoSubscription()">
+        <md-icon>payment</md-icon>
+        <span>お申し込み</span>
+      </button>
+      <button md-menu-item>
+        <md-icon>remove_circle</md-icon>
+        <span>解約</span>
+      </button>
+    </md-menu>
   </md-toolbar-row>
 </md-toolbar>
 

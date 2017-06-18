@@ -13,4 +13,8 @@ import templateString from './user.component.html';
   ]
 })
 
-export class UserComponent { }
+export class UserComponent {
+  gotoSubscription(): void {
+    location.href ="/subscriptions/new";
+  }
+}

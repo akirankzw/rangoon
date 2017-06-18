@@ -1,3 +1,7 @@
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
 .form-row {
   width: 400px;
 }
@@ -30,4 +34,41 @@
 
 .StripeElement--invalid {
   border-color: #fa755a;
+}
+
+.space-4 {
+  margin-bottom: 24px;
+}
+.panel {
+  border: 1px solid #dce0e0;
+}
+
+.panel-header {
+  border-top: 0;
+  background-color: #edefed;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 16px;
+  border-bottom: 1px solid #dce0e0;
+  padding: 20px;
+}
+
+.panel-body {
+  border-top: none;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.42;
+  color: #484848;
+}
+
+.panel-footer {
+  text-align: right;
+  position: relative;
+  margin: 0;
+  padding: 10px;
+  border-top: 1px solid #dce0e0;
+  font-size: 14px;
+  line-height: 1.42;
+  color: #484848;
+  box-sizing: border-box;
 }

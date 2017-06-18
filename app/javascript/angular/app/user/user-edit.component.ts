@@ -1,5 +1,6 @@
 import { Component, OnInit }      from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { MdChipsModule }          from '@angular/material';
 
 import { User }        from '../user';
 import { UserService } from '../user.service';
@@ -15,7 +16,6 @@ import 'rxjs/add/operator/switchMap';
       .mat-card {
         margin: 10px;
       }
-
     `
   ]
 })
