@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (4.12.0)
+      concurrent-ruby (~> 1.0)
     actioncable (5.1.1)
       actionpack (= 5.1.1)
       nio4r (~> 2.0)
@@ -308,6 +310,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   aws-sdk
   bullet
   byebug
@@ -339,4 +342,4 @@ DEPENDENCIES
   webpacker
 
 BUNDLED WITH
-   1.14.6
+   1.15.1

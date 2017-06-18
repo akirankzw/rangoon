@@ -4,11 +4,11 @@
   </div>
 
   <div class="panel-body">
-    <% if current_user.subscription.end_date %>
-
-    お申し込み済みです。次の引き落とし日は<%= current_user.subscription.end_date + 1.month %>日の予定です。
-
-    <% else %>
+    <% if current_user.subscription.subscribed? %>
+    お申し込み済みです。次の引き落とし日は<%= current_user.subscription.end_date %>日の予定です。
+    <% elsif current_user.subscription.canceled? %>
+    解約手続き中です。
+    <% elsif current_user.subscription.unsubscribed? %>
 
     <ul>
       <li>申し込むと、毎月1回引き落としがあります。（例：2日に申し込みした場合は翌月2日）</li>
@@ -38,6 +38,7 @@
 </div>
 
 
+<% if current_user.subscription.subscribed? %>
 <div class="panel space-4">
   <div class="panel-header">
     解約
@@ -58,3 +59,4 @@
 <form action="/users/profile">
   <button class="order-button go-back">戻る</button>
 </form>
+<% end %>

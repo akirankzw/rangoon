@@ -3,7 +3,7 @@
     <input  mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="user[subscription][end_date]" placeholder="利用期限">
     <button mdSuffix [mdDatepickerToggle]="picker"></button>
   </md-input-container>
-  <md-chip *ngIf="user.canceled" selected="true" color="accent">解約済み</md-chip>
+  <md-chip *ngIf="user.state === 'canceled'" selected="true" color="accent">解約済み</md-chip>
   <ng-template #elseBlock>
     <a href="/subscriptions/new">お申込み</a>はこちら
   </ng-template>

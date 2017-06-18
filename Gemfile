@@ -24,6 +24,7 @@ gem 'haml-rails'
 gem 'mailgun-ruby'
 gem 'paperclip'
 gem 'stripe'
+gem 'aasm'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

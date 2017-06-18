@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.date "end_date"
     t.string "customer_id"
     t.string "subscription"
-    t.boolean "canceled", default: false
+    t.string "aasm_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_subscriptions_on_customer_id", unique: true

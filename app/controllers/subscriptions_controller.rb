@@ -6,11 +6,13 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    payment = CreditCardService.new(stripe_params)
-    customer = payment.create_customer
-    payment.charge
     subscription = current_user.subscription
-    subscription.update!(email: params[:stripeEmail], stripe_token: params[:stripeToken], user_id: current_user.id, customer_id: customer.id)
+    subscription.subscribe do
+      payment = CreditCardService.new(stripe_params)
+      customer = payment.create_customer
+      payment.charge
+      subscription.update!(email: params[:stripeEmail], stripe_token: params[:stripeToken], user_id: current_user.id, customer_id: customer.id)
+    end
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
@@ -29,7 +31,10 @@ class SubscriptionsController < ApplicationController
     when 'invoice.payment_succeeded'
       Subscription.find_by_customer_id(event.data.object.customer).renew(event.data.object.subscription)
     when 'customer.subscription.deleted'
-      Subscription.find_by_customer_id(event.data.object.customer).delete
+      subscription = Subscription.find_by_customer_id(event.data.object.customer)
+      subscription.cancel do
+        subscription.delete
+      end
     end
     render status: :ok, json: 'success'
   end
