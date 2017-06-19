@@ -1,2 +1,9 @@
-= link_to 'ログイン', user_session_path
-= link_to 'アカウント登録', new_user_registration_path
+%header.intro.introhalf
+  .intro-body
+    #magic.magic
+      %div.navi
+        = link_to "LOG IN", user_session_path, class: "btn"
+        = link_to "SIGN UP", new_user_registration_path, class: "btn"
+      %canvas#magic-canvas
+
+%section.footer.bg-dark
