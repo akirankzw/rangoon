@@ -1,0 +1,16 @@
+{{message}}
+<form method="post" #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <p>
+    <input type="hidden" [(ngModel)]="book.id" name="id">
+    <md-input-container>
+      <input  mdInput [mdDatepicker]="picker" [(ngModel)]="book.datetime" name="datetime" placeholder="レッスン日時">
+    </md-input-container>
+    <md-input-container>
+      <textarea mdInput ="book.comment" placeholder="コメント" name="comment" value="{{book.comment}}"></textarea>
+    </md-input-container>
+  </p>
+  <p>
+    <button type="submit" md-raised-button>キャンセル</button>
+    <button type="button" md-dialog-close md-raised-button>閉じる</button>
+  </p>
+</form>

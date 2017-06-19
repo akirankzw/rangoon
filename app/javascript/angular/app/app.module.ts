@@ -12,6 +12,7 @@ import { AppComponent }            from './app.component';
 import { PageNotFoundComponent }   from './not-found.component';
 import { TeachersComponent }       from './teachers.component';
 import { BookDialogComponent }     from './book-dialog.component';
+import { EditBookDialogComponent } from './edit-book-dialog.component';
 
 import { LessonService }           from './lesson.service';
 import { BookService }             from './book.service';
@@ -36,7 +37,8 @@ import { TeacherModule } from './admin/teacher.module';
     AppComponent,
     PageNotFoundComponent,
     TeachersComponent,
-    BookDialogComponent
+    BookDialogComponent,
+    EditBookDialogComponent
   ],
   providers: [
     LessonService,
@@ -44,7 +46,8 @@ import { TeacherModule } from './admin/teacher.module';
     UserService
   ],
   entryComponents: [
-    BookDialogComponent
+    BookDialogComponent,
+    EditBookDialogComponent
   ],
   bootstrap: [ AppComponent ]
 })

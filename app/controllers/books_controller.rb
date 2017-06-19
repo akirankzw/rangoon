@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   protect_from_forgery with: :null_session, only: proc { |c| c.request.format.json? }
+  before_action :set_book, only: [:update]
   before_action :authenticate_user!
   before_action :registered?, only: [:create]
 
@@ -8,6 +9,14 @@ class BooksController < ApplicationController
   end
 
   def show
+  end
+
+  def update
+    if @book.update(book_params)
+      render json: @book
+    else
+      render json: @book.errors, status: :unprocessable_entity
+    end
   end
 
   def create
@@ -33,8 +42,12 @@ class BooksController < ApplicationController
 
   private
 
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
   def book_params
-    params.require(:book).permit(:lesson_id, :comment)
+    params.require(:book).permit(:lesson_id, :comment, :canceled)
   end
 
   def registered?

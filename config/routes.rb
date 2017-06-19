@@ -39,5 +39,5 @@ Rails.application.routes.draw do
   end
   resources :teachers, only: [:index, :show, :edit, :update]
   resources :lessons, only: [:index, :show, :create]
-  resources :books, only: [:index, :show, :create]
+  resources :books, only: [:index, :show, :create, :update]
 end

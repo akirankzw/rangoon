@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { NgForm    } from '@angular/forms';
 import { Headers, Http } from '@angular/http';
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { Lesson } from './lesson';
-import templateString from './book-dialog.component.html';
+import { Book } from './book';
+
+import templateString from './edit-book-dialog.component.html';
 
 @Component({
   template: templateString,
@@ -11,33 +12,34 @@ import templateString from './book-dialog.component.html';
     `
     textarea {
       width: 550px;
-      height: 220px;
+      height: 160px;
     }
     `
   ]
 })
 
-export class BookDialogComponent {
+export class EditBookDialogComponent {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private bookUrl = '/books.json';
-  lesson: Lesson;
+  book: Book;
   message = '';
 
   constructor(
-    public dialogRef: MdDialogRef<BookDialogComponent>,
+    public dialogRef: MdDialogRef<EditBookDialogComponent>,
     private http: Http
   ) {}
 
-  onSubmit(lesson: Lesson, f: NgForm): Promise<any> {
+  onSubmit(f: NgForm): Promise<any> {
+    console.log(f.value);
     return this.http
-      .post(this.bookUrl, JSON.stringify({book: { lesson_id: lesson.id, comment: f.value.comment }}), { headers: this.headers })
+      .patch(`/books/${f.value.id}.json`, JSON.stringify({book: { canceled: true }}), { headers: this.headers })
       .toPromise()
       .then(response => {
-        this.message = response.json().message;
-        // REFACTOR
-        if (response.json().status === 'ok') {
-          lesson.text = 'BOOK';
-          lesson.user_id = response.json().user_id;
+        if (response.json().canceled === true) {
+          // this.book = book;
+          this.message = 'レッスンをキャンセルしました';
+        } else {
+          this.message = 'レッスンをキャンセルできませんでした';
+          console.error(response);
         }
       })
       .catch(this.handleError);
