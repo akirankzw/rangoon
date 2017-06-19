@@ -10,7 +10,23 @@ import * as moment from 'moment';
 import templateString from './teachers.component.html';
 
 @Component({
-  template: templateString
+  template: templateString,
+  styles: [
+    `
+      .head {
+        background-color: #eeeeee;
+      }
+      .day {
+        width: 90px;
+      }
+      .time {
+        height: 38px;
+      }
+      .dt {
+        display: block;
+      }
+    `
+  ]
 })
 
 export class TeachersComponent implements OnInit {
@@ -22,6 +38,8 @@ export class TeachersComponent implements OnInit {
   ) {}
 
   days = [0, 1, 2, 3, 4, 5, 6].map(function(x) { return moment().add(x, 'days') });
+
+  wdays = { Sun: '日', Mon: '月', Tue: '火', Wed: '水',  Thu: '木', Fri: '金', Sat: '土' };
 
   intervals = [
     '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00',
