@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm    } from '@angular/forms';
 import { Headers, Http } from '@angular/http';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Lesson } from './lesson';
@@ -24,9 +25,9 @@ export class BookDialogComponent {
     private http: Http
   ) {}
 
-  onSubmit(lesson): Promise<any> {
+  onSubmit(lesson: Lesson, f: NgForm): Promise<any> {
     return this.http
-      .post(this.bookUrl, JSON.stringify({book: { lesson_id: lesson.id }}), { headers: this.headers })
+      .post(this.bookUrl, JSON.stringify({book: { lesson_id: lesson.id, comment: f.value.comment }}), { headers: this.headers })
       .toPromise()
       .then(response => {
         this.message = response.json().message;
