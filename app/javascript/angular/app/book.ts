@@ -6,5 +6,4 @@ export class Book {
   teacher_id: number;
   teacher_name: string;
   comment: string;
-  canceled?: boolean;
 }

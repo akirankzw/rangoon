@@ -4,15 +4,11 @@
       <td>予約番号</td>
       <td>日時</td>
       <td>出欠</td>
-      <td>キャンセル</td>
     <tr>
     <tr *ngFor="let book of books">
-      <td><button md-button [disabled]="book.canceled" (click)="openDialog(book)" color="accent">{{book.id}}</button></td>
+      <td><button md-button (click)="openDialog(book)" color="accent">{{book.id}}</button></td>
       <td>{{book.datetime}}</td>
       <td></td>
-      <td>
-        <md-icon *ngIf="book.canceled" color="accent">check</md-icon>
-      </td>
     </tr>
   </table>
 </md-card>

@@ -7,6 +7,5 @@ json.data do |json|
     json.teacher_id lesson.teacher.id
     json.teacher_name lesson.teacher.full_name
     json.comment lesson.book.comment
-    json.canceled lesson.book.canceled
   end
 end

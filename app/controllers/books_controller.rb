@@ -28,7 +28,7 @@ class BooksController < ApplicationController
       return render json: { status: :no_lesson_found, message: 'すでに他の時間帯でレッスンを予約済みです' }
     end
 
-    if !@book.user_id.nil? && @book.canceled == false
+    if @book.user_id.present?
       return render json: { status: :booked, message: 'このレッスンはすでに予約されています' }
     end
     @book.update_attributes(user_id: current_user.id, comment: book_params[:comment])
@@ -52,11 +52,11 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:lesson_id, :comment, :canceled)
+    params.require(:book).permit(:lesson_id, :comment)
   end
 
   def registered?
-    return render json: { status: :not_registered, message: 'お申し込みの確認できませんでした' } if current_user.subscription.end_date.nil?
+    return render json: { status: :unsubscribed, message: 'お申し込みの確認できませんでした' } if current_user.subscription.end_date.nil?
     return render json: { status: :expired, message: 'お申し込み更新の確認できませんでした' } if current_user.subscription.end_date < Time.zone.now
   end
 end

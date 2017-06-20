@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.bigint "lesson_id"
     t.bigint "user_id"
     t.string "comment"
-    t.boolean "canceled", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_books_on_lesson_id"
