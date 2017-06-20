@@ -16,6 +16,9 @@ import 'rxjs/add/operator/switchMap';
 export class UserEditComponent implements OnInit {
   user: User = new User(0, '', '', '', '', '', '', '', ''); // TODO
 
+  startDate = new Date(2000, 0, 1);
+  maxDate = new Date();
+
   gender = [
     { value: 'male', viewValue: '男性' },
     { value: 'female', viewValue: '女性' }

@@ -1,29 +1,25 @@
-<md-toolbar color="primary">
-  <md-toolbar-row>
-    <span class="spacer"></span>
-    <a href="/users/sign_in"><span mdTooltip="ログイン"><md-icon class="icon">face</md-icon></span></a>
-    <a href="/users/sign_out"><span mdTooltip="ログアウト"><md-icon class="icon">exit_to_app</md-icon></span></a>
-    <a routerLink="/users/dashboard" routerLinkActive="active"><span mdTooltip="ダッシュボード"><md-icon class="icon">dashboard</md-icon></span></a>
-    <!-- TODO -->
-    <a routerLink="/users/profile" routerLinkActive="active"><span mdTooltip="アカウント設定"><md-icon class="icon">home</md-icon></span></a>
+<md-toolbar>
+  <span class="spacer"></span>
+  <a href="/users/sign_in"><span mdTooltip="ログイン"><md-icon class="icon">face</md-icon></span></a>
+  <a href="/users/sign_out"><span mdTooltip="ログアウト"><md-icon class="icon">exit_to_app</md-icon></span></a>
+  <a routerLink="/users/dashboard" routerLinkActive="active"><span mdTooltip="ダッシュボード"><md-icon class="icon">dashboard</md-icon></span></a>
+  <!-- TODO -->
+  <a routerLink="/users/profile" routerLinkActive="active"><span mdTooltip="アカウント設定"><md-icon class="icon">home</md-icon></span></a>
+  <a routerLink="/teachers/1" routerLinkActive="active"><span mdTooltip="先生のスケジュール"><md-icon class="icon">date_range</md-icon></span></a>
 
-    <md-icon class="icon">note_add</md-icon>
-    <a routerLink="/teachers/1" routerLinkActive="active"><span mdTooltip="先生のスケジュール"><md-icon class="icon">assignment</md-icon></span></a>
-
-    <button md-icon-button [mdMenuTriggerFor]="menu">
-      <md-icon>more_vert</md-icon>
+  <button md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <button md-menu-item (click)="gotoSubscription()">
+      <md-icon>payment</md-icon>
+      <span>お申し込み</span>
     </button>
-    <md-menu #menu="mdMenu">
-      <button md-menu-item (click)="gotoSubscription()">
-        <md-icon>payment</md-icon>
-        <span>お申し込み</span>
-      </button>
-      <button md-menu-item (click)="gotoSubscription()">
-        <md-icon>remove_circle</md-icon>
-        <span>解約</span>
-      </button>
-    </md-menu>
-  </md-toolbar-row>
+    <button md-menu-item (click)="gotoSubscription()">
+      <md-icon>remove_circle</md-icon>
+      <span>解約</span>
+    </button>
+  </md-menu>
 </md-toolbar>
 
 <router-outlet></router-outlet>

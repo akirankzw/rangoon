@@ -14,7 +14,7 @@ import templateString from './teachers.component.html';
   styles: [
     `
       .head {
-        background-color: #eeeeee;
+        background-color: #fafafa;
       }
       .day {
         width: 90px;
@@ -48,7 +48,6 @@ export class TeachersComponent implements OnInit {
     '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30',
     '22:00', '22:30', '23:00', '23:30'
   ];
-
 
   openDialog(lesson: Lesson) {
     let dialogRef = this.dialog.open(BookDialogComponent, { height: '400px', width: '600px' });

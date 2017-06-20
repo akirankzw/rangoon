@@ -16,13 +16,6 @@
       <tr>
         <td>
           <md-input-container>
-            <input mdInput [(ngModel)]="user.given_name" name="user[given_name]" placeholder="名">
-          </md-input-container>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <md-input-container>
             <input mdInput [(ngModel)]="user.family_name" name="user[family_name]" placeholder="姓">
           </md-input-container>
         </td>
@@ -30,8 +23,16 @@
       <tr>
         <td>
           <md-input-container>
-            <input mdInput [mdDatepicker]="picker" [(ngModel)]="user.birthdate" name="user[birthdate]" placeholder="誕生日">
-            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+            <input mdInput [(ngModel)]="user.given_name" name="user[given_name]" placeholder="名">
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container>
+            <input mdInput [mdDatepicker]="datePicker" [(ngModel)]="user.birthdate" name="user[birthdate]" placeholder="誕生日">
+            <button mdSuffix [mdDatepickerToggle]="datePicker"></button>
+            <md-datepicker [startAt]="startDate" startView="year" #datePicker></md-datepicker>
           </md-input-container>
         </td>
       </tr>
