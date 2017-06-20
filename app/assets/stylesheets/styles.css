@@ -2,6 +2,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+table {
+  margin: auto;
+}
+
 .mat-card {
   margin: 10px;
 }
@@ -75,4 +79,8 @@ body {
   line-height: 1.42;
   color: #484848;
   box-sizing: border-box;
+}
+
+#emoji span {
+  padding: 0 2px 0 2px;
 }
