@@ -31,11 +31,10 @@ export class EditBookDialogComponent {
   onSubmit(f: NgForm): Promise<any> {
     console.log(f.value);
     return this.http
-      .patch(`/books/${f.value.id}.json`, JSON.stringify({book: { canceled: true }}), { headers: this.headers })
+      .delete(`/books/${f.value.id}.json`, { headers: this.headers })
       .toPromise()
       .then(response => {
-        if (response.json().canceled === true) {
-          // this.book = book;
+        if (response.json().status === 'ok') {
           this.message = 'レッスンをキャンセルしました';
         } else {
           this.message = 'レッスンをキャンセルできませんでした';

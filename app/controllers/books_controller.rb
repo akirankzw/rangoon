@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   protect_from_forgery with: :null_session, only: proc { |c| c.request.format.json? }
-  before_action :set_book, only: [:update]
+  before_action :set_book, only: [:update, :destroy]
   before_action :authenticate_user!
   before_action :registered?, only: [:create]
 
@@ -38,6 +38,11 @@ class BooksController < ApplicationController
     else
       render json: @book.errors, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @book.destroy
+    render json: { status: :ok }
   end
 
   private
