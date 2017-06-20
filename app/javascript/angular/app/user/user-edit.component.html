@@ -1,6 +1,7 @@
+<span>{{message}}</span>
 <md-card>
   <md-input-container *ngIf="user.end_date; else elseBlock">
-    <input  mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="user[subscription][end_date]" placeholder="利用期限">
+    <input  mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="end_date" placeholder="利用期限">
     <button mdSuffix [mdDatepickerToggle]="picker"></button>
   </md-input-container>
   <md-chip *ngIf="user.state === 'canceled'" selected="true" color="accent">解約済み</md-chip>
@@ -10,27 +11,27 @@
 </md-card>
 
 <md-card>
-  <form (ngSubmit)="onSubmit()" action="/users/profile" method="post" #userForm="ngForm">
+  <form (ngSubmit)="onSubmit(userForm)" action="/users/profile" method="post" #userForm="ngForm">
     <input type="hidden" [(ngModel)]="user.token" name="authenticity_token">
     <table cellspacing="0">
       <tr>
         <td>
           <md-input-container>
-            <input mdInput [(ngModel)]="user.family_name" name="user[family_name]" placeholder="姓">
+            <input mdInput [(ngModel)]="user.family_name" name="family_name" placeholder="姓">
           </md-input-container>
         </td>
       </tr>
       <tr>
         <td>
           <md-input-container>
-            <input mdInput [(ngModel)]="user.given_name" name="user[given_name]" placeholder="名">
+            <input mdInput [(ngModel)]="user.given_name" name="given_name" placeholder="名">
           </md-input-container>
         </td>
       </tr>
       <tr>
         <td>
           <md-input-container>
-            <input mdInput [mdDatepicker]="datePicker" [(ngModel)]="user.birthdate" name="user[birthdate]" placeholder="誕生日">
+            <input mdInput [mdDatepicker]="datePicker" [(ngModel)]="user.birthdate" name="birthdate" placeholder="誕生日">
             <button mdSuffix [mdDatepickerToggle]="datePicker"></button>
             <md-datepicker [startAt]="startDate" startView="year" #datePicker></md-datepicker>
           </md-input-container>
@@ -38,8 +39,10 @@
       </tr>
       <tr>
         <td>
-          <md-select placeholder="sex" [(ngModel)]="user.sex" name="user[sex]" placeholder="性別">
-            <md-option *ngFor="let sex of gender" [value]="sex.value">{{sex.viewValue}}
+          <md-select placeholder="sex" [(ngModel)]="user.sex" name="sex" placeholder="性別">
+            <md-option *ngFor="let sex of gender" [value]="sex.value">
+              {{sex.viewValue}}
+            </md-option>
           </md-select>
         </td>
       </tr>
