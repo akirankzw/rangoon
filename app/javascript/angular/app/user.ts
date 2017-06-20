@@ -7,6 +7,6 @@ export class User {
     public password: string,
     public password_confirmation: string,
     public birthdate: string,
-    public sex: string
+    public gender: string
   ) { }
 }

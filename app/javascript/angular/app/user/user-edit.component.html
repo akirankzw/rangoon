@@ -39,9 +39,9 @@
       </tr>
       <tr>
         <td>
-          <md-select placeholder="sex" [(ngModel)]="user.sex" name="sex" placeholder="性別">
-            <md-option *ngFor="let sex of gender" [value]="sex.value">
-              {{sex.viewValue}}
+          <md-select placeholder="gender" [(ngModel)]="user.gender" name="gender" placeholder="性別">
+            <md-option *ngFor="let gender of genders" [value]="gender.value">
+              {{gender.viewValue}}
             </md-option>
           </md-select>
         </td>

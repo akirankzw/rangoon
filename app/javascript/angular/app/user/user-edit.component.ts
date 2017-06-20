@@ -27,7 +27,7 @@ export class UserEditComponent implements OnInit {
   message: string;
   params = {};
 
-  gender = [
+  genders = [
     { value: 'male', viewValue: '男性' },
     { value: 'female', viewValue: '女性' }
   ]
@@ -43,7 +43,7 @@ export class UserEditComponent implements OnInit {
       family_name: f.value.family_name,
       given_name: f.value.given_name,
       birthdate: f.value.birthdate,
-      sex: f.value.sex
+      gender: f.value.gender
     };
     return this.http
       .post('/users/profile', JSON.stringify(this.params), { headers: this.headers })
