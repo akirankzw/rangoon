@@ -19,7 +19,7 @@ import 'rxjs/add/operator/toPromise';
 export class UserEditComponent implements OnInit {
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
-  user: User = new User(0, '', '', '', '', '', '', '', ''); // TODO
+  user: any = {}; // TODO
 
   startDate = new Date(2000, 0, 1);
   maxDate = new Date();

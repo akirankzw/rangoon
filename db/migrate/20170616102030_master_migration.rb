@@ -4,7 +4,7 @@ class MasterMigration < ActiveRecord::Migration[5.1]
       t.string :given_name
       t.string :family_name
       t.date :birth_date
-      t.boolean :sex
+      t.integer :sex, limit: 1
       t.integer :nationality
       t.text :comment
 
@@ -39,7 +39,7 @@ class MasterMigration < ActiveRecord::Migration[5.1]
       t.string :given_name
       t.string :family_name
       t.date :birthdate
-      t.boolean :sex
+      t.integer :sex, limit: 1
 
       t.string :email,              null: false, default: ''
       t.string :encrypted_password, null: false, default: ''

@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.string "given_name"
     t.string "family_name"
     t.date "birth_date"
-    t.boolean "sex"
+    t.integer "sex", limit: 1
     t.integer "nationality"
     t.text "comment"
     t.string "email", default: "", null: false
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.string "given_name"
     t.string "family_name"
     t.date "birthdate"
-    t.boolean "sex"
+    t.integer "sex", limit: 1
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
