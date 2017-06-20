@@ -3,10 +3,11 @@
   <p>
     <input type="hidden" [(ngModel)]="book.id" name="id">
     <md-input-container>
-      <input  mdInput [mdDatepicker]="picker" [(ngModel)]="book.datetime" name="datetime" placeholder="レッスン日時">
+      <input  mdInput [mdDatepicker]="picker" [(ngModel)]="book.datetime" name="datetime" placeholder="レッスン日時" [disabled]="true">
+      <button mdSuffix [mdDatepickerToggle]="picker"></button>
     </md-input-container>
     <md-input-container>
-      <textarea mdInput ="book.comment" placeholder="コメント" name="comment" value="{{book.comment}}"></textarea>
+      <textarea mdInput ="book.comment" placeholder="コメント" [(ngModel)]="book.comment" name="comment" [disabled]="true"></textarea>
     </md-input-container>
   </p>
   <p>
