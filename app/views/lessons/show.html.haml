@@ -5,16 +5,13 @@
   = @lesson.teacher
 %p
   %b Start time:
-  = @lesson.start_time
+  = @lesson.start_at
 %p
   %b Attended:
   = @lesson.attended
 %p
   %b Canceled:
   = @lesson.canceled
-%p
-  %b Missed:
-  = @lesson.missed
 
 = link_to 'Edit', edit_lesson_path(@lesson)
 \|

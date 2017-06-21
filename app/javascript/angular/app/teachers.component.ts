@@ -48,7 +48,7 @@ export class TeachersComponent implements OnInit {
           let array: Lesson[] = [];
           for (let day of this.days) {
             let dt = day.format(`YYYY-MM-DDT${interval}:00Z`);
-            let lesson: Lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_time).local().format() === dt });
+            let lesson: Lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_at).local().format() === dt });
             console.log(lesson);
             array.push({
               id:         lesson === undefined ? 0 : lesson.id,
@@ -57,7 +57,7 @@ export class TeachersComponent implements OnInit {
               teacher_id: lesson === undefined ? null : lesson.teacher_id,
               text:       lesson !== undefined && lesson.user_id ? 'BOOK' : 'OPEN',
               disabled:   now.utc().diff(dt, 'hours') > -2,
-              start_time: dt,
+              start_at: dt,
             });
           }
           this.lessons.push(array);

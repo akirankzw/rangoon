@@ -5,6 +5,6 @@ export class Lesson {
   teacher_id?: number;
   text: string;
   disabled: boolean;
-  start_time: string;
+  start_at: string;
   book_id?: number;
 }

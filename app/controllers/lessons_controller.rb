@@ -11,7 +11,7 @@ class LessonsController < ApplicationController
   end
 
   def create
-    @lesson = Lesson.find_or_initialize_by(teacher_id: current_teacher.id, start_time: Time.zone.parse(lesson_params[:start_time]))
+    @lesson = Lesson.find_or_initialize_by(teacher_id: current_teacher.id, start_at: Time.zone.parse(lesson_params[:start_at]))
     return render json: { status: :not_acceptable } if @lesson.book.present?
 
     if @lesson.persisted?
@@ -34,6 +34,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:teacher_id, :start_time, :attended, :canceled, :missed)
+    params.require(:lesson).permit(:teacher_id, :start_at, :attended, :canceled)
   end
 end

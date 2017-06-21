@@ -17,7 +17,7 @@ export class LessonService {
 
   update(datetime: string, checked: boolean): Promise<Lesson> {
     return this.http
-      .post(this.lessonsUrl, JSON.stringify({lesson: {start_time: datetime, canceled: !checked}}), { headers: this.headers })
+      .post(this.lessonsUrl, JSON.stringify({lesson: {start_at: datetime, canceled: !checked}}), { headers: this.headers })
       .toPromise()
       .then(response => {
         if (response.json().status === 'not_acceptable') {

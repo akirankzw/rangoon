@@ -32,10 +32,9 @@ ActiveRecord::Schema.define(version: 20170616102030) do
 
   create_table "lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
     t.bigint "teacher_id"
-    t.datetime "start_time"
+    t.datetime "start_at"
     t.boolean "attended"
     t.boolean "canceled"
-    t.boolean "missed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id"

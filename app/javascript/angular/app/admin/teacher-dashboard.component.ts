@@ -29,7 +29,7 @@ export class TeacherDashboardComponent implements OnInit {
   ];
 
   toggle(data: any, event: any): void {
-    this.lessonService.update(data.start_time, event.checked)
+    this.lessonService.update(data.start_at, event.checked)
       .then(lesson => { console.log(lesson); });
   }
 
@@ -41,9 +41,9 @@ export class TeacherDashboardComponent implements OnInit {
           let array = [];
           for (let day of this.days) {
             let dt = day.format(`YYYY-MM-DDT${interval}:00Z`);
-            let lesson = lessons.find(function(x: any) { return moment.parseZone(x.start_time).local().format() === dt });
+            let lesson = lessons.find(function(x: any) { return moment.parseZone(x.start_at).local().format() === dt });
             array.push({
-              start_time: dt,
+              start_at: dt,
               canceled: (lesson === undefined || lesson.canceled) ? true : false,
               disabled: now.utc().diff(dt, 'hours') > -2
             });

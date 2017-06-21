@@ -7,7 +7,6 @@
       %th Start time
       %th Attended
       %th Canceled
-      %th Missed
       %th
       %th
       %th
@@ -16,10 +15,9 @@
     - @lessons.each do |lesson|
       %tr
         %td= lesson.teacher
-        %td= lesson.start_time
+        %td= lesson.start_at
         %td= lesson.attended
         %td= lesson.canceled
-        %td= lesson.missed
         %td= link_to 'Show', lesson
         %td= link_to 'Edit', edit_lesson_path(lesson)
         %td= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' }
