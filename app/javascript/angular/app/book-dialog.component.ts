@@ -64,6 +64,15 @@ export class BookDialogComponent implements OnInit {
         target: function(trigger) {
           return trigger;
         }
+      }).on('success', (e) => {
+        let field = (<HTMLInputElement>document.getElementById('md-input-1'));
+        if (field.selectionStart || field.selectionStart === 0) {
+          let startPos = field.selectionStart;
+          let endPos   = field.selectionEnd;
+          field.value = field.value.substring(0, startPos) + e.text + field.value.substring(endPos, field.value.length);
+        } else {
+          field.value += e.text;
+        }
       });
       elem.innerHTML = e;
       this.div.appendChild(elem);
