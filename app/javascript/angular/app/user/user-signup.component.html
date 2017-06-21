@@ -25,8 +25,11 @@
           <div [hidden]="password_confirmation.valid || password_confirmation.pristine" class="alert alert-danger">password is required</div>
         </td>
       </tr>
+      <tr>
+        <td>
+          <button type="submit" md-raised-button [disabled]="!userForm.form.valid">Submit</button>
+        </td>
+      </tr>
     </table>
-    <button type="submit" md-raised-button [disabled]="!userForm.form.valid">Submit</button>
-    <button type="button" md-raised-button (click)="newUser(); userForm.reset()">Reset</button>
   </form>
 </md-card>
