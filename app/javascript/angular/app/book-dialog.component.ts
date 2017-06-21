@@ -18,8 +18,8 @@ import templateString from './book-dialog.component.html';
 })
 
 export class BookDialogComponent {
-  private headers = new Headers({ 'Content-Type': 'application/json' });
-  private bookUrl = '/books.json';
+  headers = new Headers({ 'Content-Type': 'application/json' });
+  bookUrl = '/books.json';
   lesson: Lesson;
   message = '';
 

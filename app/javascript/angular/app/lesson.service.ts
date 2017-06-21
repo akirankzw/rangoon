@@ -8,10 +8,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
 export class LessonService {
-  private headers = new Headers({ 'Content-Type': 'application/json' });
-
-  // TODO:
-  private lessonsUrl = 'lessons.json';
+  headers = new Headers({ 'Content-Type': 'application/json' });
+  lessonsUrl = 'lessons.json';
 
   constructor(private http: Http) {}
 

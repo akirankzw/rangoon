@@ -6,9 +6,8 @@ import { User } from './user';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-
 export class UserService {
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  headers = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http) {}
 

@@ -19,7 +19,7 @@ import templateString from './edit-book-dialog.component.html';
 })
 
 export class EditBookDialogComponent {
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  headers = new Headers({ 'Content-Type': 'application/json' });
   book: Book;
   message = '';
 

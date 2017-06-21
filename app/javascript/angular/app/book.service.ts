@@ -6,7 +6,6 @@ import { Book } from './book';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-
 export class BookService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private booksUrl = 'books.json';

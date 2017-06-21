@@ -21,6 +21,8 @@ import { UserService }             from './user.service';
 import { UserModule }    from './user/user.module';
 import { TeacherModule } from './admin/teacher.module';
 
+import { APP_CONFIG, DI_CONFIG } from './app.config';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { TeacherModule } from './admin/teacher.module';
   providers: [
     LessonService,
     BookService,
-    UserService
+    UserService,
+    { provide: APP_CONFIG, useValue: DI_CONFIG }
   ],
   entryComponents: [
     BookDialogComponent,
