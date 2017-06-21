@@ -12,6 +12,7 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.find_or_initialize_by(teacher_id: current_teacher.id, start_time: Time.zone.parse(lesson_params[:start_time]))
+    return render json: { status: :not_acceptable } if @lesson.book.present?
 
     if @lesson.persisted?
       @lesson.update(canceled: lesson_params[:canceled])

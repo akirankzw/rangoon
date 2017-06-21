@@ -19,7 +19,11 @@ export class LessonService {
     return this.http
       .post(this.lessonsUrl, JSON.stringify({lesson: {start_time: datetime, canceled: !checked}}), { headers: this.headers })
       .toPromise()
-      .then(response => response)
+      .then(response => {
+        if (response.json().status === 'not_acceptable') {
+          window.alert('unable to cancel the lesson');
+        }
+      })
       .catch(this.handleError);
   }
 

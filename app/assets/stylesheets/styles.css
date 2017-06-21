@@ -88,9 +88,11 @@ table {
 .head {
   background-color: #fafafa;
 }
+
 .day {
   width: 90px;
 }
+
 .time {
   width: 50px;
   height: 38px;
@@ -103,4 +105,5 @@ table {
 
 td.lesson {
   text-align: center;
+  width: 50px;
 }
