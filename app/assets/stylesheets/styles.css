@@ -81,7 +81,7 @@ table {
   box-sizing: border-box;
 }
 
-#clipboard span {
+.emoji {
   padding: 0 2px 0 2px;
   font-size: 20px;
 }

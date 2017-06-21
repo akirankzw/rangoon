@@ -1,5 +1,5 @@
 {{message}}
-<div id="clipboard"></div>
+<span *ngFor="let e of emoji" [innerHtml]="e" class="emoji"></span>
 <form method="post" #f="ngForm" (ngSubmit)="onSubmit(lesson, f)">
   <input type="hidden" name="lesson_id" value="{{lesson.id}}">
   <p>
