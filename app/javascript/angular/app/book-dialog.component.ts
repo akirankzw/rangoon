@@ -5,6 +5,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { Lesson } from './lesson';
 import { APP_CONFIG, AppConfig } from './app.config';
 
+import * as Clipboard from 'clipboard';
 import templateString from './book-dialog.component.html';
 @Component({
   template: templateString,
@@ -59,6 +60,11 @@ export class BookDialogComponent implements OnInit {
     this.div = document.getElementById('clipboard');
     for(let e of this.emoji) {
       let elem = document.createElement('span');
+      new Clipboard(elem, {
+        target: function(trigger) {
+          return trigger;
+        }
+      });
       elem.innerHTML = e;
       this.div.appendChild(elem);
     }
