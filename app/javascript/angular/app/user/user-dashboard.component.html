@@ -3,11 +3,13 @@
     <tr>
       <td>予約番号</td>
       <td>日時</td>
+      <td>コメント</td>
       <td>出欠</td>
     <tr>
     <tr *ngFor="let book of books">
       <td><button md-button (click)="openDialog(book)" color="accent">{{book.id}}</button></td>
       <td>{{book.datetime}}</td>
+      <td>{{book.comment | truncate}}</td>
       <td></td>
     </tr>
   </table>

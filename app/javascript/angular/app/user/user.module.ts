@@ -11,6 +11,8 @@ import { UserEditComponent }      from './user-edit.component';
 
 import { UserRoutingModule } from './user-routing.module';
 
+import { TruncatePipe } from '../truncate.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { UserRoutingModule } from './user-routing.module';
     UserSigninComponent,
     UserSignupComponent,
     UserDashboardComponent,
-    UserEditComponent
+    UserEditComponent,
+    TruncatePipe
   ]
 })
 
