@@ -84,3 +84,23 @@ table {
 #emoji span {
   padding: 0 2px 0 2px;
 }
+
+.head {
+  background-color: #fafafa;
+}
+.day {
+  width: 90px;
+}
+.time {
+  width: 50px;
+  height: 38px;
+  text-align: center;
+}
+
+.dt {
+  display: block;
+}
+
+td.lesson {
+  text-align: center;
+}

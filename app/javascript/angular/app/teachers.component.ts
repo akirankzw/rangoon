@@ -10,23 +10,7 @@ import * as moment from 'moment';
 import templateString from './teachers.component.html';
 
 @Component({
-  template: templateString,
-  styles: [
-    `
-      .head {
-        background-color: #fafafa;
-      }
-      .day {
-        width: 90px;
-      }
-      .time {
-        height: 38px;
-      }
-      .dt {
-        display: block;
-      }
-    `
-  ]
+  template: templateString
 })
 
 export class TeachersComponent implements OnInit {
