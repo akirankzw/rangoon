@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.datetime "start_at"
     t.boolean "attended"
     t.boolean "canceled"
+    t.string "aasm_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id"

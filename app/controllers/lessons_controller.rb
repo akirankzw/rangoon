@@ -12,10 +12,15 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.find_or_initialize_by(teacher_id: current_teacher.id, start_at: Time.zone.parse(lesson_params[:start_at]))
-    return render json: { status: :not_acceptable } if @lesson.book.present?
+    return render json: { status: :not_acceptable } if @lesson.book.present? # TODO: remove
 
+    # TODO
     if @lesson.persisted?
-      @lesson.update(canceled: lesson_params[:canceled])
+      if @lesson.opened?
+        @lesson.aasm_close { @lesson.update({}) }
+      elsif @lesson.closed?
+        @lesson.aasm_open { @lesson.update({}) }
+      end
     else
       @lesson.save
     end
