@@ -33,7 +33,7 @@ export class TeachersComponent implements OnInit {
   }
 
   openDialog(lesson: Lesson) {
-    let dialogRef = this.dialog.open(BookDialogComponent, { height: '400px', width: '600px' });
+    let dialogRef = this.dialog.open(BookDialogComponent, { height: '460px', width: '600px' });
     dialogRef.componentInstance.lesson = lesson;
     dialogRef.afterClosed()
       .subscribe(result => { console.log(result); });
