@@ -4,7 +4,9 @@ import { MdCheckboxModule }  from '@angular/material';
 import { APP_CONFIG, AppConfig } from '../app.config';
 
 import { Lesson }        from '../lesson';
+import { User }          from '../user';
 import { LessonService } from '../lesson.service';
+import { UserService }   from '../user.service';
 
 import * as moment from 'moment';
 
@@ -17,12 +19,14 @@ import templateString from './teacher-dashboard.component.html';
 
 @Injectable()
 export class TeacherDashboardComponent implements OnInit {
-  lessons: any[] = [];
+  lessons: any[] = []; // TODO
+  users: any[] = []; // TODO
   intervals: string[];
   days: any[];
 
   constructor(
     private lessonService: LessonService,
+    private userService: UserService,
     @Inject(APP_CONFIG) config: AppConfig
   ) {
     this.intervals = config.intervals;
@@ -54,7 +58,13 @@ export class TeacherDashboardComponent implements OnInit {
       });
   }
 
+  getUsers(): void {
+    this.userService.getUsers()
+      .then(users => { this.users = users; });
+  }
+
   ngOnInit(): void {
     this.getLessons();
+    this.getUsers();
   }
 }

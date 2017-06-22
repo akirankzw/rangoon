@@ -18,6 +18,13 @@ export class UserService {
       .catch(this.handleError);
   }
 
+  getUsers(): Promise<User[]> {
+    return this.http.get('/admin/users.json')
+      .toPromise()
+      .then(response => response.json()) // TODO
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);

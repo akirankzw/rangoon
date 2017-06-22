@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'teachers/dashboard', controller: :teachers, action: :index
+    resources :users, only: [:index]
   end
 
   scope '/admin' do
