@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 
 export class LessonService {
   headers = new Headers({ 'Content-Type': 'application/json' });
-  lessonsUrl = 'lessons.json';
+  lessonsUrl = '/lessons.json';
 
   constructor(private http: Http) {}
 
@@ -29,6 +29,13 @@ export class LessonService {
     return this.http.get(this.lessonsUrl)
       .toPromise()
       .then(response => response.json().data as Lesson[])
+      .catch(this.handleError);
+  }
+
+  getDailySchedule(): Promise<any> {
+    return this.http.get('/lessons/today.json')
+      .toPromise()
+      .then(response => response.json())
       .catch(this.handleError);
   }
 

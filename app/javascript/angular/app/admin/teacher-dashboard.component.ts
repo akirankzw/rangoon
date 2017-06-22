@@ -20,7 +20,8 @@ import templateString from './teacher-dashboard.component.html';
 @Injectable()
 export class TeacherDashboardComponent implements OnInit {
   lessons: any[] = []; // TODO
-  users: User[] = []; // TODO
+  books: any[] = []; // today's schedule
+  users: User[] = [];
   intervals: string[];
   days: any[];
 
@@ -58,6 +59,11 @@ export class TeacherDashboardComponent implements OnInit {
       });
   }
 
+  getDailySchedule(): void {
+    this.lessonService.getDailySchedule()
+      .then(books => { this.books = books; });
+  }
+
   getUsers(): void {
     this.userService.getUsers()
       .then(users => { this.users = users; });
@@ -65,6 +71,7 @@ export class TeacherDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLessons();
+    this.getDailySchedule();
     this.getUsers();
   }
 }

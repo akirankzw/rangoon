@@ -4,6 +4,8 @@ class Lesson < ApplicationRecord
   belongs_to :teacher
   has_one :book
 
+  default_scope { where(teacher_id: 1) }
+
   scope :this_week, ->(dt) { where('start_at >= ? AND start_at <= ?', dt.beginning_of_day, dt.end_of_day + 1.week) }
 
   aasm do

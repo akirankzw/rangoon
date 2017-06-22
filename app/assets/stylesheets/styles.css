@@ -86,7 +86,8 @@ table.center {
   font-size: 20px;
 }
 
-.head {
+th.head {
+  width: 90px;
   background-color: #fafafa;
 }
 

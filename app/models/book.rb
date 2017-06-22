@@ -11,6 +11,12 @@ class Book < ApplicationRecord
       .where('lessons.start_at <= ?', book.lesson.start_at.end_of_day)
   }
 
+  scope :today, lambda { |dt|
+    joins(:lesson, :user)
+      .where('lessons.start_at >= ?', dt.beginning_of_day)
+      .where('lessons.start_at <= ?', dt.end_of_day)
+  }
+
   private
 
   def notify_user

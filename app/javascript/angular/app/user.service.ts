@@ -21,7 +21,7 @@ export class UserService {
   getUsers(): Promise<User[]> {
     return this.http.get('/admin/users.json')
       .toPromise()
-      .then(response => response.json() as User[]) // TODO
+      .then(response => response.json() as User[])
       .catch(this.handleError);
   }
 

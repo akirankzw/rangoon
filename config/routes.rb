@@ -39,6 +39,10 @@ Rails.application.routes.draw do
     end
   end
   resources :teachers, only: [:index, :show, :edit, :update]
-  resources :lessons, only: [:index, :show, :create]
+  resources :lessons, only: [:index, :show, :create] do
+    collection do
+      get 'today', action: :today
+    end
+  end
   resources :books, except: [:edit]
 end
