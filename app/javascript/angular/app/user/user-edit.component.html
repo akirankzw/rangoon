@@ -31,6 +31,13 @@
       <tr>
         <td>
           <md-input-container>
+            <input mdInput [(ngModel)]="user.skype_name" name="skype_name" placeholder="スカイプ名">
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container>
             <input mdInput [mdDatepicker]="datePicker" [(ngModel)]="user.birthdate" name="birthdate" placeholder="誕生日">
             <button mdSuffix [mdDatepickerToggle]="datePicker"></button>
             <md-datepicker [startAt]="startDate" startView="year" #datePicker></md-datepicker>

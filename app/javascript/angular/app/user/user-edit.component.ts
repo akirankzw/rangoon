@@ -42,6 +42,7 @@ export class UserEditComponent implements OnInit {
     this.params['user'] = {
       family_name: f.value.family_name,
       given_name: f.value.given_name,
+      skype_name: f.value.skype_name,
       birthdate: f.value.birthdate,
       gender: f.value.gender
     };
