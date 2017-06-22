@@ -36,11 +36,11 @@ export class TeacherDashboardComponent implements OnInit {
 
   toggle(lesson: Lesson, checked: boolean): void {
     let state = checked ? 'opened' : 'closed';
-    console.log(lesson);
     this.lessonService.update(lesson.start_at, state)
       .then(response => {
         console.log(response);
       });
+
   }
 
   getLessons(): void {
