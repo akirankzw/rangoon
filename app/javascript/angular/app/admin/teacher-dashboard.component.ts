@@ -20,7 +20,7 @@ import templateString from './teacher-dashboard.component.html';
 @Injectable()
 export class TeacherDashboardComponent implements OnInit {
   lessons: any[] = []; // TODO
-  users: any[] = []; // TODO
+  users: User[] = []; // TODO
   intervals: string[];
   days: any[];
 
