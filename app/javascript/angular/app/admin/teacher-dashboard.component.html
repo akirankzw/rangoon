@@ -5,16 +5,20 @@
         <tr>
           <th>id</th>
           <th>time</th>
-          <th>attended</th>
+          <th>family name</th>
+          <th>given name</th>
+          <th>skype name</th>
           <th>status</th>
-          <th>user</th>
+          <th>attended</th>
         </tr>
         <tr *ngFor="let book of books">
           <td>{{book.id}}</td>
           <td>{{book.start_at}}</td>
-          <td>{{book.attended}}</td>
+          <td>{{book.family_name}}</td>
+          <td>{{book.given_name}}</td>
+          <td>{{book.skype_name}}</td>
           <td>{{book.status}}</td>
-          <td>{{book.user}}</td>
+          <td>{{book.attended}}</td>
         <tr>
       </table>
     </md-tab>
