@@ -1,10 +1,9 @@
 export class Lesson {
-  id: number;
-  canceled?: boolean;
-  user_id?: number;
-  teacher_id?: number;
-  text: string;
-  disabled: boolean;
-  start_at: string;
-  book_id?: number;
+  constructor(
+    public id: number = null,
+    public teacher_id: number = null,
+    public start_at: string = '',
+    public state: string = '',
+    public attended: boolean = null
+  ) { }
 }

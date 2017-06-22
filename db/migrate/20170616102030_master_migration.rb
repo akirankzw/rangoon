@@ -29,7 +29,6 @@ class MasterMigration < ActiveRecord::Migration[5.1]
       t.references :teacher, foreign_key: true
       t.datetime :start_at
       t.boolean :attended
-      t.boolean :canceled
       t.string :aasm_state
 
       t.timestamps

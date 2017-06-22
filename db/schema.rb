@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.bigint "teacher_id"
     t.datetime "start_at"
     t.boolean "attended"
-    t.boolean "canceled"
     t.string "aasm_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -44,19 +44,19 @@ export class TeacherDashboardComponent implements OnInit {
     this.lessonService.getLessons()
       .then(lessons => {
         for (let interval of this.intervals) {
-          let array = [];
+          let array: Lesson[] = [];
           for (let day of this.days) {
             let dt = day.format(`YYYY-MM-DDT${interval}:00Z`);
-            let lesson = lessons.find(function(x: any) { return moment.parseZone(x.start_at).local().format() === dt });
-            array.push({
-              start_at: dt,
-              canceled: (lesson === undefined || lesson.canceled) ? true : false,
-              disabled: now.utc().diff(dt, 'hours') > -2
-            });
+            let lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_at).local().format() === dt });
+            array.push(lesson === undefined ? new Lesson() : lesson);
           }
           this.lessons.push(array);
         }
       });
+  }
+
+  isDisabled(lesson: Lesson) {
+    return false;
   }
 
   getDailySchedule(): void {

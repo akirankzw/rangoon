@@ -44,8 +44,6 @@ export class BookDialogComponent implements OnInit {
         this.message = response.json().message;
         // REFACTOR
         if (response.json().status === 'ok') {
-          lesson.text = 'BOOK';
-          lesson.user_id = response.json().user_id;
         }
       })
       .catch(this.handleError);

@@ -48,20 +48,21 @@ export class TeachersComponent implements OnInit {
           for (let day of this.days) {
             let dt = day.format(`YYYY-MM-DDT${interval}:00Z`);
             let lesson: Lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_at).local().format() === dt });
-            console.log(lesson);
-            array.push({
-              id:         lesson === undefined ? 0 : lesson.id,
-              canceled:   lesson === undefined ? true : lesson.canceled,
-              user_id:    lesson === undefined ? null : lesson.user_id,
-              teacher_id: lesson === undefined ? null : lesson.teacher_id,
-              text:       lesson !== undefined && lesson.user_id ? 'BOOK' : 'OPEN',
-              disabled:   now.utc().diff(dt, 'hours') > -2,
-              start_at: dt,
-            });
+            array.push(lesson === undefined ? new Lesson() : lesson);
           }
           this.lessons.push(array);
         }
       });
+  }
+
+  buttonText(lesson: Lesson): string {
+    let text = '';
+    if (lesson.state === 'opened') {
+      text = 'OPEN';
+    } else {
+      text = 'BOOKED';
+    }
+    return text;
   }
 
   ngOnInit(): void {

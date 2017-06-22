@@ -28,11 +28,11 @@ export class LessonService {
   getLessons(): Promise<Lesson[]> {
     return this.http.get(this.lessonsUrl)
       .toPromise()
-      .then(response => response.json().data as Lesson[])
+      .then(response => response.json() as Lesson[])
       .catch(this.handleError);
   }
 
-  getDailySchedule(): Promise<any> {
+  getDailySchedule(): Promise<Lesson[]> {
     return this.http.get('/lessons/today.json')
       .toPromise()
       .then(response => response.json())
