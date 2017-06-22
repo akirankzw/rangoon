@@ -13,15 +13,11 @@ export class LessonService {
 
   constructor(private http: Http) {}
 
-  update(datetime: string, checked: boolean): Promise<Lesson> {
+  update(startAt: string, state: string): Promise<Lesson> {
     return this.http
-      .post(this.lessonsUrl, JSON.stringify({lesson: {start_at: datetime, canceled: !checked}}), { headers: this.headers })
+      .post(this.lessonsUrl, JSON.stringify({lesson: {start_at: startAt, aasm_state: state}}), { headers: this.headers })
       .toPromise()
-      .then(response => {
-        if (response.json().status === 'not_acceptable') {
-          window.alert('unable to cancel the lesson');
-        }
-      })
+      .then(response => response.json() as Lesson)
       .catch(this.handleError);
   }
 

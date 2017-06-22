@@ -34,9 +34,13 @@ export class TeacherDashboardComponent implements OnInit {
     this.days = config.days;
   }
 
-  toggle(data: any, event: any): void {
-    this.lessonService.update(data.start_at, event.checked)
-      .then(lesson => { console.log(lesson); });
+  toggle(lesson: Lesson, checked: boolean): void {
+    let state = checked ? 'opened' : 'closed';
+    console.log(lesson);
+    this.lessonService.update(lesson.start_at, state)
+      .then(response => {
+        console.log(response);
+      });
   }
 
   getLessons(): void {
@@ -48,7 +52,11 @@ export class TeacherDashboardComponent implements OnInit {
           for (let day of this.days) {
             let dt = day.format(`YYYY-MM-DDT${interval}:00Z`);
             let lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_at).local().format() === dt });
-            array.push(lesson === undefined ? new Lesson() : lesson);
+            if (lesson === undefined) {
+              lesson = new Lesson();
+              lesson.start_at = dt;
+            }
+            array.push(lesson);
           }
           this.lessons.push(array);
         }

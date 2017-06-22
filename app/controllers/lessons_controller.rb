@@ -16,16 +16,14 @@ class LessonsController < ApplicationController
   end
 
   def create
-    @lesson = Lesson.find_or_initialize_by(teacher_id: current_teacher.id, start_at: Time.zone.parse(lesson_params[:start_at]))
-    return render json: { status: :not_acceptable } if @lesson.book.present? # TODO: remove
+    @lesson = Lesson.find_or_initialize_by(
+      teacher_id: current_teacher.id, start_at: Time.zone.parse(lesson_params[:start_at])
+    )
+    return render json: { status: :not_acceptable } if @lesson.book.present?
 
     # TODO
     if @lesson.persisted?
-      if @lesson.opened?
-        @lesson.aasm_close { @lesson.update({}) }
-      elsif @lesson.closed?
-        @lesson.aasm_open { @lesson.update({}) }
-      end
+      @lesson.update aasm_state: lesson_params[:aasm_state]
     else
       @lesson.save
     end
@@ -44,6 +42,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:teacher_id, :start_at, :attended)
+    params.require(:lesson).permit(:teacher_id, :start_at, :attended, :aasm_state)
   end
 end

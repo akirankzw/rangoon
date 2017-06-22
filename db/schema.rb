@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.string "aasm_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["teacher_id", "start_at"], name: "index_lessons_on_teacher_id_and_start_at", unique: true
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
   end
 

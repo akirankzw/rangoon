@@ -34,6 +34,8 @@ class MasterMigration < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
+    add_index :lessons, [:teacher_id, :start_at], unique: true
+
     create_table :users, options: 'ROW_FORMAT=DYNAMIC' do |t|
       t.string :given_name
       t.string :family_name

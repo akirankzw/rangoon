@@ -1,4 +1,2 @@
-json.data do |json|
-  json.id @lesson.id
-  json.start_at @lesson.start_at
-end
+json.extract! @lesson, :id, :teacher_id, :start_at, :attended
+json.state @lesson.aasm_state

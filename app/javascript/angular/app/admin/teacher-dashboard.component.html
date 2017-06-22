@@ -34,7 +34,7 @@
         <tr *ngFor="let interval of intervals;let i = index">
           <td class="time">{{interval}}</td>
           <td *ngFor="let lesson of lessons[i]" class="lesson">
-            <md-checkbox (change)="toggle(lesson, $event)" [checked]="lesson.state == 'opened'"></md-checkbox>
+            <md-checkbox (change)="toggle(lesson, $event.checked)" [checked]="lesson.state !== 'closed'"></md-checkbox>
             <button md-raised-button (click)="openDialog(lesson)" color="accent" [disabled]="isDisabled(lesson)">{{lesson.text}}</button>
           </td>
         </tr>
