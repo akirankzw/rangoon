@@ -72,8 +72,17 @@ export class TeacherDashboardComponent implements OnInit {
   }
 
   getDailySchedule(): void {
+    const now = moment();
+    let array: Lesson[] = [];
     this.lessonService.getDailySchedule()
-      .then(books => { this.books = books; });
+      .then(lessons => {
+        for (let interval of this.intervals) {
+          let dt = now.format(`YYYY-MM-DDT${interval}:00Z`);
+          let lesson: Lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_at).local().format() === dt });
+          array.push(lesson === undefined? new Lesson() : lesson);
+        }
+        this.books = array;
+      });
   }
 
   getUsers(): void {

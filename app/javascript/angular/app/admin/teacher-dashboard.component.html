@@ -3,19 +3,18 @@
     <md-tab label="Timetable">
       <table>
         <tr>
-          <th>id</th>
-          <th>time</th>
-          <th>family name</th>
-          <th>given name</th>
+          <th></th>
+          <th>name</th>
           <th>skype name</th>
           <th>status</th>
           <th>attended</th>
         </tr>
-        <tr *ngFor="let book of books">
-          <td>{{book.id}}</td>
-          <td>{{book.start_at}}</td>
-          <td>{{book.family_name}}</td>
-          <td>{{book.given_name}}</td>
+        <tr *ngFor="let book of books;let i = index">
+          <td>{{intervals[i]}}</td>
+          <td>
+            <span>{{book.family_name}}</span>
+            <span>{{book.given_name}}</span>
+          </td>
           <td>{{book.skype_name}}</td>
           <td>{{book.status}}</td>
           <td>{{book.attended}}</td>
