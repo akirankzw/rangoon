@@ -19,11 +19,13 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find_or_initialize_by(
       teacher_id: current_teacher.id, start_at: Time.zone.parse(lesson_params[:start_at])
     )
-    return render json: { status: :not_acceptable } if @lesson.book.present?
+    # guard
+    return render json: @lesson if @lesson.book.present?
+    return render json: @lesson if (@lesson.start_at - 3.hour) < Time.zone.now
 
     # TODO
     if @lesson.persisted?
-      @lesson.update aasm_state: lesson_params[:aasm_state]
+      @lesson.update(aasm_state: @lesson.opened? ? 'closed' : 'opened')
     else
       @lesson.save
     end

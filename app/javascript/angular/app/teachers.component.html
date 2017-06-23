@@ -10,7 +10,7 @@
     <tr *ngFor="let interval of intervals;let i = index">
       <td class="time">{{interval}}</td>
       <td *ngFor="let lesson of lessons[i]">
-        <button md-raised-button (click)="openDialog(lesson)" *ngIf="lesson.id" color="accent" [disabled]="lesson.state !== 'opened'" [innerHtml]="buttonText(lesson)"></button>
+        <button md-raised-button (click)="openDialog(lesson)" *ngIf="lesson.id" color="accent" [disabled]="lesson.aasm_state !== 'opened'" [innerHtml]="buttonText(lesson)"></button>
       </td>
     </tr>
   </table>

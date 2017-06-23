@@ -109,3 +109,7 @@ td.lesson {
   text-align: center;
   width: 50px;
 }
+
+.opened {
+  background-color: #3F51B5;
+}

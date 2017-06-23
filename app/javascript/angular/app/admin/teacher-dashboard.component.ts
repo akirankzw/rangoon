@@ -34,13 +34,14 @@ export class TeacherDashboardComponent implements OnInit {
     this.days = config.days;
   }
 
-  toggle(lesson: Lesson, checked: boolean): void {
-    let state = checked ? 'opened' : 'closed';
-    this.lessonService.update(lesson.start_at, state)
+  toggle(lesson: Lesson): void {
+    this.lessonService.update(lesson.start_at)
       .then(response => {
-        console.log(response);
+        if (response.id == null) {
+          window.alert('unable to open lesson');
+          lesson.aasm_state = 'closed';
+        }
       });
-
   }
 
   getLessons(): void {

@@ -57,7 +57,7 @@ export class TeachersComponent implements OnInit {
 
   buttonText(lesson: Lesson): string {
     let text = '';
-    if (lesson.state === 'opened') {
+    if (lesson.aasm_state === 'opened') {
       text = 'OPEN';
     } else {
       text = 'BOOKED';

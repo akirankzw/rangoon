@@ -1,5 +1,5 @@
-import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Injectable }              from '@angular/core';
+import { Headers, Http, Response } from '@angular/http';
 
 import { Lesson } from './lesson';
 
@@ -13,17 +13,12 @@ export class LessonService {
 
   constructor(private http: Http) {}
 
-  update(startAt: string, state: string): Promise<Lesson> {
+  update(startAt: string): Promise<Lesson> {
     return this.http
-      .post(this.lessonsUrl, JSON.stringify({lesson: {start_at: startAt, aasm_state: state}}), { headers: this.headers })
+      .post(this.lessonsUrl, JSON.stringify({lesson: {start_at: startAt}}), { headers: this.headers })
       .toPromise()
-      .then(response => {
-        // TODO
-        if (response.json().status === 'not_acceptable') {
-          window.alert('unable to cancel a lesson');
-        }
-        response.json() as Lesson;
-      }).catch(this.handleError);
+      .then(this.extractData)
+      .catch(this.handleError);
 
   }
 
@@ -41,6 +36,10 @@ export class LessonService {
       .catch(this.handleError);
   }
 
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || { };
+  }
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
