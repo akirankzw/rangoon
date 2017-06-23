@@ -5,8 +5,12 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { Lesson } from './lesson';
 import { APP_CONFIG, AppConfig } from './app.config';
 
+import { BookService } from './book.service';
+
 import * as Clipboard from 'clipboard';
+
 import templateString from './book-dialog.component.html';
+
 @Component({
   template: templateString,
   styles: [
@@ -22,36 +26,24 @@ import templateString from './book-dialog.component.html';
 @Injectable()
 export class BookDialogComponent implements OnInit {
   headers = new Headers({ 'Content-Type': 'application/json' });
-  bookUrl = '/books.json';
   lesson: Lesson;
   message: string;
   emoji: string[];
-  div: any;
 
   constructor(
     public dialogRef: MdDialogRef<BookDialogComponent>,
+    private bookService: BookService,
     private http: Http,
     @Inject(APP_CONFIG) config: AppConfig
   ) {
     this.emoji = config.emoji;
   }
 
-  onSubmit(lesson: Lesson, f: NgForm): Promise<any> {
-    return this.http
-      .post(this.bookUrl, JSON.stringify({book: { lesson_id: lesson.id, comment: f.value.comment }}), { headers: this.headers })
-      .toPromise()
+  onSubmit(lesson: Lesson, f: NgForm): void {
+    this.bookService.book(lesson.id, f.value.comment)
       .then(response => {
-        this.message = response.json().message;
-        // REFACTOR
-        if (response.json().status === 'ok') {
-        }
-      })
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+        this.lesson.aasm_state = response.aasm_state;
+      });
   }
 
   ngOnInit(): void {

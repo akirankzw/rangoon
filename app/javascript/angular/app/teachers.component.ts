@@ -55,14 +55,8 @@ export class TeachersComponent implements OnInit {
       });
   }
 
-  buttonText(lesson: Lesson): string {
-    let text = '';
-    if (lesson.aasm_state === 'opened') {
-      text = 'OPEN';
-    } else {
-      text = 'BOOKED';
-    }
-    return text;
+  isDisabled(lesson: Lesson): boolean {
+    return lesson.aasm_state === 'opened' ? false : true
   }
 
   ngOnInit(): void {

@@ -19,7 +19,6 @@ export class LessonService {
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);
-
   }
 
   getLessons(): Promise<Lesson[]> {
@@ -40,6 +39,7 @@ export class LessonService {
     let body = res.json();
     return body || { };
   }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);

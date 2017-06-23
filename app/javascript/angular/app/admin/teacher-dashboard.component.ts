@@ -24,6 +24,7 @@ export class TeacherDashboardComponent implements OnInit {
   users: User[] = [];
   intervals: string[];
   days: any[];
+  selected: Lesson;
 
   constructor(
     private lessonService: LessonService,
@@ -35,11 +36,13 @@ export class TeacherDashboardComponent implements OnInit {
   }
 
   toggle(lesson: Lesson): void {
+    this.selected = lesson;
     this.lessonService.update(lesson.start_at)
       .then(response => {
+        console.log(response);
+        this.selected.aasm_state = response.aasm_state;
         if (response.id == null) {
           window.alert('unable to open lesson');
-          lesson.aasm_state = 'closed';
         }
       });
   }
@@ -65,7 +68,7 @@ export class TeacherDashboardComponent implements OnInit {
   }
 
   isDisabled(lesson: Lesson) {
-    return false;
+    return lesson.aasm_state === 'booked' ? true : false
   }
 
   getDailySchedule(): void {

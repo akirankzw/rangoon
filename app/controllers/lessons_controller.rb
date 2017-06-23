@@ -31,7 +31,7 @@ class LessonsController < ApplicationController
     end
 
     if @lesson.errors.empty?
-      render :create
+      render json: @lesson
     else
       render json: @lesson.errors, status: :unprocessable_entity
     end
