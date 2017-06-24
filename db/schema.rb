@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
   end
 
+  create_table "notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
+    t.bigint "lesson_id"
+    t.bigint "teacher_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_notes_on_lesson_id"
+    t.index ["teacher_id"], name: "index_notes_on_teacher_id"
+  end
+
   create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
     t.string "title"
     t.string "description"
@@ -118,5 +128,7 @@ ActiveRecord::Schema.define(version: 20170616102030) do
   add_foreign_key "books", "lessons"
   add_foreign_key "books", "users"
   add_foreign_key "lessons", "teachers"
+  add_foreign_key "notes", "lessons"
+  add_foreign_key "notes", "teachers"
   add_foreign_key "subscriptions", "users"
 end

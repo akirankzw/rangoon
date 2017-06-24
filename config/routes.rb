@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notes
   root to: 'dashboard#index'
 
   get :dashboard, controller: :dashboard, action: :index

@@ -97,5 +97,13 @@ class MasterMigration < ActiveRecord::Migration[5.1]
     end
 
     add_index :subscriptions, :customer_id,     unique: true
+
+    create_table :notes, options: 'ROW_FORMAT=DYNAMIC' do |t|
+      t.references :lesson, foreign_key: true
+      t.references :teacher, foreign_key: true
+      t.text :content
+
+      t.timestamps
+    end
   end
 end

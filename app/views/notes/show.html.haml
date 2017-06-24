@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Lesson:
+  = @note.lesson
+%p
+  %b Teacher:
+  = @note.teacher
+%p
+  %b Content:
+  = @note.content
+
+= link_to 'Edit', edit_note_path(@note)
+\|
+= link_to 'Back', notes_path
