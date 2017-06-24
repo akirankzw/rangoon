@@ -8,6 +8,12 @@ class Lesson < ApplicationRecord
 
   scope :this_week, ->(dt) { where('start_at >= ? AND start_at <= ?', dt.beginning_of_day, dt.end_of_day + 1.week) }
 
+  scope :today, lambda { |dt|
+    joins('LEFT JOIN books ON lessons.id = books.lesson_id LEFT JOIN users ON books.user_id = users.id')
+      .where('lessons.start_at >= ?', dt.beginning_of_day)
+      .where('lessons.start_at <= ?', dt.end_of_day)
+  }
+
   aasm do
     state :opened, initial: true
     state :closed, :booked, :finished, :done

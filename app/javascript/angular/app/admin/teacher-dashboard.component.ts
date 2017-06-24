@@ -45,6 +45,10 @@ export class TeacherDashboardComponent implements OnInit {
     this.afternoonClass = !this.afternoonClass;
   }
 
+  openNote(): void {
+    console.log();
+  }
+
   toggle(lesson: Lesson): void {
     this.selected = lesson;
     this.lessonService.update(lesson.start_at)
