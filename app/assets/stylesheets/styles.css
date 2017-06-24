@@ -117,3 +117,15 @@ td.lesson {
 .booked {
   background-color: #E0E0E0;
 }
+
+.morning {
+  display: none;
+}
+
+.afternoon {
+  display: none;
+}
+
+section.toggle {
+  margin: 10px;
+}

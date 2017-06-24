@@ -25,6 +25,8 @@ export class TeacherDashboardComponent implements OnInit {
   intervals: string[];
   days: any[];
   selected: Lesson;
+  morningClass: boolean = false;
+  afternoonClass: boolean = false;
 
   constructor(
     private lessonService: LessonService,
@@ -33,6 +35,14 @@ export class TeacherDashboardComponent implements OnInit {
   ) {
     this.intervals = config.intervals;
     this.days = config.days;
+  }
+
+  showMorning(): void {
+    this.morningClass = !this.morningClass;
+  }
+
+  showAfternoon(): void {
+    this.afternoonClass = !this.afternoonClass;
   }
 
   toggle(lesson: Lesson): void {
@@ -79,9 +89,16 @@ export class TeacherDashboardComponent implements OnInit {
         for (let interval of this.intervals) {
           let dt = now.format(`YYYY-MM-DDT${interval}:00Z`);
           let lesson: Lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_at).local().format() === dt });
-          array.push(lesson === undefined? new Lesson() : lesson);
+          if (lesson === undefined) {
+            lesson = new Lesson();
+          }
+          lesson.start_at = interval;
+          array.push(lesson);
+          // array.push(lesson === undefined ? new Lesson() : lesson);
         }
-        this.books = array;
+        let morning = array.splice(0,14)
+        this.books = [morning, array];
+        console.log(this.books);
       });
   }
 

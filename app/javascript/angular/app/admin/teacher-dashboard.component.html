@@ -1,16 +1,20 @@
 <md-card>
   <md-tab-group>
     <md-tab label="Timetable">
+
+      <section>
+        <md-slide-toggle [color]="color" (click)="showMorning()">
+          Morning
+        </md-slide-toggle>
+        <md-slide-toggle [color]="color" (click)="showAfternoon()">
+          Afternoon
+        </md-slide-toggle>
+      </section>
+
       <table>
-        <tr>
-          <th></th>
-          <th>name</th>
-          <th>skype name</th>
-          <th>status</th>
-          <th>attended</th>
-        </tr>
-        <tr *ngFor="let book of books;let i = index">
-          <td>{{intervals[i]}}</td>
+        <tr><th>time</th><th>name</th><th>skype name</th><th>status</th><th>attended</th></tr>
+        <tr *ngFor="let book of books[0]" [ngClass]="{'morning': morningClass}">
+          <td>{{book.start_at}}</td>
           <td>
             <span>{{book.family_name}}</span>
             <span>{{book.given_name}}</span>
@@ -20,6 +24,20 @@
           <td>{{book.attended}}</td>
         <tr>
       </table>
+      <table>
+        <tr><th>time</th><th>name</th><th>skype name</th><th>status</th><th>attended</th></tr>
+        <tr *ngFor="let book of books[1]" [ngClass]="{'afternoon': afternoonClass}">
+          <td>{{book.start_at}}</td>
+          <td>
+            <span>{{book.family_name}}</span>
+            <span>{{book.given_name}}</span>
+          </td>
+          <td>{{book.skype_name}}</td>
+          <td>{{book.status}}</td>
+          <td>{{book.attended}}</td>
+        <tr>
+      </table>
+
     </md-tab>
     <md-tab label="Weekly Schedule">
       <table>
