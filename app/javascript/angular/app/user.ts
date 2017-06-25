@@ -8,6 +8,7 @@ export class User {
     public password_confirmation: string = '',
     public birthdate: string = '',
     public gender: string = '',
+    public timezone: string = '',
     public skype_name: string = '',
     public lesson_plan: string = null,
     public payment_status: string = '',

@@ -46,9 +46,18 @@
       </tr>
       <tr>
         <td>
-          <md-select placeholder="gender" [(ngModel)]="user.gender" name="gender" placeholder="性別">
+          <md-select [(ngModel)]="user.gender" name="gender" placeholder="性別">
             <md-option *ngFor="let gender of genders" [value]="gender.value">
               {{gender.viewValue}}
+            </md-option>
+          </md-select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-select [(ngModel)]="user.timezone" class="timezone" name="timezone" placeholder="タイムゾーン">
+            <md-option *ngFor="let tz of timezone" [value]="tz.value">
+              {{ tz.viewValue }}
             </md-option>
           </md-select>
         </td>
@@ -67,4 +76,4 @@
       </tr>
     </table>
   </form>
-</div>
+</md-card>>

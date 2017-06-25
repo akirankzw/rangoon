@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.date "birthdate"
     t.integer "gender", limit: 1
     t.string "skype_name"
+    t.string "timezone", default: "Asia/Tokyo"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

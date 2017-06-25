@@ -30,7 +30,13 @@ export class UserEditComponent implements OnInit {
   genders = [
     { value: 'male', viewValue: '男性' },
     { value: 'female', viewValue: '女性' }
-  ]
+  ];
+
+  timezone = [
+    { value: 'Bangkok',    viewValue: 'GMT+07:00) Bangkok' },
+    { value: 'Singapore',  viewValue: '(GMT+08:00) Singapore' },
+    { value: 'Asia/Tokyo', viewValue: '(GMT+09:00) Tokyo' }
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -44,6 +50,7 @@ export class UserEditComponent implements OnInit {
       given_name: f.value.given_name,
       skype_name: f.value.skype_name,
       birthdate: f.value.birthdate,
+      timezone: f.value.timezone,
       gender: f.value.gender
     };
     return this.http

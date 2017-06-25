@@ -20,7 +20,7 @@
             <span>{{book.given_name}}</span>
           </td>
           <td>{{book.skype_name}}</td>
-          <td>{{book.aasm_state}}</td>
+          <td><button md-raised-button [ngClass]="book.aasm_state">{{book.aasm_state}}</button></td>
           <td>{{book.attended}}</td>
           <td><button md-button *ngIf="book.aasm_state == 'booked'" (click)="openNote()">note</button></td>
         <tr>
@@ -34,7 +34,7 @@
             <span>{{book.given_name}}</span>
           </td>
           <td>{{book.skype_name}}</td>
-          <td>{{book.aasm_state}}</td>
+          <td><button md-raised-button [ngClass]="book.aasm_state">{{book.aasm_state}}</button></td>
           <td>{{book.attended}}</td>
           <td><button md-button *ngIf="book.aasm_state == 'booked'" (click)="openNote()">note</button></td>
         <tr>

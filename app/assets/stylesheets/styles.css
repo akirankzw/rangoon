@@ -129,3 +129,8 @@ td.lesson {
 section.toggle {
   margin: 10px;
 }
+
+.timezone {
+  padding-top: 30px;
+  width: 200px;
+}
