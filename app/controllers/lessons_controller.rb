@@ -9,7 +9,7 @@ class LessonsController < ApplicationController
 
   # TODO
   def today
-    @lessons = Lesson.today(Time.zone.now)
+    @lessons = Lesson.joins(:note).today(Time.zone.now)
   end
 
   def show

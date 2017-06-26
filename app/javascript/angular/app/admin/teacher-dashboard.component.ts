@@ -1,12 +1,16 @@
 import { Component, OnInit, Inject, Injectable } from '@angular/core';
 import { MdCheckboxModule }  from '@angular/material';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { APP_CONFIG, AppConfig } from '../app.config';
 
 import { Lesson }        from '../lesson';
 import { User }          from '../user';
+import { Note }          from '../note';
 import { LessonService } from '../lesson.service';
 import { UserService }   from '../user.service';
+
+import { NoteDialogComponent } from '../note-dialog.component';
 
 import * as moment from 'moment';
 
@@ -31,10 +35,16 @@ export class TeacherDashboardComponent implements OnInit {
   constructor(
     private lessonService: LessonService,
     private userService: UserService,
+    public dialog: MdDialog,
     @Inject(APP_CONFIG) config: AppConfig
   ) {
     this.intervals = config.intervals;
     this.days = config.days;
+  }
+
+  openDialog(note: Note) {
+    let dialogRef = this.dialog.open(NoteDialogComponent, { height: '460px', width: '600px' });
+    dialogRef.componentInstance.note = note;
   }
 
   showMorning(): void {
@@ -43,10 +53,6 @@ export class TeacherDashboardComponent implements OnInit {
 
   showAfternoon(): void {
     this.afternoonClass = !this.afternoonClass;
-  }
-
-  openNote(): void {
-    console.log();
   }
 
   toggle(lesson: Lesson): void {

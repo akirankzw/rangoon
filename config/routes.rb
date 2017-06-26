@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :notes
   root to: 'dashboard#index'
 
   get :dashboard, controller: :dashboard, action: :index
@@ -46,4 +45,5 @@ Rails.application.routes.draw do
     end
   end
   resources :books, except: [:edit]
+  resources :notes, only: [:show, :update, :destroy]
 end

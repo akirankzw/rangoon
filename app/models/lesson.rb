@@ -3,6 +3,9 @@ class Lesson < ApplicationRecord
 
   belongs_to :teacher
   has_one :book
+  has_one :note, autosave: true
+
+  before_create :build_note
 
   default_scope { where(teacher_id: 1) }
 

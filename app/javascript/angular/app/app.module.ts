@@ -12,11 +12,13 @@ import { AppComponent }            from './app.component';
 import { PageNotFoundComponent }   from './not-found.component';
 import { TeachersComponent }       from './teachers.component';
 import { BookDialogComponent }     from './book-dialog.component';
+import { NoteDialogComponent }     from './note-dialog.component';
 import { EditBookDialogComponent } from './edit-book-dialog.component';
 
 import { LessonService }           from './lesson.service';
 import { BookService }             from './book.service';
 import { UserService }             from './user.service';
+import { NoteService }             from './note.service';
 
 import { UserModule }    from './user/user.module';
 import { TeacherModule } from './admin/teacher.module';
@@ -40,16 +42,19 @@ import { APP_CONFIG, DI_CONFIG } from './app.config';
     PageNotFoundComponent,
     TeachersComponent,
     BookDialogComponent,
+    NoteDialogComponent,
     EditBookDialogComponent
   ],
   providers: [
     LessonService,
     BookService,
     UserService,
+    NoteService,
     { provide: APP_CONFIG, useValue: DI_CONFIG }
   ],
   entryComponents: [
     BookDialogComponent,
+    NoteDialogComponent,
     EditBookDialogComponent
   ],
   bootstrap: [ AppComponent ]

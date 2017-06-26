@@ -1,46 +1,42 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Headers } from '@angular/http';
-import { MdDialog, MdDialogRef } from '@angular/material';
-import { Lesson } from './lesson';
+import { NgForm }                    from '@angular/forms';
+import { Http, Headers }             from '@angular/http';
+import { MdDialog, MdDialogRef }     from '@angular/material';
+
 import { APP_CONFIG, AppConfig } from './app.config';
 
-import { BookService } from './book.service';
+import { Note }   from './note';
+import { Lesson } from './lesson';
+
+import { NoteService } from './note.service';
 
 import * as Clipboard from 'clipboard';
 
-import templateString from './book-dialog.component.html';
+import templateString from './note-dialog.component.html';
 
 @Component({
-  template: templateString,
-  styles: [
-    `
-    textarea {
-      width: 550px;
-      height: 220px;
-    }
-    `
-  ]
+  template: templateString
 })
 
-export class BookDialogComponent implements OnInit {
+export class NoteDialogComponent implements OnInit {
   headers = new Headers({ 'Content-Type': 'application/json' });
+  note: Note;
   lesson: Lesson;
-  message: string;
   emoji: string[];
 
   constructor(
-    public dialogRef: MdDialogRef<BookDialogComponent>,
-    private bookService: BookService,
+    public dialogRef: MdDialogRef<NoteDialogComponent>,
+    private noteService: NoteService,
     @Inject(APP_CONFIG) config: AppConfig
   ) {
     this.emoji = config.emoji;
   }
 
-  onSubmit(lesson: Lesson, f: NgForm): void {
-    this.bookService.book(lesson.id, f.value.comment)
+  onSubmit(note: Note, f: NgForm): void {
+    this.noteService.updateNote(f.value.id, f.value.content)
       .then(response => {
-        this.lesson.aasm_state = response.aasm_state;
+        this.note = response;
+        console.log(response);
       });
   }
 
