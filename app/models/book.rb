@@ -15,7 +15,7 @@ class Book < ApplicationRecord
 
   def notify_user
     return unless user.account_setting.try(:email_notification)
-    domain = 'ihearsayenglish.com'
+    domain = 'mugsyenglish.com'
     mg_client = Mailgun::Client.new ENV['MAILGUN_API_KEY']
     message_params = {
       from: "admin@#{domain}",

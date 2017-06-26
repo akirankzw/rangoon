@@ -65,7 +65,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
     api_key: ENV['MAILGUN_API_KEY'],
-    domain: 'ihearsayenglish.com'
+    domain: 'mugsyenglish.com'
   }
 
   config.paperclip_defaults = {
