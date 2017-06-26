@@ -15,7 +15,15 @@ import * as Clipboard from 'clipboard';
 import templateString from './note-dialog.component.html';
 
 @Component({
-  template: templateString
+  template: templateString,
+  styles: [
+    `
+    textarea {
+      width: 550px;
+      height: 220px;
+    }
+    `
+  ]
 })
 
 export class NoteDialogComponent implements OnInit {

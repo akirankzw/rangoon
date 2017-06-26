@@ -20,12 +20,12 @@
             <span>{{book.given_name}}</span>
           </td>
           <td>{{book.skype_name}}</td>
-          <td><button *ngIf="book.id" md-raised-button  (click)="openDialog(book.note)" [ngClass]="book.aasm_state">{{book.aasm_state}}</button></td>
+          <td><button md-raised-button (click)="openDialog(book.note)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state}}</button></td>
           <td>{{book.attended}}</td>
         <tr>
       </table>
       <table>
-        <tr><th>time</th><th>name</th><th>skype name</th><th>status</th><th>attended</th><th>note</th></tr>
+        <tr><th>time</th><th>name</th><th>skype name</th><th>status</th><th>attended</th></tr>
         <tr *ngFor="let book of books[1]" [ngClass]="{'afternoon': afternoonClass}">
           <td>{{book.start_at}}</td>
           <td>
@@ -33,9 +33,8 @@
             <span>{{book.given_name}}</span>
           </td>
           <td>{{book.skype_name}}</td>
-          <td><button *ngIf="book.id" md-raised-button  (click)="openDialog(book)" [ngClass]="book.aasm_state">{{book.aasm_state}}</button></td>
+          <td><button md-raised-button (click)="openDialog(book.note)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state}}</button>
           <td>{{book.attended}}</td>
-          <td><button md-button *ngIf="book.aasm_state == 'booked'" (click)="openNote()">note</button></td>
         <tr>
       </table>
 
