@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   before_action :registered?, only: [:create]
 
   def index
-    @lessons = Lesson.joins(:book, :teacher).includes(:book, :teacher).where(Book.arel_table[:user_id].eq(current_user.id))
+    @lessons = Lesson.joins(:book, :teacher, :note).where(Book.arel_table[:user_id].eq(current_user.id))
   end
 
   def show

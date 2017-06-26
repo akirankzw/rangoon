@@ -13,6 +13,14 @@ export class NoteService {
 
   constructor(private http: Http) {}
 
+  getNote(id: number): Promise<Note> {
+    return this.http
+      .get(`/notes/${id}.json`, { headers: this.headers })
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
   updateNote(id: number, content: string): Promise<Note> {
     return this.http
       .patch(`/notes/${id}.json`, JSON.stringify({ note: { id: id, content: content } }), { headers: this.headers })

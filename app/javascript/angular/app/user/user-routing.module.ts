@@ -5,7 +5,8 @@ import { UserComponent }          from './user.component';
 import { UserSignupComponent }    from './user-signup.component';
 import { UserSigninComponent }    from './user-signin.component';
 import { UserDashboardComponent } from './user-dashboard.component';
-import { UserEditComponent } from './user-edit.component';
+import { UserEditComponent }      from './user-edit.component';
+import { UserNoteComponent }      from './user-note.component';
 
 const userRoutes: Routes = [
   {
@@ -18,7 +19,8 @@ const userRoutes: Routes = [
           { path: 'sign_in',   component: UserSigninComponent },
           { path: 'sign_up',   component: UserSignupComponent },
           { path: 'dashboard', component: UserDashboardComponent },
-          { path: 'profile',   component: UserEditComponent }
+          { path: 'profile',   component: UserEditComponent },
+          { path: 'notes/:id', component: UserNoteComponent }
         ]
       }
     ]

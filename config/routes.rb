@@ -38,6 +38,11 @@ Rails.application.routes.draw do
       post 'profile',   action: :update
     end
   end
+
+  namespace 'users' do
+    resources :notes, only: [:show]
+  end
+
   resources :teachers, only: [:index, :show, :edit, :update]
   resources :lessons, only: [:index, :show, :create] do
     collection do

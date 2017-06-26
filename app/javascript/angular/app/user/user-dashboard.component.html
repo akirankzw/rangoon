@@ -5,14 +5,16 @@
       <td>日時</td>
       <td>コメント</td>
       <td>出欠</td>
+      <td>レッスンノート</td>
     <tr>
     <tr *ngFor="let book of books">
       <td><button md-button (click)="openDialog(book)" color="accent">{{book.id}}</button></td>
       <td>{{book.datetime}}</td>
       <td>{{book.comment | truncate}}</td>
       <td></td>
+      <td>
+        <a [routerLink]="['/users/notes', book.note_id]" routerLinkActive="active"><button md-button>note</button></a>
+      </td>
     </tr>
   </table>
 </md-card>
-
-<div id="emoji"></div>
