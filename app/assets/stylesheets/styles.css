@@ -138,3 +138,14 @@ section.toggle {
 .hide {
   display: none;
 }
+
+.avatar-small {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #ECEFF1;
+}
+
+.right-wing {
+  margin-left: auto;
+}

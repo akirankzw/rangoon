@@ -72,7 +72,9 @@
           <td>expiry date</td>
         </tr>
         <tr *ngFor="let user of users">
-          <td>{{user.id}}</td>
+          <td>
+            <img src="{{user.avatar}}" class="avatar-small">
+          </td>
           <td>{{user.family_name}}</td>
           <td>{{user.given_name}}</td>
           <td>{{user.email}}</td>
