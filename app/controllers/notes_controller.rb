@@ -11,7 +11,8 @@ class NotesController < ApplicationController
   end
 
   def update
-    if @note.update(note_params)
+    # if @note.update(note_params)
+    if @note.update_attributes(teacher_id: current_teacher.id, content: note_params[:content])
       render json: @note
     else
       render json: @note.errors, status: :unprocessable_entity
