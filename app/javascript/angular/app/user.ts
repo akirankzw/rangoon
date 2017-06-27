@@ -10,8 +10,10 @@ export class User {
     public gender: string = '',
     public timezone: string = '',
     public skype_name: string = '',
+    public avatar: any = '',
     public lesson_plan: string = null,
     public payment_status: string = '',
-    public expiry_date: string = ''
+    public expiry_date: string = '',
+    public token: string = ''
   ) { }
 }

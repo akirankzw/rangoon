@@ -44,6 +44,10 @@ export class UserEditComponent implements OnInit {
     private http: Http
   ) { }
 
+  uploadAvatar(): void {
+    document.forms[1].submit();
+  }
+
   onSubmit(f: NgForm) {
     this.params['user'] = {
       family_name: f.value.family_name,

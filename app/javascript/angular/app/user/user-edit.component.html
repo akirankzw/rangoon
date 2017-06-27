@@ -77,3 +77,11 @@
     </table>
   </form>
 </md-card>
+
+<md-card>
+  <form (ngSubmit)="uploadAvatar()" action="/users/profile" method="post" enctype="multipart/form-data">
+    <input type="hidden" [(ngModel)]="user.token" name="authenticity_token">
+    <input type="file" name="user[avatar]">
+    <button md-raised-button>アップロード</button>
+  </form>
+</md-card>
