@@ -14,12 +14,12 @@ body {
 }
 
 .intro {
-  background-image: image_url("gardensbythebay.png");
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-position: center;
 
   h1 {
     text-align: center;

@@ -149,3 +149,8 @@ section.toggle {
 .right-wing {
   margin-left: auto;
 }
+
+.signin {
+  margin: auto;
+  width: 300px;
+}

@@ -14,6 +14,8 @@ import { TeachersComponent }       from './teachers.component';
 import { BookDialogComponent }     from './book-dialog.component';
 import { NoteDialogComponent }     from './note-dialog.component';
 import { EditBookDialogComponent } from './edit-book-dialog.component';
+import { UserSigninComponent }     from './user-signin.component';
+import { UserSignupComponent }     from './user-signup.component';
 
 import { LessonService }           from './lesson.service';
 import { BookService }             from './book.service';
@@ -43,7 +45,9 @@ import { APP_CONFIG, DI_CONFIG } from './app.config';
     TeachersComponent,
     BookDialogComponent,
     NoteDialogComponent,
-    EditBookDialogComponent
+    EditBookDialogComponent,
+    UserSigninComponent,
+    UserSignupComponent
   ],
   providers: [
     LessonService,
