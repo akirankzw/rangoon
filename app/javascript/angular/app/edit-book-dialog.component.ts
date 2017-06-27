@@ -29,7 +29,6 @@ export class EditBookDialogComponent {
   ) {}
 
   onSubmit(f: NgForm): Promise<any> {
-    console.log(f.value);
     return this.http
       .delete(`/books/${f.value.id}.json`, { headers: this.headers })
       .toPromise()

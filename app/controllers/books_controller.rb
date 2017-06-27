@@ -39,6 +39,7 @@ class BooksController < ApplicationController
   end
 
   def destroy
+    return render json: { status: :not_acceptable } if (@book.lesson.start_at - 3.hours) < Time.zone.now
     @book.lesson.aasm_cancel do
       Book.transaction do
         @book.destroy

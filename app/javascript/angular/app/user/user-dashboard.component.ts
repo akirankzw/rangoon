@@ -8,6 +8,8 @@ import { Book }   from '../book';
 
 import { EditBookDialogComponent } from '../edit-book-dialog.component';
 
+import * as moment from 'moment';
+
 import templateString from './user-dashboard.component.html';
 
 @Component({
@@ -26,6 +28,18 @@ export class UserDashboardComponent implements OnInit {
   getBooks(): void {
     this.bookService.getBooks()
       .then(books => { this.books = books; })
+  }
+
+  cancelBook(book: any): void {
+    if (moment.parseZone(book.start_at).local() < moment().add(3, 'hours')) {
+      window.alert('レッスン開始3時間前はキャンセルできません🙇');
+    } else if (window.confirm('レッスンをキャンセルしますか？')) {
+      this.bookService.cancelBook(book.id)
+        .then(response => {
+          book.id = null;
+          console.log(response);
+        });
+    }
   }
 
   openDialog(book: Book) {

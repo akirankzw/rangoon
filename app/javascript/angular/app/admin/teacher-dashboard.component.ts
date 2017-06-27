@@ -88,7 +88,12 @@ export class TeacherDashboardComponent implements OnInit {
   }
 
   isDisabled(lesson: Lesson) {
-    return lesson.aasm_state === 'booked' ? true : false
+    if (lesson.aasm_state === 'booked') {
+      return true;
+    } else if (moment.parseZone(lesson.start_at).local() < moment().add(3, 'hours')) {
+      return true;
+    }
+    return false;
   }
 
   getDailySchedule(): void {

@@ -28,6 +28,14 @@ export class BookService {
       .catch(this.handleError);
   }
 
+  cancelBook(id: number): Promise<boolean> {
+    return this.http
+      .delete(`/books/${id}.json`, { headers: this.headers })
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);

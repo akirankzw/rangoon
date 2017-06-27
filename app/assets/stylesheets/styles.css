@@ -115,7 +115,7 @@ td.lesson {
 }
 
 .booked {
-  background-color: #E0E0E0;
+  background-color: #FFC107;
 }
 
 .morning {
@@ -133,4 +133,8 @@ section.toggle {
 .timezone {
   padding-top: 30px;
   width: 200px;
+}
+
+.hide {
+  display: none;
 }

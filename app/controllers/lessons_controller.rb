@@ -21,7 +21,7 @@ class LessonsController < ApplicationController
     )
     # guard
     return render json: @lesson if @lesson.book.present?
-    return render json: @lesson if (@lesson.start_at - 3.hour) < Time.zone.now
+    return render json: @lesson if (@lesson.start_at - 3.hours) < Time.zone.now
 
     # TODO
     if @lesson.persisted?

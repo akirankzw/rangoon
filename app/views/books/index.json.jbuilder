@@ -1,5 +1,5 @@
 json.array! @lessons do |lesson|
-  json.book_id lesson.book.id
+  json.id lesson.book.id
   json.start_at lesson.start_at
   json.lesson_id lesson.id
   json.user_id lesson.book.user_id
