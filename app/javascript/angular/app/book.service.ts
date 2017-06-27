@@ -16,7 +16,7 @@ export class BookService {
   getBooks(): Promise<Book[]> {
     return this.http.get(this.booksUrl)
       .toPromise()
-      .then(response => response.json().data as Book[])
+      .then(response => response.json() as Book[])
       .catch(this.handleError);
   }
 

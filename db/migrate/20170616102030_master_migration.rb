@@ -7,6 +7,7 @@ class MasterMigration < ActiveRecord::Migration[5.1]
       t.integer :gender, limit: 1
       t.integer :nationality
       t.text :comment
+      t.string :timezone, null: false, default: 'Asia/Tokyo'
 
       t.string :email,              null: false, default: ''
       t.string :encrypted_password, null: false, default: ''
@@ -42,7 +43,7 @@ class MasterMigration < ActiveRecord::Migration[5.1]
       t.date :birthdate
       t.integer :gender, limit: 1
       t.string :skype_name
-      t.string :timezone, default: 'Asia/Tokyo'
+      t.string :timezone, null: false, default: 'Asia/Tokyo'
 
       t.string :email,              null: false, default: ''
       t.string :encrypted_password, null: false, default: ''

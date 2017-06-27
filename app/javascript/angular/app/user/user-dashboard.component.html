@@ -8,8 +8,8 @@
       <td>レッスンノート</td>
     <tr>
     <tr *ngFor="let book of books">
-      <td><button md-button (click)="openDialog(book)" color="accent">{{book.id}}</button></td>
-      <td>{{book.datetime}}</td>
+      <td><button md-button (click)="openDialog(book)" color="accent">{{book.book_id}}</button></td>
+      <td>{{book.start_at | date:'yMdjm'}}</td>
       <td>{{book.comment | truncate}}</td>
       <td></td>
       <td>
