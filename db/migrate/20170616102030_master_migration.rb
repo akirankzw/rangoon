@@ -7,7 +7,7 @@ class MasterMigration < ActiveRecord::Migration[5.1]
       t.integer :gender, limit: 1
       t.integer :nationality
       t.text :comment
-      t.string :timezone, null: false, default: Tokyo'
+      t.string :timezone, null: false, default: 'Tokyo'
 
       t.string :email,              null: false, default: ''
       t.string :encrypted_password, null: false, default: ''
