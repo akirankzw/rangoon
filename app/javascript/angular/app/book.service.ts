@@ -36,6 +36,14 @@ export class BookService {
       .catch(this.handleError);
   }
 
+  updateBook(f: any): Promise<Book> {
+    return this.http
+      .patch(`/books/${f.value.id}.json`, JSON.stringify({book: { comment: f.value.comment }}), { headers: this.headers })
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);

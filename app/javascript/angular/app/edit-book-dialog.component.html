@@ -1,17 +1,17 @@
-{{message}}
+<span *ngFor="let e of emoji" [innerHtml]="e" class="emoji"></span>
 <form method="post" #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <p>
+    <span>{{book.start_at | date:'yMdjm'}}</span>
+  </p>
   <p>
     <input type="hidden" [(ngModel)]="book.id" name="id">
     <md-input-container>
-      <input  mdInput [mdDatepicker]="picker" [(ngModel)]="book.start_at" name="start_at" placeholder="レッスン日時" [disabled]="true">
-      <button mdSuffix [mdDatepickerToggle]="picker"></button>
-    </md-input-container>
-    <md-input-container>
-      <textarea mdInput ="book.comment" placeholder="コメント" [(ngModel)]="book.comment" name="comment" [disabled]="true"></textarea>
+      <textarea mdInput ="book.comment" placeholder="コメント" [(ngModel)]="book.comment" name="comment"></textarea>
     </md-input-container>
   </p>
   <p>
     <button type="submit" md-raised-button>更新</button>
     <button type="button" md-dialog-close md-raised-button>閉じる</button>
+    {{message}}
   </p>
 </form>
