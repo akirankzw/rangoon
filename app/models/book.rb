@@ -2,7 +2,7 @@ class Book < ApplicationRecord
   belongs_to :lesson
   belongs_to :user
 
-  after_save :notify_user
+  after_create :notify_user
 
   scope :over_booking, lambda { |book, uid|
     joins(:lesson)
