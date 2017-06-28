@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  force_ssl if: :ssl_configured?
+  # force_ssl if: :ssl_configured?
   before_action :authenticate_user!, except: :webhook
   protect_from_forgery except: :webhook
 
