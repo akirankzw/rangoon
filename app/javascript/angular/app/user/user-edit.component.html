@@ -1,88 +1,90 @@
-<span>{{message}}</span>
-<md-card>
-  <md-input-container *ngIf="user.end_date; else elseBlock">
-    <input  mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="end_date" placeholder="利用期限">
-    <button mdSuffix [mdDatepickerToggle]="picker"></button>
-  </md-input-container>
-  <md-chip *ngIf="user.state === 'canceled'" selected="true" color="accent">解約済み</md-chip>
-  <ng-template #elseBlock>
-    <a href="/subscriptions/new">お申込み</a>はこちら
-  </ng-template>
-</md-card>
+<div class="profile-row">
+  <md-card>
+    <md-input-container *ngIf="user.end_date; else elseBlock">
+      <input  mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="end_date" placeholder="利用期限">
+      <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    </md-input-container>
+    <md-chip *ngIf="user.state === 'canceled'" selected="true" color="accent">解約済み</md-chip>
+    <ng-template #elseBlock>
+      <a href="/subscriptions/new">お申込み</a>はこちら
+    </ng-template>
+  </md-card>
 
-<md-card>
-  <form (ngSubmit)="onSubmit(userForm)" action="/users/profile" method="post" #userForm="ngForm">
-    <input type="hidden" [(ngModel)]="user.token" name="authenticity_token">
-    <table cellspacing="0">
-      <tr>
-        <td>
-          <md-input-container>
-            <input mdInput [(ngModel)]="user.family_name" name="family_name" placeholder="姓">
-          </md-input-container>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <md-input-container>
-            <input mdInput [(ngModel)]="user.given_name" name="given_name" placeholder="名">
-          </md-input-container>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <md-input-container>
-            <input mdInput [(ngModel)]="user.skype_name" name="skype_name" placeholder="スカイプ名">
-          </md-input-container>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <md-input-container>
-            <input mdInput [mdDatepicker]="datePicker" [(ngModel)]="user.birthdate" name="birthdate" placeholder="誕生日">
-            <button mdSuffix [mdDatepickerToggle]="datePicker"></button>
-            <md-datepicker [startAt]="startDate" startView="year" #datePicker></md-datepicker>
-          </md-input-container>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <md-select [(ngModel)]="user.gender" name="gender" placeholder="性別">
-            <md-option *ngFor="let gender of genders" [value]="gender.value">
-              {{gender.viewValue}}
-            </md-option>
-          </md-select>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <md-select [(ngModel)]="user.timezone" class="timezone" name="timezone" placeholder="タイムゾーン">
-            <md-option *ngFor="let tz of timezone" [value]="tz.value">
-              {{ tz.viewValue }}
-            </md-option>
-          </md-select>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <md-input-container>
-            <input mdInput type="email" [(ngModel)]="user.email" name="email" disabled>
-          </md-input-container>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button type="submit" md-raised-button>Submit</button>
-        </td>
-      </tr>
-    </table>
-  </form>
-</md-card>
+  <md-card>
+    <span>{{message}}</span>
+    <form (ngSubmit)="onSubmit(userForm)" action="/users/profile" method="post" #userForm="ngForm">
+      <input type="hidden" [(ngModel)]="user.token" name="authenticity_token">
+      <table cellspacing="0">
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput [(ngModel)]="user.family_name" name="family_name" placeholder="姓">
+            </md-input-container>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput [(ngModel)]="user.given_name" name="given_name" placeholder="名">
+            </md-input-container>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput [(ngModel)]="user.skype_name" name="skype_name" placeholder="スカイプ名">
+            </md-input-container>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput [mdDatepicker]="datePicker" [(ngModel)]="user.birthdate" name="birthdate" placeholder="誕生日">
+              <button mdSuffix [mdDatepickerToggle]="datePicker"></button>
+              <md-datepicker [startAt]="startDate" startView="year" #datePicker></md-datepicker>
+            </md-input-container>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-select [(ngModel)]="user.gender" name="gender" placeholder="性別">
+              <md-option *ngFor="let gender of genders" [value]="gender.value">
+                {{gender.viewValue}}
+              </md-option>
+            </md-select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-select [(ngModel)]="user.timezone" class="timezone" name="timezone" placeholder="タイムゾーン">
+              <md-option *ngFor="let tz of timezone" [value]="tz.value">
+                {{ tz.viewValue }}
+              </md-option>
+            </md-select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput type="email" [(ngModel)]="user.email" name="email" disabled>
+            </md-input-container>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" md-raised-button>Submit</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </md-card>
 
-<md-card>
-  <img [(src)]="user.avatar" id="preview">
-  <form (ngSubmit)="uploadAvatar()" action="/users/profile" method="post" enctype="multipart/form-data">
-    <input type="hidden" [(ngModel)]="user.token" name="authenticity_token">
-    <input type="file" name="user[avatar]">
-    <button md-raised-button>アップロード</button>
-  </form>
-</md-card>
+  <md-card>
+    <img [(src)]="user.avatar" id="preview">
+    <form (ngSubmit)="uploadAvatar()" action="/users/profile" method="post" enctype="multipart/form-data">
+      <input type="hidden" [(ngModel)]="user.token" name="authenticity_token">
+      <input type="file" name="user[avatar]">
+      <button md-raised-button>アップロード</button>
+    </form>
+  </md-card>
+</div>

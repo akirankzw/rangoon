@@ -19,7 +19,7 @@ import 'rxjs/add/operator/toPromise';
 export class UserEditComponent implements OnInit {
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
-  user: User = new User();
+  user: User;
 
   startDate = new Date(2000, 0, 1);
   maxDate = new Date();
@@ -42,7 +42,9 @@ export class UserEditComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private http: Http
-  ) { }
+  ) {
+    this.user = userService.fetchUser();
+  }
 
   uploadAvatar(): void {
     document.forms[1].submit();
@@ -74,8 +76,12 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.user);
+    /*
     this.route.params
       .switchMap((params: Params) => this.userService.getUser())
       .subscribe((user: User) => this.user = user);
+    */
   }
+
 }

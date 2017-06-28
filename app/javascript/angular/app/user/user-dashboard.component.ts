@@ -2,9 +2,9 @@ import { Component, OnInit }     from '@angular/core';
 import { ActivatedRoute }        from '@angular/router';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
-import { BookService }   from '../book.service';
+import { BookService } from '../book.service';
 
-import { Book }   from '../book';
+import { Book } from '../book';
 
 import { EditBookDialogComponent } from '../edit-book-dialog.component';
 

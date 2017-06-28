@@ -154,3 +154,7 @@ section.toggle {
   margin: auto;
   width: 300px;
 }
+
+.profile-row {
+   display: flex;
+}
