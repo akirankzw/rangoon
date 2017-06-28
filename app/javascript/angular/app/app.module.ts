@@ -22,6 +22,7 @@ import { LessonService }           from './lesson.service';
 import { BookService }             from './book.service';
 import { UserService }             from './user.service';
 import { NoteService }             from './note.service';
+import { TeacherService }          from './teacher.service';
 
 import { UserModule }    from './user/user.module';
 import { TeacherModule } from './admin/teacher.module';
@@ -56,6 +57,7 @@ import { APP_CONFIG, DI_CONFIG } from './app.config';
     BookService,
     UserService,
     NoteService,
+    TeacherService,
     { provide: APP_CONFIG, useValue: DI_CONFIG }
   ],
   entryComponents: [

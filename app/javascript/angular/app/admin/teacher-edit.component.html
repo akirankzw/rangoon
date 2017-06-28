@@ -1,0 +1,77 @@
+<div class="profile-row">
+  <md-card>
+    <form (ngSubmit)="onSubmit(f)" action="/admin/teachers/profile" method="post" #f="ngForm">
+      <input type="hidden" ngModel="teacher.token" name="authenticity_token">
+      <table>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput [(ngModel)]="teacher.family_name" name="family_name" placeholder="姓">
+            </md-input-container>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput [(ngModel)]="teacher.given_name" name="given_name" placeholder="名">
+            </md-input-container>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput [(ngModel)]="teacher.given_name" name="given_name" placeholder="スカイプ名">
+            </md-input-container>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput [mdDatepicker]="datepicker" [(ngModel)]="teacher.birthdate" name="birthdate" placeholder="誕生日">
+              <button mdSuffix [mdDatepickerToggle]="datepicker"></button>
+              <md-datepicker [startAt]="startDate" startView="year" #datePicker></md-datepicker>
+            </md-input-container>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-select [(ngModel)]="teacher.gender" name="gender" placeholder="性別">
+              <md-option *ngFor="let gender of genders" [value]="gender.value">
+                {{gender.viewValue}}
+              </md-option>
+            </md-select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-select [(ngModel)]="teacher.timezone" class="timezone" name="timezone" placeholder="タイムゾーン">
+              <md-option *ngFor="let tz of timezone" [value]="tz.value">
+                {{ tz.viewValue }}
+              </md-option>
+            </md-select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-input-container>
+              <input mdInput type="email" [(ngModel)]="teacher.email" name="email" disabled>
+            </md-input-container>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" md-raised-button>Submit</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </md-card>
+  <md-card>
+    <img [(src)]="teacher.avatar" id="preview">
+    <form (ngSubmit)="uploadAvatar()" action="/admin/teachers/profile" method="post" enctype="multipart/form-data">
+      <input type="hidden" ngModel="teacher.token" name="authenticity_token">
+      <input type="file" name="teacher[avatar]">
+      <button md-raised-button>アップロード</button>
+    </form>
+  </md-card>
+</div>

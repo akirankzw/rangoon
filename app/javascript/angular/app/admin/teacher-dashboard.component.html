@@ -56,35 +56,5 @@
         </tr>
       </table>
     </md-tab>
-    <md-tab label="Account Settings">
-    </md-tab>
-    <md-tab label="Students">
-      <table>
-        <tr>
-          <td>id</td>
-          <td>family name</td>
-          <td>given name</td>
-          <td>email</td>
-          <td>skype name</td>
-          <td>birth date</td>
-          <td>lesson plan</td>
-          <td>payment status</td>
-          <td>expiry date</td>
-        </tr>
-        <tr *ngFor="let user of users">
-          <td>
-            <img src="{{user.avatar}}" class="avatar-small">
-          </td>
-          <td>{{user.family_name}}</td>
-          <td>{{user.given_name}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.skype_name}}</td>
-          <td>{{user.birthdate}}</td>
-          <td>plan 1</td>
-          <td>{{user.payment_status}}</td>
-          <td>{{user.end_date}}</td>
-        </tr>
-      </table>
-    </md-tab>
   </md-tab-group>
 </md-card>

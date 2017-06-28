@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, Injectable } from '@angular/core';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MdDialog, MdDialogRef }     from '@angular/material';
 
 import { APP_CONFIG, AppConfig } from './app.config';
 
@@ -15,7 +15,6 @@ import templateString from './teachers.component.html';
   template: templateString
 })
 
-@Injectable()
 export class TeachersComponent implements OnInit {
   lessons: any[] = [];
   intervals: string[];

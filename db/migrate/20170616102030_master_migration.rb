@@ -5,7 +5,7 @@ class MasterMigration < ActiveRecord::Migration[5.1]
       t.string :family_name
       t.date :birthdate
       t.integer :gender, limit: 1
-      t.integer :nationality
+      t.string :skype_name
       t.text :comment
       t.string :timezone, null: false, default: 'Tokyo'
 

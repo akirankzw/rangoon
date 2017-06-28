@@ -1,10 +1,9 @@
 <md-toolbar>
   <span class="spacer"></span>
-  <a href="admin/teachers/sign_in"><md-icon class="icon">face</md-icon></a>
-  <a href="admin/teachers/sign_out"><md-icon class="icon">exit_to_app</md-icon></a>
-  <a routerLink="./"><md-icon class="icon">dashboard</md-icon></a>
-  <md-icon class="icon">build</md-icon>
-  <md-icon class="icon">note_add</md-icon>
+  <a href="/admin/teachers/sign_out"><md-icon class="icon">exit_to_app</md-icon></a>
+  <a routerLink="/admin/teachers/dashboard"><md-icon class="icon">dashboard</md-icon></a>
+  <a routerLink="/admin/users"><md-icon class="icon">face</md-icon></a>
+  <a routerLink="/admin/teachers/profile"><md-icon class="icon">home</md-icon></a>
 
   <div *ngIf="teacher" class="right-wing">
     <img [src]="teacher.avatar" class="avatar-small">

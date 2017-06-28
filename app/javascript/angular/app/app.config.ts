@@ -9,6 +9,8 @@ export interface AppConfig {
   days: any[];
   wdays: any;
   emoji: string[];
+  genders: any[];
+  timezone: any[];
 }
 
 export const DI_CONFIG: AppConfig = {
@@ -30,5 +32,14 @@ export const DI_CONFIG: AppConfig = {
     '&#x1f63D', '&#x1f63E', '&#x1f63F', '&#x1f640', '&#x1f645', '&#x1f646', '&#x1f647',
     '&#x1f648', '&#x1f649', '&#x1f64A', '&#x1f64B', '&#x1f64C', '&#x1f64D', '&#x1f64E',
     '&#x1f64F'
+  ],
+  genders: [
+    { value: 'male', viewValue: '男性' },
+    { value: 'female', viewValue: '女性' }
+  ],
+  timezone: [
+    { value: 'Bangkok',    viewValue: 'GMT+07:00) Bangkok' },
+    { value: 'Singapore',  viewValue: '(GMT+08:00) Singapore' },
+    { value: 'Asia/Tokyo', viewValue: '(GMT+09:00) Tokyo' }
   ]
 }

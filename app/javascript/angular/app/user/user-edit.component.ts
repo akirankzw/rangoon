@@ -1,8 +1,10 @@
-import { Component, OnInit }      from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { MdChipsModule }          from '@angular/material';
-import { Headers, Http }          from '@angular/http';
-import { NgForm }                 from '@angular/forms';
+import { Component, OnInit, Inject } from '@angular/core';
+import { ActivatedRoute, Params }    from '@angular/router';
+import { MdChipsModule }             from '@angular/material';
+import { Headers, Http }             from '@angular/http';
+import { NgForm }                    from '@angular/forms';
+
+import { APP_CONFIG, AppConfig } from '../app.config';
 
 import { User }        from '../user';
 import { UserService } from '../user.service';
@@ -22,28 +24,22 @@ export class UserEditComponent implements OnInit {
   user: User;
 
   startDate = new Date(2000, 0, 1);
-  maxDate = new Date();
 
   message: string;
   params = {};
 
-  genders = [
-    { value: 'male', viewValue: '男性' },
-    { value: 'female', viewValue: '女性' }
-  ];
-
-  timezone = [
-    { value: 'Bangkok',    viewValue: 'GMT+07:00) Bangkok' },
-    { value: 'Singapore',  viewValue: '(GMT+08:00) Singapore' },
-    { value: 'Asia/Tokyo', viewValue: '(GMT+09:00) Tokyo' }
-  ];
+  genders = [];
+  timezone = [];
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private http: Http
+    private http: Http,
+    @Inject(APP_CONFIG) config: AppConfig
   ) {
     this.user = userService.fetchUser();
+    this.genders = config.genders;
+    this.timezone = config.timezone;
   }
 
   uploadAvatar(): void {

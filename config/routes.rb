@@ -11,8 +11,14 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    get 'teachers/dashboard', controller: :teachers, action: :index
     resources :users, only: [:index]
+    resources :teachers, only: :none do
+      collection do
+        get  'dashboard', action: :index
+        get  'profile',   action: :show
+        post 'profile',   action: :update
+      end
+    end
   end
 
   scope '/admin' do
@@ -43,7 +49,7 @@ Rails.application.routes.draw do
     resources :notes, only: [:show]
   end
 
-  resources :teachers, only: [:index, :show, :edit, :update]
+  resources :teachers, only: [:index, :show]
   resources :lessons, only: [:index, :show, :create] do
     collection do
       get 'today', action: :today

@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.string "family_name"
     t.date "birthdate"
     t.integer "gender", limit: 1
-    t.integer "nationality"
+    t.string "skype_name"
     t.text "comment"
     t.string "timezone", default: "Tokyo", null: false
     t.string "email", default: "", null: false

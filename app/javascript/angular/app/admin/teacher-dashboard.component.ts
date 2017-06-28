@@ -1,14 +1,12 @@
-import { Component, OnInit, Inject, Injectable } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MdCheckboxModule }  from '@angular/material';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { APP_CONFIG, AppConfig } from '../app.config';
 
 import { Lesson }        from '../lesson';
-import { User }          from '../user';
 import { Note }          from '../note';
 import { LessonService } from '../lesson.service';
-import { UserService }   from '../user.service';
 
 import { NoteDialogComponent } from '../note-dialog.component';
 
@@ -21,11 +19,9 @@ import templateString from './teacher-dashboard.component.html';
   template: templateString
 })
 
-@Injectable()
 export class TeacherDashboardComponent implements OnInit {
   lessons: any[] = []; // TODO
   books: any[] = []; // today's schedule
-  users: User[] = [];
   intervals: string[];
   days: any[];
   selected: Lesson;
@@ -34,7 +30,6 @@ export class TeacherDashboardComponent implements OnInit {
 
   constructor(
     private lessonService: LessonService,
-    private userService: UserService,
     public dialog: MdDialog,
     @Inject(APP_CONFIG) config: AppConfig
   ) {
@@ -117,14 +112,8 @@ export class TeacherDashboardComponent implements OnInit {
       });
   }
 
-  getUsers(): void {
-    this.userService.getUsers()
-      .then(users => { this.users = users; });
-  }
-
   ngOnInit(): void {
     this.getLessons();
     this.getDailySchedule();
-    this.getUsers();
   }
 }
