@@ -3,7 +3,7 @@ class MasterMigration < ActiveRecord::Migration[5.1]
     create_table :teachers, options: 'ROW_FORMAT=DYNAMIC' do |t|
       t.string :given_name
       t.string :family_name
-      t.date :birth_date
+      t.date :birthdate
       t.integer :gender, limit: 1
       t.integer :nationality
       t.text :comment

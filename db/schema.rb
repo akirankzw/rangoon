@@ -74,11 +74,11 @@ ActiveRecord::Schema.define(version: 20170616102030) do
   create_table "teachers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
     t.string "given_name"
     t.string "family_name"
-    t.date "birth_date"
+    t.date "birthdate"
     t.integer "gender", limit: 1
     t.integer "nationality"
     t.text "comment"
-    t.string "timezone", default: "Asia/Tokyo", null: false
+    t.string "timezone", default: "Tokyo", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.date "birthdate"
     t.integer "gender", limit: 1
     t.string "skype_name"
-    t.string "timezone", default: "Asia/Tokyo", null: false
+    t.string "timezone", default: "Tokyo", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

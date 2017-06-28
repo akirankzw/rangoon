@@ -93,6 +93,7 @@ Rails.application.configure do
     storage: :s3,
     bucket: 'rangoon',
     s3_host_name: 's3-ap-northeast-1.amazonaws.com',
-    s3_region: ENV['AWS_REGION']
+    s3_region: ENV['AWS_REGION'],
+    default_url: 'https://s3-ap-northeast-1.amazonaws.com/rangoon/missing.png'
   }
 end

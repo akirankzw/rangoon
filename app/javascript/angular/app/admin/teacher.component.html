@@ -6,8 +6,8 @@
   <md-icon class="icon">build</md-icon>
   <md-icon class="icon">note_add</md-icon>
 
-  <div class="right-wing">
-    <img src="/assets/missing.png" class="avatar-small">
+  <div *ngIf="teacher" class="right-wing">
+    <img [src]="teacher.avatar" class="avatar-small">
   </div>
 </md-toolbar>
 
