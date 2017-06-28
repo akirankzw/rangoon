@@ -14,16 +14,15 @@ class Book < ApplicationRecord
   private
 
   def notify_user
-    return unless user.account_setting.try(:email_notification)
-    domain = 'mugsyenglish.com'
+    return unless user.account_setting.email_notification
     mg_client = Mailgun::Client.new ENV['MAILGUN_API_KEY']
     message_params = {
-      from: "admin@#{domain}",
+      from: "admin@#{ENV['MAILGUN_DOMAIN']}",
       to: user.email,
       subject: "Thanks, #{user.given_name}! Your reservation is now confirmed.",
       text: 'TODO'
     }
-    result = mg_client.send_message(domain, message_params)
+    result = mg_client.send_message(ENV['MAILGUN_DOMAIN'], message_params)
     logger.info result.as_json
   end
 end

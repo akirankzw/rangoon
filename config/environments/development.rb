@@ -62,12 +62,6 @@ Rails.application.configure do
     Bullet.rails_logger = true
   end
 
-  config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.mailgun_settings = {
-    api_key: ENV['MAILGUN_API_KEY'],
-    domain: 'mugsyenglish.com'
-  }
-
   config.paperclip_defaults = {
     storage: :s3,
     bucket: 'rangoon-dev',
