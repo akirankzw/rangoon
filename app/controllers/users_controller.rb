@@ -11,10 +11,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      render json: { status: :ok }
-    else
-      render json: @user.errors, status: :unprocessable_entity
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to dashboard_users_url } # TODO
+        format.json { render json: { status: :ok } }
+      else
+        format.html { redirect_to dashboard_users_url } # TODO
+        format.json { render json: { status: :unprocessable_entity } }
+      end
     end
   end
 

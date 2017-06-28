@@ -60,7 +60,7 @@ export class UserEditComponent implements OnInit {
       gender: f.value.gender
     };
     return this.http
-      .post('/users/profile', JSON.stringify(this.params), { headers: this.headers })
+      .post('/users/profile.json', JSON.stringify(this.params), { headers: this.headers })
       .toPromise()
       .then(response => {
         if (response.json().status === 'ok') {
@@ -83,5 +83,4 @@ export class UserEditComponent implements OnInit {
       .subscribe((user: User) => this.user = user);
     */
   }
-
 }
