@@ -6,4 +6,5 @@ export class Book {
   teacher_id: number;
   teacher_name: string;
   comment: string;
+  aasm_state: string;
 }

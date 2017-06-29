@@ -19,7 +19,7 @@ class Lesson < ApplicationRecord
 
   aasm do
     state :opened, initial: true
-    state :closed, :booked, :finished, :done
+    state :closed, :booked, :done
 
     event :aasm_open do
       transitions from: :closed, to: :opened
@@ -41,12 +41,8 @@ class Lesson < ApplicationRecord
       transitions from: :booked, to: :opened
     end
 
-    event :aasm_conduct do
-      transitions from: :booked, to: :finished
-    end
-
-    event :aasm_submit do
-      transitions from: :finished, to: :done
+    event :aasm_finish do
+      transitions from: :booked, to: :done
     end
   end
 end
