@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Params }    from '@angular/router';
 import { MdChipsModule }             from '@angular/material';
-import { Headers, Http }             from '@angular/http';
 import { NgForm }                    from '@angular/forms';
 
 import { APP_CONFIG, AppConfig } from '../app.config';
@@ -34,7 +33,6 @@ export class UserEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private http: Http,
     @Inject(APP_CONFIG) config: AppConfig
   ) {
     this.user = userService.fetchUser();
@@ -46,29 +44,23 @@ export class UserEditComponent implements OnInit {
     document.forms[1].submit();
   }
 
-  onSubmit(f: NgForm) { // TODO
-    this.params['user'] = {
-      family_name: f.value.family_name,
-      given_name: f.value.given_name,
-      skype_name: f.value.skype_name,
-      birthdate: f.value.birthdate,
-      timezone: f.value.timezone,
-      gender: f.value.gender
+  onSubmit(f: NgForm): void { // TODO
+    let params = {
+      authenticity_token: f.value.token,
+      user: {
+        family_name: f.value.family_name,
+        given_name: f.value.given_name,
+        skype_name: f.value.skype_name,
+        birthdate: f.value.birthdate,
+        timezone: f.value.timezone,
+        gender: f.value.gender
+      }
     };
-    return this.http
-      .post('/users/profile.json', JSON.stringify(this.params), { headers: this.headers })
-      .toPromise()
-      .then(response => {
-        if (response.json().status === 'ok') {
-          this.message = 'ユーザー情報を更新しました';
-        }
-      })
-      .catch(this.handleError);
-  }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+    this.userService.update(params)
+      .then(response => {
+        console.log(response);
+      });
   }
 
   ngOnInit(): void {

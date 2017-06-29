@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  protect_from_forgery only: proc { |c| c.request.format.json? }
+  protect_from_forgery with: :null_session, only: proc { |c| c.request.format.json? }
   before_action :set_user, only: [:update]
   before_action :authenticate_user!
 

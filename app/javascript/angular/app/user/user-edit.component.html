@@ -13,7 +13,7 @@
   <md-card>
     <span>{{message}}</span>
     <form (ngSubmit)="onSubmit(userForm)" action="/users/profile" method="post" #userForm="ngForm">
-      <input type="hidden" [(ngModel)]="user.token" name="authenticity_token">
+      <input type="hidden" [ngModel]="user.token" name="authenticity_token">
       <table cellspacing="0">
         <tr>
           <td>
