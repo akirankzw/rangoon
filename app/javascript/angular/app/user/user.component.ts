@@ -6,14 +6,7 @@ import { User } from '../user';
 import { UserService } from '../user.service';
 
 @Component({
-  template: templateString,
-  styles: [
-    `
-      .icon {
-        margin: 0 4px 0 4px;
-      }
-    `
-  ]
+  template: templateString
 })
 
 export class UserComponent {

@@ -25,6 +25,8 @@ export class TeachersComponent implements OnInit {
   intervals: string[];
   days: any[];
   wdays: any;
+  genders = [];
+  timezone = [];
 
   constructor(
     private lessonService: LessonService,
@@ -35,6 +37,8 @@ export class TeachersComponent implements OnInit {
     this.intervals = config.intervals;
     this.days = config.days;
     this.wdays = config.wdays;
+    this.genders = config.genders;
+    this.timezone = config.timezone;
   }
 
   openDialog(lesson: Lesson) {

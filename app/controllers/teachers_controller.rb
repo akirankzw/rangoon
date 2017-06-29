@@ -13,8 +13,4 @@ class TeachersController < ApplicationController
   def set_teacher
     @teacher = Teacher.find(params[:id])
   end
-
-  def teacher_params
-    params.require(:teacher).permit(:given_name, :family_name, :birthdate, :gender, :comment, :avatar)
-  end
 end

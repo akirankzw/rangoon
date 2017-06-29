@@ -45,7 +45,7 @@
         </tr>
         <tr>
           <td>
-            <md-select [(ngModel)]="teacher.timezone" class="timezone" name="timezone" placeholder="タイムゾーン">
+            <md-select [(ngModel)]="teacher.timezone" class="timezone" name="timezone" placeholder="タイムゾーン" disabled>
               <md-option *ngFor="let tz of timezone" [value]="tz.value">
                 {{ tz.viewValue }}
               </md-option>
@@ -55,7 +55,7 @@
         <tr>
           <td>
             <md-input-container>
-              <input mdInput type="email" [(ngModel)]="teacher.email" name="email" disabled>
+              <input mdInput type="email" [(ngModel)]="teacher.email" name="email" placeholder="メールアドレス" disabled>
             </md-input-container>
           </td>
         </tr>

@@ -52,22 +52,22 @@
           </tr>
           <tr>
             <td>
-              <md-select [ngModel]="teacher.gender" placeholder="性別" readonly>
-                <md-option [value]="teacher.gender">{{teacher.gender}}</md-option>
+              <md-select [ngModel]="teacher.gender" placeholder="性別" disabled>
+                <md-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</md-option>
               </md-select>
             </td>
           </tr>
           <tr>
             <td>
-              <md-select [ngModel]="teacher.timezone" class="timezone" placeholder="timezone" readonly>
-                <md-option [value]="teacher.timezone">{{teacher.timezone}}</md-option>
+              <md-select [ngModel]="teacher.timezone" class="timezone" placeholder="タイムゾーン" disabled>
+                <md-option *ngFor="let tz of timezone" [value]="tz.value">{{tz.viewValue}}</md-option>
               </md-select>
             </td>
           </tr>
           <tr>
             <td>
               <md-input-container>
-                <input mdInput [ngModel]="teacher.email" placeholder="email" readonly>
+                <input mdInput [ngModel]="teacher.email" placeholder="メールアドレス" readonly>
               </md-input-container>
             </td>
           </tr>

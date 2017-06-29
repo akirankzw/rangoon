@@ -56,7 +56,7 @@
         </tr>
         <tr>
           <td>
-            <md-select [(ngModel)]="user.timezone" class="timezone" name="timezone" placeholder="タイムゾーン">
+            <md-select [(ngModel)]="user.timezone" class="timezone" name="timezone" placeholder="タイムゾーン" disabled>
               <md-option *ngFor="let tz of timezone" [value]="tz.value">
                 {{ tz.viewValue }}
               </md-option>

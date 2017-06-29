@@ -26,6 +26,7 @@ class Admin::TeachersController < ApplicationController
   def set_teacher
     @teacher = Teacher.find(current_teacher.id)
   end
+
   def teacher_params
     params.require(:teacher).permit(:given_name, :family_name, :birthdate, :skype_name, :gender, :avatar, :timezone)
   end

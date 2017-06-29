@@ -34,12 +34,12 @@ export const DI_CONFIG: AppConfig = {
     '&#x1f64F'
   ],
   genders: [
-    { value: 'male', viewValue: '男性' },
-    { value: 'female', viewValue: '女性' }
+    { value: 'male', viewValue: '男' },
+    { value: 'female', viewValue: '女' }
   ],
   timezone: [
     { value: 'Bangkok',    viewValue: 'GMT+07:00) Bangkok' },
     { value: 'Singapore',  viewValue: '(GMT+08:00) Singapore' },
-    { value: 'Asia/Tokyo', viewValue: '(GMT+09:00) Tokyo' }
+    { value: 'Tokyo', viewValue: '(GMT+09:00) Tokyo' }
   ]
 }
