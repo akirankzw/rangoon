@@ -42,7 +42,7 @@ class Lesson < ApplicationRecord
     end
 
     event :aasm_finish do
-      transitions from: :booked, to: :done
+      transitions from: [:booked, :done], to: :done
     end
   end
 end
