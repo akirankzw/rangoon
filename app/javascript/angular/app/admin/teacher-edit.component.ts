@@ -32,7 +32,7 @@ export class TeacherEditComponent implements OnInit {
   }
 
   uploadAvatar(): void {
-    document.forms[1].submit();
+    document.forms[2].submit();
   }
 
   onChange(event): void {
@@ -55,7 +55,8 @@ export class TeacherEditComponent implements OnInit {
         skype_name: f.value.skype_name,
         birthdate: f.value.birthdate,
         timezone: f.value.timezone,
-        gender: f.value.gender
+        gender: f.value.gender,
+        comment: f.value.comment
       }
     };
     this.teacherService.update(params)

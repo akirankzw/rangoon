@@ -69,6 +69,26 @@
   </md-card>
 
   <md-card>
+    <form (ngSubmit)="onSubmit(ff)" action="/admin/teachers/profile" method="post" #ff="ngForm">
+      <input type="hidden" [ngModel]="teacher.token" name="authenticity_token">
+      <table>
+        <tr>
+          <td>
+            <md-input-container>
+              <textarea mdInput [(ngModel)]="teacher.comment" name="comment" class="comment" placeholder="コメント"></textarea>
+            </md-input-container>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" md-raised-button>Submit</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </md-card>
+
+  <md-card>
     <img [(src)]="teacher.avatar" id="preview">
     <form (ngSubmit)="uploadAvatar()" action="/admin/teachers/profile" method="post" enctype="multipart/form-data">
       <input type="hidden" [ngModel]="teacher.token" name="authenticity_token">

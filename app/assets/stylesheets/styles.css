@@ -162,3 +162,7 @@ section.toggle {
 .icon {
   margin: 0 4px 0 4px;
 }
+
+.comment {
+  height: 400px;
+}
