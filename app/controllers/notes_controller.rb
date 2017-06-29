@@ -2,10 +2,6 @@ class NotesController < ApplicationController
   protect_from_forgery with: :null_session, only: proc { |c| c.request.fomat.json? }
   before_action :set_note, only: [:show, :update, :destroy]
 
-  def index
-    @notes = Note.all
-  end
-
   def show
     render json: @note
   end
