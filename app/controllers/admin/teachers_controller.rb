@@ -11,7 +11,7 @@ class Admin::TeachersController < ApplicationController
 
   def update
     respond_to do |format|
-      if current_teacher.update(teacher_params)
+      if @teacher.update(teacher_params)
         format.html { redirect_to dashboard_users_url } # TODO
         format.json { render json: { status: :ok } }
       else
@@ -24,7 +24,7 @@ class Admin::TeachersController < ApplicationController
   private
 
   def set_teacher
-    @teacher = current_teacher
+    @teacher = Teacher.find(current_teacher.id)
   end
   def teacher_params
     params.require(:teacher).permit(:given_name, :family_name, :birthdate, :skype_name, :gender, :avatar, :timezone)

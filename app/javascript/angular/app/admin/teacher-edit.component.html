@@ -70,8 +70,8 @@
   <md-card>
     <img [(src)]="teacher.avatar" id="preview">
     <form (ngSubmit)="uploadAvatar()" action="/admin/teachers/profile" method="post" enctype="multipart/form-data">
-      <input type="hidden" ngModel="teacher.token" name="authenticity_token">
-      <input type="file" name="teacher[avatar]">
+      <input type="hidden" [ngModel]="teacher.token" name="authenticity_token">
+      <input type="file" name="teacher[avatar]" (change)="onChange($event)">
       <button md-raised-button>アップロード</button>
     </form>
   </md-card>
