@@ -12,10 +12,10 @@ class Admin::TeachersController < ApplicationController
   def update
     respond_to do |format|
       if @teacher.update(teacher_params)
-        format.html { redirect_to dashboard_users_url } # TODO
+        format.html { redirect_to dashboard_admin_teachers_url } # TODO
         format.json { render json: { status: :ok } }
       else
-        format.html { redirect_to dashboard_users_url } # TODO
+        format.html { redirect_to dashboard_admin_teachers_url } # TODO
         format.json { render json: { status: :unprocessable_entity } }
       end
     end

@@ -40,6 +40,17 @@ export class UserEditComponent implements OnInit {
     document.forms[1].submit();
   }
 
+  onChange(event): void {
+    let files = event.target.files || event.dataTransfer.files;
+    if (files.length) {
+      let reader = new FileReader();
+      reader.onload = (e: any) => {
+        (<HTMLImageElement>document.querySelector("#preview")).src = e.target.result;
+      };
+      reader.readAsDataURL(files[0]);
+    }
+  }
+
   onSubmit(f: NgForm): void { // TODO
     let params = {
       authenticity_token: f.value.token,
