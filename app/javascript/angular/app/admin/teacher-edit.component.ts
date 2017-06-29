@@ -28,9 +28,28 @@ export class TeacherEditComponent implements OnInit {
     private teacherService: TeacherService,
     @Inject(APP_CONFIG) config: AppConfig
   ) {
-    this.teacher = teacherService.fetchTeacher();
+    this.teacher = teacherService.fetchTeacher('/admin/teachers/profile.json');
     this.genders = config.genders;
     this.timezone = config.timezone;
+  }
+
+  onSubmit(f: NgForm) :void {
+    let params = {
+      authenticity_token: f.value.authenticity_token,
+      teacher: {
+        family_name: f.value.family_name,
+        given_name: f.value.given_name,
+        skype_name: f.value.skype_name,
+        birthdate: f.value.birthdate,
+        timezone: f.value.timezone,
+        gender: f.value.gender
+      }
+    };
+    this.teacherService.update(params)
+      .then(response => {
+        console.log(response);
+        this.message = '更新しました';
+      });
   }
 
   ngOnInit(): void {

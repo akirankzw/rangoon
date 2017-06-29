@@ -15,6 +15,6 @@ export class TeacherComponent {
   constructor(
     private teacherService: TeacherService
   ) {
-    this.teacher = teacherService.fetchTeacher();
+    this.teacher = teacherService.fetchTeacher('/admin/teachers/profile.json');
   }
 }

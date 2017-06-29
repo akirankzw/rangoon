@@ -46,7 +46,7 @@ export class UserEditComponent implements OnInit {
     document.forms[1].submit();
   }
 
-  onSubmit(f: NgForm) {
+  onSubmit(f: NgForm) { // TODO
     this.params['user'] = {
       family_name: f.value.family_name,
       given_name: f.value.given_name,

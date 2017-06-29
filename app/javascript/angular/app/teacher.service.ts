@@ -13,20 +13,28 @@ export class TeacherService {
   constructor(private http: Http) {
   }
 
-  fetchTeacher(): Teacher {
+  fetchTeacher(url: string): Teacher {
     console.log(this.teacher);
     if (this.teacher === undefined) {
-      this.getTeacher()
+      this.getTeacher(url)
         .then(response => this.teacher = response);
     }
     console.log(this.teacher);
     return this.teacher;
   }
 
-  getTeacher(): Promise<Teacher> {
-    return this.http.get('/teachers/1.json')
+  private getTeacher(url: string): Promise<Teacher> {
+    return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Teacher)
+      .catch(this.handleError);
+  }
+
+  update(params: any): Promise<Teacher> {
+    return this.http
+      .post('/admin/teachers/profile.json', JSON.stringify(params), { headers: this.headers })
+      .toPromise()
+      .then(response => response.json())
       .catch(this.handleError);
   }
 

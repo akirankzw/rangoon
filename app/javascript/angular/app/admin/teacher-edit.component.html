@@ -1,7 +1,8 @@
 <div class="profile-row">
   <md-card>
+    {{message}}
     <form (ngSubmit)="onSubmit(f)" action="/admin/teachers/profile" method="post" #f="ngForm">
-      <input type="hidden" ngModel="teacher.token" name="authenticity_token">
+      <input type="hidden" [ngModel]="teacher.token" name="authenticity_token">
       <table>
         <tr>
           <td>
