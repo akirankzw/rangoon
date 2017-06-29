@@ -47,6 +47,14 @@ export class UserDashboardComponent implements OnInit {
     dialogRef.componentInstance.book = book;
   }
 
+  isCancelable(book: any): boolean {
+    if (moment.parseZone(book.start_at).local() < moment().add(3, 'hours')) { // TODO
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   ngOnInit(): void {
     this.getBooks();
   }
