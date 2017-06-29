@@ -29,7 +29,6 @@ class MasterMigration < ActiveRecord::Migration[5.1]
     create_table :lessons, options: 'ROW_FORMAT=DYNAMIC' do |t|
       t.references :teacher, foreign_key: true
       t.datetime :start_at
-      t.boolean :attended
       t.string :aasm_state
 
       t.timestamps

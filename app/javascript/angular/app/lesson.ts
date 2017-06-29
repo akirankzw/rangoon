@@ -6,7 +6,6 @@ export class Lesson {
     public teacher_id: number = null,
     public start_at: string = '',
     public aasm_state: string = 'closed',
-    public attended: boolean = null,
     public note: Note = new Note()
   ) { }
 }

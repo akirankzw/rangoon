@@ -12,7 +12,7 @@
       </section>
 
       <table>
-        <tr><th>time</th><th>name</th><th>skype name</th><th>status</th><th>attended</th></tr>
+        <tr><th>time</th><th>name</th><th>skype name</th><th>status</th></tr>
         <tr *ngFor="let book of books[0]" [ngClass]="{'morning': morningClass}">
           <td>{{book.start_at}}</td>
           <td>
@@ -21,11 +21,10 @@
           </td>
           <td>{{book.skype_name}}</td>
           <td><button md-raised-button (click)="openDialog(book.note)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state}}</button></td>
-          <td>{{book.attended}}</td>
         <tr>
       </table>
       <table>
-        <tr><th>time</th><th>name</th><th>skype name</th><th>status</th><th>attended</th></tr>
+        <tr><th>time</th><th>name</th><th>skype name</th><th>status</th></tr>
         <tr *ngFor="let book of books[1]" [ngClass]="{'afternoon': afternoonClass}">
           <td>{{book.start_at}}</td>
           <td>
@@ -34,7 +33,6 @@
           </td>
           <td>{{book.skype_name}}</td>
           <td><button md-raised-button (click)="openDialog(book.note)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state}}</button>
-          <td>{{book.attended}}</td>
         <tr>
       </table>
 

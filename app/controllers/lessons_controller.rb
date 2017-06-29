@@ -44,6 +44,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:teacher_id, :start_at, :attended, :aasm_state)
+    params.require(:lesson).permit(:teacher_id, :start_at, :aasm_state)
   end
 end
