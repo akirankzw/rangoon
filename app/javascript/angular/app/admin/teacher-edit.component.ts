@@ -20,7 +20,6 @@ export class TeacherEditComponent implements OnInit {
   teacher: Teacher;
   startDate = new Date(2000, 0, 1);
   message: string;
-  params = {};
   genders = [];
   timezone = [];
 

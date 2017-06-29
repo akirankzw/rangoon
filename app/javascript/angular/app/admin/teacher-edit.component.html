@@ -28,10 +28,10 @@
         <tr>
           <td>
             <md-input-container>
-              <input mdInput [mdDatepicker]="datepicker" [(ngModel)]="teacher.birthdate" name="birthdate" placeholder="誕生日">
-              <button mdSuffix [mdDatepickerToggle]="datepicker"></button>
-              <md-datepicker [startAt]="startDate" startView="year" #datePicker></md-datepicker>
+              <input mdInput [mdDatepicker]="datePicker" [(ngModel)]="teacher.birthdate" name="birthdate" placeholder="誕生日">
+              <button mdSuffix [mdDatepickerToggle]="datePicker"></button>
             </md-input-container>
+            <md-datepicker [startAt]="startDate" startView="year" #datePicker></md-datepicker>
           </td>
         </tr>
         <tr>
