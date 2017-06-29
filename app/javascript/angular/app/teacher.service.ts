@@ -10,20 +10,10 @@ export class TeacherService {
   teacher: Teacher;
   headers = new Headers({ 'Content-Type': 'application/json' });
 
-  constructor(private http: Http) {
-  }
+  constructor(private http: Http) { }
 
-  fetchTeacher(url: string): Teacher {
-    console.log(this.teacher);
-    if (this.teacher === undefined) {
-      this.getTeacher(url)
-        .then(response => this.teacher = response);
-    }
-    console.log(this.teacher);
-    return this.teacher;
-  }
-
-  getTeacher(url: string): Promise<Teacher> {
+  getTeacher (id: number): Promise<Teacher> {
+    let url = id === 0 ? '/admin/teachers/profile.json' : `/teachers/${id}.json`; // TODO
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Teacher)

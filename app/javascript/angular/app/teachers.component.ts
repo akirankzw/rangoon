@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialog, MdDialogRef }     from '@angular/material';
+import { ActivatedRoute, Params }    from '@angular/router';
 
 import { APP_CONFIG, AppConfig } from './app.config';
 
@@ -31,6 +32,7 @@ export class TeachersComponent implements OnInit {
   constructor(
     private lessonService: LessonService,
     private teacherService: TeacherService,
+    private route: ActivatedRoute,
     public dialog: MdDialog,
     @Inject(APP_CONFIG) config: AppConfig
   ) {
@@ -46,11 +48,6 @@ export class TeachersComponent implements OnInit {
     dialogRef.componentInstance.lesson = lesson;
     dialogRef.afterClosed()
       .subscribe(result => { console.log(result); });
-  }
-
-  getTeacher(): void {
-    this.teacherService.getTeacher('/teachers/1.json')
-      .then(response => this.teacher = response);
   }
 
   getLessons(): void {
@@ -74,8 +71,9 @@ export class TeachersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params
+      .switchMap((params: Params) => this.teacherService.getTeacher(+params['id']))
+      .subscribe(teacher => this.teacher = teacher);
     this.getLessons();
-    this.getTeacher();
-    console.log(this.teacher);
   }
 }

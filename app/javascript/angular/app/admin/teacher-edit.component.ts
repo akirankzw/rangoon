@@ -17,7 +17,7 @@ import templateString from './teacher-edit.component.html';
 export class TeacherEditComponent implements OnInit {
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
-  teacher: Teacher;
+  teacher: Teacher = new Teacher();
   startDate = new Date(2000, 0, 1);
   message: string;
   genders = [];
@@ -27,7 +27,6 @@ export class TeacherEditComponent implements OnInit {
     private teacherService: TeacherService,
     @Inject(APP_CONFIG) config: AppConfig
   ) {
-    this.teacher = teacherService.fetchTeacher('/admin/teachers/profile.json');
     this.genders = config.genders;
     this.timezone = config.timezone;
   }
@@ -67,6 +66,8 @@ export class TeacherEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.teacherService.getTeacher(0)
+      .then(response => this.teacher = response);
     console.log(this.teacher);
   }
 }
