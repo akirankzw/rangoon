@@ -5,7 +5,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { APP_CONFIG, AppConfig } from '../app.config';
 
 import { Lesson }        from '../lesson';
-import { Note }          from '../note';
+import { Book }          from '../book';
 import { LessonService } from '../lesson.service';
 
 import { NoteDialogComponent } from '../note-dialog.component';
@@ -37,9 +37,9 @@ export class TeacherDashboardComponent implements OnInit {
     this.days = config.days;
   }
 
-  openDialog(note: Note) {
+  openDialog(book: Book) {
     let dialogRef = this.dialog.open(NoteDialogComponent, { height: '460px', width: '600px' });
-    dialogRef.componentInstance.note = note;
+    dialogRef.componentInstance.book = book;
   }
 
   showMorning(): void {

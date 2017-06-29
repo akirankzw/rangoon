@@ -5,7 +5,7 @@ import { MdDialog, MdDialogRef }     from '@angular/material';
 
 import { APP_CONFIG, AppConfig } from './app.config';
 
-import { Note }   from './note';
+import { Book }   from './book';
 import { Lesson } from './lesson';
 
 import { NoteService } from './note.service';
@@ -28,7 +28,7 @@ import templateString from './note-dialog.component.html';
 
 export class NoteDialogComponent implements OnInit {
   headers = new Headers({ 'Content-Type': 'application/json' });
-  note: Note;
+  book: Book;
   lesson: Lesson;
   emoji: string[];
 
@@ -40,11 +40,11 @@ export class NoteDialogComponent implements OnInit {
     this.emoji = config.emoji;
   }
 
-  onSubmit(note: Note, f: NgForm): void {
+  onSubmit(book: Book, f: NgForm): void {
+    // note = {id: 35, start_at: "09:00", aasm_state: "booked", family_name: null, given_name: null…}
     this.noteService.updateNote(f.value.id, f.value.content)
       .then(response => {
-        this.note = response;
-        console.log(response);
+        this.book.aasm_state = response.aasm_state;
       });
   }
 

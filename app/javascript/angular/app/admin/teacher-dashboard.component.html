@@ -20,7 +20,7 @@
             <span>{{book.given_name}}</span>
           </td>
           <td>{{book.skype_name}}</td>
-          <td><button md-raised-button (click)="openDialog(book.note)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state}}</button></td>
+          <td><button md-raised-button (click)="openDialog(book)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state}}</button></td>
         <tr>
       </table>
       <table>

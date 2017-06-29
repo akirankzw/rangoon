@@ -1,9 +1,9 @@
 <span *ngFor="let e of emoji" [innerHtml]="e" class="emoji"></span>
-<form method="post" #f="ngForm" (ngSubmit)="onSubmit(note, f)">
-  <input type="hidden" [(ngModel)]="note.id" name="id" placeholder="id">
+<form method="post" #f="ngForm" (ngSubmit)="onSubmit(book, f)">
+  <input type="hidden" [(ngModel)]="book.note.id" name="id" placeholder="id">
   <p>
-    <md-input-container class="full-width">
-      <textarea mdInput [(ngModel)]="note.content" placeholder="content" name="content"></textarea>
+    <md-input-container>
+      <textarea mdInput [(ngModel)]="book.note.content" placeholder="content" name="content"></textarea>
     </md-input-container>
   </p>
   <p>

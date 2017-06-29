@@ -21,7 +21,7 @@ export class NoteService {
       .catch(this.handleError);
   }
 
-  updateNote(id: number, content: string): Promise<Note> {
+  updateNote(id: number, content: string): Promise<any> {
     return this.http
       .patch(`/notes/${id}.json`, JSON.stringify({ note: { id: id, content: content } }), { headers: this.headers })
       .toPromise()
