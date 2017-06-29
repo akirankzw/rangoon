@@ -1,44 +1,51 @@
-<md-card>
-  <md-tab-group>
-    <md-tab label="Daily Schedule">
+<md-tab-group>
+  <md-tab label="Daily Schedule">
 
-      <section>
-        <md-slide-toggle [color]="color" (click)="showMorning()">
-          Morning
-        </md-slide-toggle>
-        <md-slide-toggle [color]="color" (click)="showAfternoon()">
-          Afternoon
-        </md-slide-toggle>
-      </section>
+    <section class="slide-toggle">
+      <md-slide-toggle [color]="color" (click)="showMorning()">
+        Morning
+      </md-slide-toggle>
+      <md-slide-toggle [color]="color" (click)="showAfternoon()">
+        Afternoon
+      </md-slide-toggle>
+    </section>
 
-      <table>
-        <tr><th>time</th><th>name</th><th>skype name</th><th>status</th></tr>
-        <tr *ngFor="let book of books[0]" [ngClass]="{'morning': morningClass}">
-          <td>{{book.start_at}}</td>
-          <td>
-            <span>{{book.family_name}}</span>
-            <span>{{book.given_name}}</span>
-          </td>
-          <td>{{book.skype_name}}</td>
-          <td><button md-raised-button (click)="openDialog(book)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state}}</button></td>
-        <tr>
-      </table>
-      <table>
-        <tr><th>time</th><th>name</th><th>skype name</th><th>status</th></tr>
-        <tr *ngFor="let book of books[1]" [ngClass]="{'afternoon': afternoonClass}">
-          <td>{{book.start_at}}</td>
-          <td>
-            <span>{{book.family_name}}</span>
-            <span>{{book.given_name}}</span>
-          </td>
-          <td>{{book.skype_name}}</td>
-          <td><button md-raised-button (click)="openDialog(book.note)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state}}</button>
-        <tr>
-      </table>
+    <div class="profile-row">
+      <md-card>
+        <table>
+          <tr><th>time</th><th>name</th><th>skype name</th><th>status</th></tr>
+          <tr *ngFor="let book of books[0]" [ngClass]="{'morning': morningClass}">
+            <td>{{book.start_at}}</td>
+            <td>
+              <span>{{book.family_name}}</span>
+              <span>{{book.given_name}}</span>
+            </td>
+            <td>{{book.skype_name}}</td>
+            <td><button md-raised-button (click)="openDialog(book)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state | uppercase}}</button></td>
+          <tr>
+        </table>
+      </md-card>
 
-    </md-tab>
-    <md-tab label="Manage Schedule">
-      <table>
+      <md-card>
+        <table>
+          <tr><th>time</th><th>name</th><th>skype name</th><th>status</th></tr>
+          <tr *ngFor="let book of books[1]" [ngClass]="{'afternoon': afternoonClass}">
+            <td>{{book.start_at}}</td>
+            <td>
+              <span>{{book.family_name}}</span>
+              <span>{{book.given_name}}</span>
+            </td>
+            <td>{{book.skype_name}}</td>
+            <td><button md-raised-button (click)="openDialog(book.note)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state | uppercase}}</button>
+              <tr>
+        </table>
+      </md-card>
+    </div>
+  </md-tab>
+
+  <md-tab label="Manage Schedule">
+    <md-card>
+      <table class="center">
         <tr>
           <th></th>
           <th *ngFor="let day of days" class="head">
@@ -53,6 +60,6 @@
           </td>
         </tr>
       </table>
-    </md-tab>
-  </md-tab-group>
-</md-card>
+    </md-card>
+  </md-tab>
+</md-tab-group>

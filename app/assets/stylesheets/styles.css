@@ -2,10 +2,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-center {
-  margin: auto;
-}
-
 .mat-card {
   margin: 10px;
 }
@@ -115,7 +111,7 @@ td.lesson {
 }
 
 .booked {
-  background-color: #FFC107;
+  background-color: #FF9800 !important;
 }
 
 .morning {
@@ -165,4 +161,16 @@ section.toggle {
 
 .comment {
   height: 400px;
+}
+
+.center {
+  margin: auto;
+}
+
+.center td {
+  padding: 4px;
+}
+
+.slide-toggle {
+  margin: 16px;
 }
