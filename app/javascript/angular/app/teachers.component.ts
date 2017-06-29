@@ -4,7 +4,11 @@ import { MdDialog, MdDialogRef }     from '@angular/material';
 import { APP_CONFIG, AppConfig } from './app.config';
 
 import { Lesson }        from './lesson';
+import { Teacher } from './teacher';
+
 import { LessonService } from './lesson.service';
+import { TeacherService } from './teacher.service';
+
 import { BookDialogComponent } from './book-dialog.component';
 
 import * as moment from 'moment';
@@ -17,12 +21,14 @@ import templateString from './teachers.component.html';
 
 export class TeachersComponent implements OnInit {
   lessons: any[] = [];
+  teacher: Teacher = new Teacher(); // TODO
   intervals: string[];
   days: any[];
   wdays: any;
 
   constructor(
     private lessonService: LessonService,
+    private teacherService: TeacherService,
     public dialog: MdDialog,
     @Inject(APP_CONFIG) config: AppConfig
   ) {
@@ -36,6 +42,11 @@ export class TeachersComponent implements OnInit {
     dialogRef.componentInstance.lesson = lesson;
     dialogRef.afterClosed()
       .subscribe(result => { console.log(result); });
+  }
+
+  getTeacher(): void {
+    this.teacherService.getTeacher('/teachers/1.json')
+      .then(response => this.teacher = response);
   }
 
   getLessons(): void {
@@ -60,5 +71,7 @@ export class TeachersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLessons();
+    this.getTeacher();
+    console.log(this.teacher);
   }
 }

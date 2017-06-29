@@ -1,17 +1,84 @@
-<md-card>
-  <table class="center">
-    <tr>
-      <th></th>
-      <th *ngFor="let day of days" class="day head">
-        <span class="dt">{{day.format("MM/DD")}}</span>
-        <span class="dt">({{wdays[day.format("ddd")]}})</span>
-      </th>
-    </tr>
-    <tr *ngFor="let interval of intervals;let i = index">
-      <td class="time">{{interval}}</td>
-      <td *ngFor="let lesson of lessons[i]">
-        <button md-raised-button (click)="openDialog(lesson)" *ngIf="lesson.id" color="primary" [disabled]="isDisabled(lesson)" >{{lesson.aasm_state | uppercase}}</button>
-      </td>
-    </tr>
-  </table>
-</md-card>
+<md-tab-group>
+  <md-tab label="Schedule">
+    <table class="center">
+      <tr>
+        <th></th>
+        <th *ngFor="let day of days" class="day head">
+          <span class="dt">{{day.format("MM/DD")}}</span>
+          <span class="dt">({{wdays[day.format("ddd")]}})</span>
+        </th>
+      </tr>
+      <tr *ngFor="let interval of intervals;let i = index">
+        <td class="time">{{interval}}</td>
+        <td *ngFor="let lesson of lessons[i]">
+          <button md-raised-button (click)="openDialog(lesson)" *ngIf="lesson.id" color="primary" [disabled]="isDisabled(lesson)" >{{lesson.aasm_state | uppercase}}</button>
+        </td>
+      </tr>
+    </table>
+  </md-tab>
+
+  <md-tab label="Profile">
+    <div class="profile-row">
+      <md-card>
+        <table>
+          <tr>
+            <td>
+              <md-input-container>
+                <input mdInput [ngModel]="teacher.family_name" placeholder="姓" readonly>
+              </md-input-container>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input-container>
+                <input mdInput [ngModel]="teacher.given_name" placeholder="名" readonly>
+              </md-input-container>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input-container>
+                <input mdInput [ngModel]="teacher.skype_name" placeholder="スカイプ名" readonly>
+              </md-input-container>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input-container>
+                <input mdInput [ngModel]="teacher.birthdate" placeholder="誕生日" readonly>
+                <button mdSuffix [mdDatepickerToggle]="picker"></button>
+              </md-input-container>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-select [ngModel]="teacher.gender" placeholder="性別" readonly>
+                <md-option [value]="teacher.gender">{{teacher.gender}}</md-option>
+              </md-select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-select [ngModel]="teacher.timezone" class="timezone" placeholder="timezone" readonly>
+                <md-option [value]="teacher.timezone">{{teacher.timezone}}</md-option>
+              </md-select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input-container>
+                <input mdInput [ngModel]="teacher.email" placeholder="email" readonly>
+              </md-input-container>
+            </td>
+          </tr>
+        </table>
+      </md-card>
+      <md-card>
+        <p>{{teacher.comment}}</p>
+      </md-card>
+      <md-card>
+        <img src="{{teacher.avatar}}">
+      </md-card>
+    </div>
+  </md-tab>
+</md-tab-group>

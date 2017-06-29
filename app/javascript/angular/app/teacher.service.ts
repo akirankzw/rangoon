@@ -23,7 +23,7 @@ export class TeacherService {
     return this.teacher;
   }
 
-  private getTeacher(url: string): Promise<Teacher> {
+  getTeacher(url: string): Promise<Teacher> {
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Teacher)
