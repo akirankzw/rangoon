@@ -9,7 +9,7 @@
     <tr>
     <tr *ngFor="let book of books" [ngClass]="{'hide': !book.id}">
       <td><button md-button (click)="openDialog(book)" color="accent">{{book.id}}</button></td>
-      <td>{{book.start_at | date:'yMdjm'}}</td>
+      <td>{{book.start_at | date:'y/MM/dd HH:mm a'}}</td>
       <td>{{book.comment | truncate}}</td>
       <td>
         <a *ngIf="book.aasm_state == 'done'"[routerLink]="['/users/notes', book.note_id]" routerLinkActive="active"><button md-button>note</button></a>

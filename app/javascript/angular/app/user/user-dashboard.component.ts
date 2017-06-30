@@ -48,7 +48,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
   isCancelable(book: any): boolean {
-    if (moment.parseZone(book.start_at).local() < moment().add(3, 'hours')) { // TODO
+    if (moment.parseZone(book.start_at).local() < moment().add(2, 'hours')) { // TODO
       return false;
     } else {
       return true;
