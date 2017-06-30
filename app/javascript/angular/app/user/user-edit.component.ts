@@ -19,8 +19,8 @@ import 'rxjs/add/operator/toPromise';
 
 export class UserEditComponent implements OnInit {
   private headers = new Headers({ 'Content-Type': 'application/json' });
+  user: User = new User();
 
-  user: User;
   startDate = new Date(2000, 0, 1);
   message: string;
   genders = [];
@@ -31,7 +31,6 @@ export class UserEditComponent implements OnInit {
     private userService: UserService,
     @Inject(APP_CONFIG) config: AppConfig
   ) {
-    this.user = userService.fetchUser();
     this.genders = config.genders;
     this.timezone = config.timezone;
   }
@@ -67,15 +66,19 @@ export class UserEditComponent implements OnInit {
     this.userService.update(params)
       .then(response => {
         console.log(response);
+        if (response.status === 'ok') {
+          this.flashMessage('保存しました');
+        }
       });
   }
 
+  flashMessage(msg: string): void {
+    this.message = msg;
+    setTimeout(() => this.message = '', 800);
+  }
+
   ngOnInit(): void {
-    console.log(this.user);
-    /*
-    this.route.params
-      .switchMap((params: Params) => this.userService.getUser())
-      .subscribe((user: User) => this.user = user);
-    */
+    this.userService.getUser()
+      .then(user => this.user = user);
   }
 }

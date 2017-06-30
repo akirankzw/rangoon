@@ -5,7 +5,7 @@
       <td>日時</td>
       <td>コメント</td>
       <td>レッスンノート</td>
-      <td></td>
+      <td>キャンセル</td>
     <tr>
     <tr *ngFor="let book of books" [ngClass]="{'hide': !book.id}">
       <td><button md-button (click)="openDialog(book)" color="accent">{{book.id}}</button></td>
@@ -14,7 +14,7 @@
       <td>
         <a *ngIf="book.aasm_state == 'done'"[routerLink]="['/users/notes', book.note_id]" routerLinkActive="active"><button md-button>note</button></a>
       </td>
-      <td><button md-button *ngIf="isCancelable(book)" (click)="cancelBook(book)">キャンセル</button></td>
+      <td><button md-mini-fab *ngIf="isCancelable(book)" color="primary" (click)="cancelBook(book)"><md-icon>cancel</md-icon></button></td>
     </tr>
   </table>
 </md-card>

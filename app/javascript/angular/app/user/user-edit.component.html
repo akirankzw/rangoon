@@ -11,7 +11,7 @@
   </md-card>
 
   <md-card>
-    <span>{{message}}</span>
+    <div class="msg">{{message}}</div>
     <form (ngSubmit)="onSubmit(userForm)" action="/users/profile" method="post" #userForm="ngForm">
       <input type="hidden" [ngModel]="user.token" name="authenticity_token">
       <table cellspacing="0">
@@ -72,7 +72,7 @@
         </tr>
         <tr>
           <td>
-            <button type="submit" md-raised-button>Submit</button>
+            <button type="submit" md-raised-button>保存</button>
           </td>
         </tr>
       </table>
@@ -83,8 +83,10 @@
     <img [(src)]="user.avatar" id="preview">
     <form (ngSubmit)="uploadAvatar()" action="/users/profile" method="post" enctype="multipart/form-data">
       <input type="hidden" [ngModel]="user.token" name="authenticity_token">
-      <input type="file" name="user[avatar]" (change)="onChange($event)">
-      <button md-raised-button>アップロード</button>
+      <p>
+        <input type="file" name="user[avatar]" (change)="onChange($event)">
+        <button md-raised-button>アップロード</button>
+      </p>
     </form>
   </md-card>
 </div>

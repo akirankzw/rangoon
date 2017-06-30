@@ -7,18 +7,9 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class UserService {
-  user: User;
   headers = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http) {}
-
-  fetchUser(): User {
-    if (this.user === undefined) {
-      this.getUser()
-        .then(response => this.user = response);
-    }
-    return this.user;
-  }
 
   getUser(): Promise<User> {
     return this.http.get('/users/profile.json')

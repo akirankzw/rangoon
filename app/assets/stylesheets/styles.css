@@ -180,3 +180,14 @@ section.toggle {
 .unsubscribed {
   background-color: #FF9800;
 }
+
+span.title {
+  font-family: kanit sans-serif;
+  margin-right: 10px;
+}
+
+.msg {
+  color: white;
+  background-color: #4CAF50;
+  text-align: center;
+}

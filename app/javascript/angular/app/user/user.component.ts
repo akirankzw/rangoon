@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import templateString from './user.component.html';
 
@@ -10,13 +10,17 @@ import { UserService } from '../user.service';
 })
 
 export class UserComponent {
-  user: User;
+  user: User = new User();
   constructor(
     private userService: UserService
-  ) {
-    this.user = userService.fetchUser();
-  }
+  ) { }
+
   gotoSubscription(): void {
     location.href ="/subscriptions/new";
+  }
+
+  ngOnInit(): void {
+    this.userService.getUser()
+      .then(user => this.user = user);
   }
 }
