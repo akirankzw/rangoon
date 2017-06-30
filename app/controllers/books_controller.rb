@@ -7,6 +7,7 @@ class BooksController < ApplicationController
   def index
     @lessons = Lesson
                .joins(:book, :teacher, :note)
+               .includes(:book, :teacher, :note)
                .where(Book.arel_table[:user_id].eq(current_user.id))
                .order(start_at: :desc)
   end

@@ -4,12 +4,15 @@ class LessonsController < ApplicationController
 
   def index
     # @lessons = Lesson.this_week(Time.zone.now)
-    @lessons = Lesson.left_joins(:book, book: :user).this_week(Time.zone.now)
+    @lessons = Lesson
+               .left_joins(:book, book: :user)
+               .includes(:book, book: :user)
+               .this_week(Time.zone.now)
   end
 
   # TODO
   def today
-    @lessons = Lesson.joins(:note).today(Time.zone.now)
+    @lessons = Lesson.includes(:note, :book).today(Time.zone.now)
   end
 
   def create
