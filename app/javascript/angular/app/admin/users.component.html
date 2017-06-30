@@ -21,7 +21,7 @@
       <td>{{user.skype_name}}</td>
       <td>{{user.birthdate}}</td>
       <td>plan 1</td>
-      <td>{{user.payment_status}}</td>
+      <td><button md-raised-button [ngClass]="user.payment_status">{{user.payment_status | uppercase}}</button></td>
       <td>{{user.end_date}}</td>
     </tr>
   </table>

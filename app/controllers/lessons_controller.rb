@@ -1,18 +1,15 @@
 class LessonsController < ApplicationController
   protect_from_forgery with: :null_session, only: proc { |c| c.request.format.json? }
   before_action :authenticate_teacher!, only: [:create]
-  before_action :set_lesson, only: [:show]
 
   def index
-    @lessons = Lesson.this_week(Time.zone.now)
+    # @lessons = Lesson.this_week(Time.zone.now)
+    @lessons = Lesson.left_joins(:book, book: :user).this_week(Time.zone.now)
   end
 
   # TODO
   def today
     @lessons = Lesson.joins(:note).today(Time.zone.now)
-  end
-
-  def show
   end
 
   def create

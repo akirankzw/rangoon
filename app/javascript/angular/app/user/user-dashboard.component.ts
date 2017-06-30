@@ -43,7 +43,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
   openDialog(book: Book) {
-    let dialogRef = this.dialog.open(EditBookDialogComponent, { height: '400px', width: '600px' });
+    let dialogRef = this.dialog.open(EditBookDialogComponent, { height: '420px', width: '600px' });
     dialogRef.componentInstance.book = book;
   }
 

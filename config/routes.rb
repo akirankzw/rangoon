@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   end
 
   resources :teachers, only: [:index, :show]
-  resources :lessons, only: [:index, :show, :create] do
+  resources :lessons, only: [:index, :create] do
     collection do
       get 'today', action: :today
     end

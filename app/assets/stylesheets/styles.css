@@ -20,10 +20,12 @@ body {
 
 .order-submit {
   background-color: #ffd740;
+  font-size: 14px;
 }
 
 .go-back {
   background-color: #ff990e;
+  font-size: small;
 }
 
 .StripeElement {
@@ -173,4 +175,8 @@ section.toggle {
 
 .slide-toggle {
   margin: 16px;
+}
+
+.unsubscribed {
+  background-color: #FF9800;
 }
