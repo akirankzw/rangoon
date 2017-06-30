@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Teacher } from '../teacher';
@@ -14,7 +14,7 @@ import templateString from './teacher-edit.component.html';
   template: templateString
 })
 
-export class TeacherEditComponent implements OnInit {
+export class TeacherEditComponent {
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
   teacher: Teacher = new Teacher();
@@ -29,6 +29,8 @@ export class TeacherEditComponent implements OnInit {
   ) {
     this.genders = config.genders;
     this.timezone = config.timezone;
+    (this.teacherService.getTeacher(0)
+     .then(response => this.teacher = response));
   }
 
   uploadAvatar(): void {
@@ -64,11 +66,5 @@ export class TeacherEditComponent implements OnInit {
         console.log(response);
         this.message = '更新しました';
       });
-  }
-
-  ngOnInit(): void {
-    this.teacherService.getTeacher(0)
-      .then(response => this.teacher = response);
-    console.log(this.teacher);
   }
 }

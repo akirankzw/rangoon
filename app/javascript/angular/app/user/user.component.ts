@@ -9,7 +9,7 @@ import { UserService } from '../user.service';
   template: templateString
 })
 
-export class UserComponent {
+export class UserComponent implements OnInit {
   user: User = new User();
   constructor(
     private userService: UserService

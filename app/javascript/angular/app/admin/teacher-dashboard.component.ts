@@ -54,7 +54,6 @@ export class TeacherDashboardComponent implements OnInit {
     this.selected = lesson;
     this.lessonService.update(lesson.start_at)
       .then(response => {
-        console.log(response);
         this.selected.aasm_state = response.aasm_state;
         if (response.id == null) {
           window.alert('unable to open lesson');
@@ -108,7 +107,6 @@ export class TeacherDashboardComponent implements OnInit {
         }
         let morning = array.splice(0,14)
         this.books = [morning, array];
-        console.log(this.books);
       });
   }
 
