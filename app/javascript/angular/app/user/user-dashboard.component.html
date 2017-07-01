@@ -7,7 +7,7 @@
       <td>ノート</td>
       <td>キャンセル</td>
     <tr>
-    <tr *ngFor="let book of books" [ngClass]="{'hide': !book.id, 'future-lesson': isFutureLesson(book)}">
+    <tr *ngFor="let book of books" [ngClass]="{'hide': !book.id, 'future-lesson': isFutureLesson(book), 'lesson-list': true}">
       <td><button md-button (click)="openDialog(book)" color="accent">{{book.id}}</button></td>
       <td>{{book.start_at | date:'y/MM/dd HH:mm a'}}</td>
       <td>{{book.comment | truncate}}</td>

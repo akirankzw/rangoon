@@ -20,7 +20,7 @@
               <span>{{book.family_name}}</span>
               <span>{{book.given_name}}</span>
             </td>
-            <td>{{book.skype_name}}</td>
+            <td><a [href]="skypeUrl(book.skype_name)">{{book.skype_name}}</a></td>
             <td><button md-raised-button (click)="openDialog(book)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state | uppercase}}</button></td>
           <tr>
         </table>

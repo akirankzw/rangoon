@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdCheckboxModule }  from '@angular/material';
 import { MdDialog, MdDialogRef } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser'
 
 import { APP_CONFIG, AppConfig } from '../app.config';
 
@@ -30,6 +31,7 @@ export class TeacherDashboardComponent implements OnInit {
 
   constructor(
     private lessonService: LessonService,
+    private sanitizer: DomSanitizer,
     public dialog: MdDialog,
     @Inject(APP_CONFIG) config: AppConfig
   ) {
@@ -110,6 +112,9 @@ export class TeacherDashboardComponent implements OnInit {
       });
   }
 
+  skypeUrl(name: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(`skype:${name}?call`);
+  }
   ngOnInit(): void {
     this.getLessons();
     this.getDailySchedule();
