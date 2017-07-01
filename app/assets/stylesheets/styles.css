@@ -110,10 +110,21 @@ td.lesson {
 
 .opened {
   background-color: #3F51B5;
+  width: 60px;
 }
 
 .booked {
   background-color: #FF9800 !important;
+  width: 60px;
+}
+
+.closed {
+  width: 60px;
+
+}
+
+.done {
+  width: 60px;
 }
 
 .morning {
