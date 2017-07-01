@@ -42,7 +42,7 @@ export class UserDashboardComponent implements OnInit {
     }
   }
 
-  openDialog(book: Book) {
+  openDialog(book: Book): void {
     let dialogRef = this.dialog.open(EditBookDialogComponent, { height: '420px', width: '600px' });
     dialogRef.componentInstance.book = book;
   }
@@ -52,6 +52,14 @@ export class UserDashboardComponent implements OnInit {
       return false;
     } else {
       return true;
+    }
+  }
+
+  isFutureLesson(book: any): boolean {
+    if (moment.parseZone(book.start_at).local() >= moment()) {
+      return true;
+    } else {
+      return false;
     }
   }
 
