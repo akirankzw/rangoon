@@ -13,3 +13,5 @@
     = yield
     %angular
       = javascript_pack_tag "angular"
+      - if teacher_signed_in?
+        %script{ type: "text/javascript", src: "http://www.skypeassets.com/i/scom/js/skype-uri.js" }

@@ -13,14 +13,19 @@
     <div class="profile-row">
       <md-card>
         <table>
-          <tr><th>time</th><th>name</th><th>skype name</th><th>status</th></tr>
+          <tr><th>time</th><th>name</th><th></th><th>skype name</th><th>status</th></tr>
           <tr *ngFor="let book of books[0]" [ngClass]="{'morning': morningClass}">
             <td>{{book.start_at}}</td>
             <td>
               <span>{{book.family_name}}</span>
               <span>{{book.given_name}}</span>
             </td>
-            <td><a [href]="skypeUrl(book.skype_name)">{{book.skype_name}}</a></td>
+            <td>
+              <a *ngIf="book.skype_name" [href]="skypeUrl(book.skype_name)"><md-icon>call</md-icon></a>
+            </td>
+            <td>
+              <span>{{book.skype_name}}</span>
+            </td>
             <td><button md-raised-button (click)="openDialog(book)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state | uppercase}}</button></td>
           <tr>
         </table>
@@ -28,14 +33,19 @@
 
       <md-card>
         <table>
-          <tr><th>time</th><th>name</th><th>skype name</th><th>status</th></tr>
+          <tr><th>time</th><th>name</th><th></th><th>skype name</th><th>status</th></tr>
           <tr *ngFor="let book of books[1]" [ngClass]="{'afternoon': afternoonClass}">
             <td>{{book.start_at}}</td>
             <td>
               <span>{{book.family_name}}</span>
               <span>{{book.given_name}}</span>
             </td>
-            <td>{{book.skype_name}}</td>
+            <td>
+              <a *ngIf="book.skype_name" [href]="skypeUrl(book.skype_name)"><md-icon>call</md-icon></a>
+            </td>
+            <td>
+              <span>{{book.skype_name}}</span>
+            </td>
             <td><button md-raised-button (click)="openDialog(book.note)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state | uppercase}}</button>
               <tr>
         </table>
