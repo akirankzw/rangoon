@@ -193,7 +193,7 @@ section.toggle {
 }
 
 span.title {
-  font-family: kanit sans-serif;
+  font-family: kanit !important;
   margin: 0 10px 0 10px;
 }
 

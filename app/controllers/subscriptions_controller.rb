@@ -1,5 +1,4 @@
 class SubscriptionsController < ApplicationController
-  # force_ssl if: :ssl_configured?
   before_action :authenticate_user!, except: :webhook
   protect_from_forgery except: :webhook
 
@@ -48,9 +47,5 @@ class SubscriptionsController < ApplicationController
       source:      params[:stripeToken],
       plan:        Plan.first.title
     }
-  end
-
-  def ssl_configured?
-    Rails.env.production?
   end
 end
