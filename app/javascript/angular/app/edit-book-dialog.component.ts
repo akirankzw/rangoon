@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { NgForm    }                 from '@angular/forms';
+import { NgForm }                    from '@angular/forms';
 import { Headers, Http }             from '@angular/http';
 import { MdDialog, MdDialogRef }     from '@angular/material';
 
@@ -56,7 +56,7 @@ export class EditBookDialogComponent implements OnInit {
       if (field.selectionStart || field.selectionStart === 0) {
         let startPos = field.selectionStart;
         let endPos   = field.selectionEnd;
-        field.value = field.value.substring(0, startPos) + e.text + field.value.substring(endPos, field.value.length);
+        field.value = field.value.substring(0, startPos) + e.text + field.value.substring(endPos);
       } else {
         field.value += e.text;
       }

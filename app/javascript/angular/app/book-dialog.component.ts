@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Headers } from '@angular/http';
-import { MdDialog, MdDialogRef } from '@angular/material';
-import { Lesson } from './lesson';
+import { NgForm }                    from '@angular/forms';
+import { Headers }                   from '@angular/http';
+import { MdDialog, MdDialogRef }     from '@angular/material';
+
 import { APP_CONFIG, AppConfig } from './app.config';
 
+import { Lesson }      from './lesson';
 import { BookService } from './book.service';
 
 import * as Clipboard from 'clipboard';

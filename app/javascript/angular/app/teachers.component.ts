@@ -4,7 +4,7 @@ import { ActivatedRoute, Params }    from '@angular/router';
 
 import { APP_CONFIG, AppConfig } from './app.config';
 
-import { Lesson }        from './lesson';
+import { Lesson }  from './lesson';
 import { Teacher } from './teacher';
 
 import { LessonService } from './lesson.service';
