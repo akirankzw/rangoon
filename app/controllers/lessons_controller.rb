@@ -3,7 +3,6 @@ class LessonsController < ApplicationController
   before_action :authenticate_teacher!, only: [:create]
 
   def index
-    # @lessons = Lesson.this_week(Time.zone.now)
     @lessons = Lesson
                .left_joins(:book, book: :user)
                .includes(:book, book: :user)
