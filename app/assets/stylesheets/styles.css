@@ -163,6 +163,16 @@ section.toggle {
   margin: auto;
   margin-top: 60px;
   width: 300px;
+  height: 170px;
+}
+
+.signin tr {
+  height: 60px;
+}
+
+.signin input {
+  font-size: 19px;
+  width: 260px;
 }
 
 .profile-row {
@@ -194,8 +204,9 @@ section.toggle {
 }
 
 span.title {
-  font-family: kanit !important;
   margin: 0 10px 0 10px;
+  font-size: large;
+  font-family: Kanit sans-serif !important;
 }
 
 .msg {
