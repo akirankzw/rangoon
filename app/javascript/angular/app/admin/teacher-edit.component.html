@@ -93,7 +93,7 @@
     <form (ngSubmit)="uploadAvatar()" action="/admin/teachers/profile" method="post" enctype="multipart/form-data">
       <input type="hidden" [ngModel]="teacher.token" name="authenticity_token">
       <input type="file" name="teacher[avatar]" (change)="onChange($event)">
-      <button md-raised-button>アップロード</button>
+      <button md-raised-button>Submit</button>
     </form>
   </md-card>
 </div>

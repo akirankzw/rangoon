@@ -21,5 +21,5 @@ tristique vehicula nibh ipsum vivamus, proin proin. Porta commodo nibh quis libe
 Taciti dui, sapien consectetuer.
 HEREDOC
 )
-User.create(email: "user@example.com", password: 'password')
+User.create(email: "user@example.com", given_name: 'イチロー', family_name: '鈴木', skype_name: 'ichirosuzuki', password: 'password')
 Plan.create(title: "mo1", description: "1日1回 (週5回/月)", price: 5000)
