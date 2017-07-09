@@ -1,6 +1,9 @@
 <span *ngFor="let e of emoji" [innerHtml]="e" class="emoji"></span>
 <form method="post" #f="ngForm" (ngSubmit)="onSubmit(lesson, f)">
   <p>
+    <span>{{lesson.start_at | date:'yMdjm'}}</span>
+  </p>
+  <p>
     <md-input-container class="full-width">
       <textarea mdInput ngModel placeholder="comment" name="comment"></textarea>
     </md-input-container>

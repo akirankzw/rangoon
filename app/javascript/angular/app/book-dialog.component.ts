@@ -18,7 +18,7 @@ import templateString from './book-dialog.component.html';
     `
     textarea {
       width: 550px;
-      height: 220px;
+      height: 160px;
     }
     `
   ]
@@ -56,11 +56,11 @@ export class BookDialogComponent implements OnInit {
         return trigger;
       }
     }).on('success', function(e) {
-      let field = (<HTMLInputElement>document.forms[0].elements[1]);
+      let field = (<HTMLInputElement>document.forms[0].elements[0]);
       if (field.selectionStart || field.selectionStart === 0) {
         let startPos = field.selectionStart;
         let endPos   = field.selectionEnd;
-        field.value = field.value.substring(0, startPos) + e.text + field.value.substring(endPos, field.value.length);
+        field.value = field.value.substring(0, startPos) + e.text + field.value.substring(endPos);
       } else {
         field.value += e.text;
       }
