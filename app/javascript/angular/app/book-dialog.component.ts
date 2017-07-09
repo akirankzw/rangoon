@@ -41,7 +41,12 @@ export class BookDialogComponent implements OnInit {
   onSubmit(lesson: Lesson, f: NgForm): void {
     this.bookService.book(lesson.id, f.value.comment)
       .then(response => {
-        this.lesson.aasm_state = response.aasm_state;
+        if (response.status === "precondition_failed") {
+          this.message = '氏名とスカイプ名を登録してください🙇';
+        } else {
+          this.lesson.aasm_state = response.aasm_state;
+          this.message = '予約しました🙆';
+        }
       });
   }
 

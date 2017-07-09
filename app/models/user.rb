@@ -13,4 +13,8 @@ class User < ApplicationRecord
 
   has_attached_file :avatar, styles: { original: '300x300>', thumb: '100x100>' }
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\z}
+
+  def all_set?
+    given_name.present? && family_name.present? && skype_name.present?
+  end
 end

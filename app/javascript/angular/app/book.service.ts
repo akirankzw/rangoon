@@ -20,7 +20,7 @@ export class BookService {
       .catch(this.handleError);
   }
 
-  book(id: number, comment: string): Promise<Lesson> {
+  book(id: number, comment: string): Promise<any> {
     return this.http
       .post(this.booksUrl, JSON.stringify({book: { lesson_id: id, comment: comment }}), { headers: this.headers })
       .toPromise()

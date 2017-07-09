@@ -24,6 +24,7 @@ class BooksController < ApplicationController
   end
 
   def create
+    return render json: { status: :precondition_failed } unless current_user.all_set?
     lesson = Lesson.find(book_params[:lesson_id])
     return render json: { status: :not_found } if lesson.nil?
     lesson.aasm_book do

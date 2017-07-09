@@ -221,3 +221,8 @@ span.title {
 .lesson-list {
   text-align: center;
 }
+
+.message {
+  color: #FF5722;
+  margin-left: 10px;
+}
