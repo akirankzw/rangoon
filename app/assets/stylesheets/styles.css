@@ -127,14 +127,6 @@ td.lesson {
   width: 60px;
 }
 
-.morning {
-  display: none;
-}
-
-.afternoon {
-  display: none;
-}
-
 section.toggle {
   margin: 10px;
 }
@@ -176,6 +168,10 @@ section.toggle {
 
 .profile-row {
    display: flex;
+}
+
+.profile-row td {
+  height: 40px;
 }
 
 .icon {

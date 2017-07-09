@@ -26,8 +26,6 @@ export class TeacherDashboardComponent implements OnInit {
   intervals: string[];
   days: any[];
   selected: Lesson;
-  morningClass: boolean = false;
-  afternoonClass: boolean = false;
 
   constructor(
     private lessonService: LessonService,
@@ -42,14 +40,6 @@ export class TeacherDashboardComponent implements OnInit {
   openDialog(book: Book) {
     let dialogRef = this.dialog.open(NoteDialogComponent, { height: '460px', width: '600px' });
     dialogRef.componentInstance.book = book;
-  }
-
-  showMorning(): void {
-    this.morningClass = !this.morningClass;
-  }
-
-  showAfternoon(): void {
-    this.afternoonClass = !this.afternoonClass;
   }
 
   toggle(lesson: Lesson): void {
