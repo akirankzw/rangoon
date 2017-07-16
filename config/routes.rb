@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'dashboard#index'
 
+  mount ActionCable.server => '/cable'
+
   get :dashboard, controller: :dashboard, action: :index
 
   devise_for :users, controllers: {
