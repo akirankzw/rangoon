@@ -5,7 +5,14 @@
   <a routerLink="/users/dashboard" routerLinkActive="active"><span mdTooltip="ダッシュボード"><md-icon class="icon">dashboard</md-icon></span></a>
   <a routerLink="/users/profile" routerLinkActive="active"><span mdTooltip="アカウント設定"><md-icon class="icon">settings</md-icon></span></a>
   <a routerLink="/teachers/1" routerLinkActive="active"><span mdTooltip="先生のスケジュール"><md-icon class="icon">schedule</md-icon></span></a>
-  <a><span mdTooltip="お知らせ"><md-icon>add_alert</md-icon></span></a>
+  <a>
+    <span mdTooltip="お知らせ">
+      <md-icon>add_alert</md-icon>
+    </span>
+    <div id="notification">
+      <span></span>
+    </div>
+  </a>
 
   <button md-icon-button [mdMenuTriggerFor]="menu">
     <md-icon>more_vert</md-icon>

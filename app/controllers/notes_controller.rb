@@ -17,6 +17,7 @@ class NotesController < ApplicationController
         end
       end
       @note.lesson.update({})
+      NotificationChannel.broadcast_to(Book.find_by(lesson_id: @note.lesson).user, @note)
     end
   end
 

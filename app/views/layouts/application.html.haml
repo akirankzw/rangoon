@@ -4,10 +4,12 @@
     %base{ href: "/" }
     %title Mugsy's English
     = csrf_meta_tags
+    = action_cable_meta_tag
     %link{ href: "https://s3-ap-northeast-1.amazonaws.com/rangoon/indigo-pink.css", rel: "stylesheet" }
     %link{ href: "https://fonts.googleapis.com/icon?family=Material+Icons", rel: "stylesheet" }
     = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Kanit'
     = stylesheet_link_tag "styles"
+    = javascript_include_tag 'application'
 
   %body
     = yield
