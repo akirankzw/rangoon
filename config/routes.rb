@@ -59,4 +59,5 @@ Rails.application.routes.draw do
   end
   resources :books, except: [:edit]
   resources :notes, only: [:show, :update, :destroy]
+  resources :account_settings, only: [:update]
 end

@@ -72,6 +72,13 @@ export class UserEditComponent implements OnInit {
       });
   }
 
+  toggleEmailNotification(id): void {
+    this.userService.toggleEmailNotification(id)
+      .then(response => {
+        console.log(response);
+      });
+  }
+
   flashMessage(msg: string): void {
     this.message = msg;
     setTimeout(() => this.message = '', 800);

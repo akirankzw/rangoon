@@ -1,5 +1,5 @@
-<div class="profile-row">
-  <md-card>
+<div class="lfloat">
+  <md-card class="mini-form">
     <md-input-container *ngIf="user.end_date; else elseBlock">
       <input  mdInput [mdDatepicker]="picker" [(ngModel)]="user.end_date" name="end_date" placeholder="利用期限">
       <button mdSuffix [mdDatepickerToggle]="picker"></button>
@@ -10,6 +10,12 @@
     </ng-template>
   </md-card>
 
+  <md-card class="mini-form">
+    <md-checkbox (click)="toggleEmailNotification(user.id)" [(ngModel)]="user.email_notification">レッスン予約時のメール通知</md-checkbox>
+  </md-card>
+</div>
+
+<div class="profile">
   <md-card>
     <div class="msg">{{message}}</div>
     <form (ngSubmit)="onSubmit(userForm)" action="/users/profile" method="post" #userForm="ngForm">

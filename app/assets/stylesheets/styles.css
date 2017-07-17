@@ -166,11 +166,11 @@ section.toggle {
   width: 260px;
 }
 
-.profile-row {
+.profile {
    display: flex;
 }
 
-.profile-row td {
+.profile td {
   height: 40px;
 }
 
@@ -235,4 +235,13 @@ span.title {
   height: 14px;
   left: 306px;
   display: none;
+}
+
+.mini-form {
+  height: 110px;
+  width: 200px;
+}
+
+.lfloat {
+  float: left;
 }

@@ -14,6 +14,7 @@ export class User {
     public lesson_plan: string = null,
     public payment_status: string = '',
     public expiry_date: string = '',
-    public token: string = ''
+    public token: string = '',
+    public email_notification: boolean = null
   ) { }
 }
