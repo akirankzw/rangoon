@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.bigint "lesson_id"
     t.bigint "user_id"
     t.string "comment"
-    t.boolean "canceled", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_books_on_lesson_id"
@@ -33,13 +32,22 @@ ActiveRecord::Schema.define(version: 20170616102030) do
 
   create_table "lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
     t.bigint "teacher_id"
-    t.datetime "start_time"
-    t.boolean "attended"
-    t.boolean "canceled"
-    t.boolean "missed"
+    t.datetime "start_at"
+    t.string "aasm_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["teacher_id", "start_at"], name: "index_lessons_on_teacher_id_and_start_at", unique: true
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
+  end
+
+  create_table "notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
+    t.bigint "lesson_id"
+    t.bigint "teacher_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_notes_on_lesson_id"
+    t.index ["teacher_id"], name: "index_notes_on_teacher_id"
   end
 
   create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
@@ -55,7 +63,7 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.date "end_date"
     t.string "customer_id"
     t.string "subscription"
-    t.boolean "canceled", default: false
+    t.string "aasm_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_subscriptions_on_customer_id", unique: true
@@ -65,10 +73,11 @@ ActiveRecord::Schema.define(version: 20170616102030) do
   create_table "teachers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
     t.string "given_name"
     t.string "family_name"
-    t.date "birth_date"
-    t.boolean "sex"
-    t.integer "nationality"
+    t.date "birthdate"
+    t.integer "gender", limit: 1
+    t.string "skype_name"
     t.text "comment"
+    t.string "timezone", default: "Tokyo", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -93,7 +102,9 @@ ActiveRecord::Schema.define(version: 20170616102030) do
     t.string "given_name"
     t.string "family_name"
     t.date "birthdate"
-    t.boolean "sex"
+    t.integer "gender", limit: 1
+    t.string "skype_name"
+    t.string "timezone", default: "Tokyo", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -118,5 +129,7 @@ ActiveRecord::Schema.define(version: 20170616102030) do
   add_foreign_key "books", "lessons"
   add_foreign_key "books", "users"
   add_foreign_key "lessons", "teachers"
+  add_foreign_key "notes", "lessons"
+  add_foreign_key "notes", "teachers"
   add_foreign_key "subscriptions", "users"
 end

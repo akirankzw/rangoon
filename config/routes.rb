@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'dashboard#index'
 
+  mount ActionCable.server => '/cable'
+
   get :dashboard, controller: :dashboard, action: :index
 
   devise_for :users, controllers: {
@@ -11,7 +13,14 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    get 'teachers/dashboard', controller: :teachers, action: :index
+    resources :users, only: [:index]
+    resources :teachers, only: :none do
+      collection do
+        get  'dashboard', action: :index
+        get  'profile',   action: :show
+        post 'profile',   action: :update
+      end
+    end
   end
 
   scope '/admin' do
@@ -37,7 +46,18 @@ Rails.application.routes.draw do
       post 'profile',   action: :update
     end
   end
-  resources :teachers, only: [:index, :show, :edit, :update]
-  resources :lessons, only: [:index, :show, :create]
-  resources :books, only: [:index, :show, :create]
+
+  namespace 'users' do
+    resources :notes, only: [:show]
+  end
+
+  resources :teachers, only: [:index, :show]
+  resources :lessons, only: [:index, :create] do
+    collection do
+      get 'today', action: :today
+    end
+  end
+  resources :books, except: [:edit]
+  resources :notes, only: [:show, :update, :destroy]
+  resources :account_settings, only: [:update]
 end

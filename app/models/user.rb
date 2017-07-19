@@ -9,6 +9,12 @@ class User < ApplicationRecord
   has_many :books
   before_create :build_account_setting, :build_subscription
 
-  has_attached_file :avatar, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/assets/missing.png'
+  enum gender: [:male, :female]
+
+  has_attached_file :avatar, styles: { original: '300x300>', thumb: '100x100>' }
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\z}
+
+  def all_set?
+    given_name.present? && family_name.present? && skype_name.present?
+  end
 end

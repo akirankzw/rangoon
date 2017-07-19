@@ -1,21 +1,66 @@
 <md-tab-group>
-  <md-tab label="Schedule">
-    <table>
-      <tr>
-        <th></th>
-        <th *ngFor="let day of days">
-          <span class="wday">{{day.format("ddd")}}</span>
-          <span>{{day.format("MMM DD")}}</span>
-        </th>
-      </tr>
-      <tr *ngFor="let interval of intervals;let i = index">
-        <td>{{interval}}</td>
-        <td *ngFor="let lesson of lessons[i]">
-          <md-checkbox (change)="toggle(lesson, $event)" [checked]="!lesson.canceled" [disabled]="lesson.disabled"></md-checkbox>
-        </td>
-      </tr>
-    </table>
+  <md-tab label="Daily Schedule">
+    <div class="profile">
+      <md-card>
+        <table>
+          <tr><th>time</th><th>name</th><th></th><th>skype name</th><th>status</th></tr>
+          <tr *ngFor="let book of books[0]" [ngClass]="{'morning': morningClass}">
+            <td>{{book.start_at}}</td>
+            <td>
+              <span>{{book.family_name}}</span>
+              <span>{{book.given_name}}</span>
+            </td>
+            <td>
+              <a *ngIf="book.skype_name" [href]="skypeUrl(book.skype_name)"><md-icon>call</md-icon></a>
+            </td>
+            <td>
+              <span>{{book.skype_name}}</span>
+            </td>
+            <td><button md-raised-button (click)="openDialog(book)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state | uppercase}}</button></td>
+          <tr>
+        </table>
+      </md-card>
+
+      <md-card>
+        <table>
+          <tr><th>time</th><th>name</th><th></th><th>skype name</th><th>status</th></tr>
+          <tr *ngFor="let book of books[1]" [ngClass]="{'afternoon': afternoonClass}">
+            <td>{{book.start_at}}</td>
+            <td>
+              <span>{{book.family_name}}</span>
+              <span>{{book.given_name}}</span>
+            </td>
+            <td>
+              <a *ngIf="book.skype_name" [href]="skypeUrl(book.skype_name)"><md-icon>call</md-icon></a>
+            </td>
+            <td>
+              <span>{{book.skype_name}}</span>
+            </td>
+            <td><button md-raised-button (click)="openDialog(book.note)" [ngClass]="book.aasm_state" [disabled]="!book.id">{{book.aasm_state | uppercase}}</button>
+              <tr>
+        </table>
+      </md-card>
+    </div>
   </md-tab>
-  <md-tab label="Account Settings">
+
+  <md-tab label="Manage Schedule">
+    <md-card>
+      <table class="center" cellspacing="0">
+        <tr>
+          <th></th>
+          <th *ngFor="let day of days" class="head">
+            <span class="dt">{{day.format("ddd")}}</span>
+            <span class="dt">{{day.format("MMM DD")}}</span>
+          </th>
+        </tr>
+        <tr *ngFor="let interval of intervals;let i = index">
+          <td class="time">{{interval}}</td>
+          <td *ngFor="let lesson of lessons[i]" class="lesson">
+            <button md-raised-button *ngIf="lesson.aasm_state != 'booked'" [ngClass]="lesson.aasm_state" (click)="toggle(lesson)" [disabled]="isDisabled(lesson)">{{lesson.aasm_state | uppercase}}</button>
+            <button md-button *ngIf="lesson.aasm_state == 'booked'" [ngClass]="lesson.aasm_state">{{lesson.user_name}}</button>
+          </td>
+        </tr>
+      </table>
+    </md-card>
   </md-tab>
 </md-tab-group>

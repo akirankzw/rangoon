@@ -1,8 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MdCheckboxModule }  from '@angular/material';
+import { MdDialog, MdDialogRef } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser'
+
+import { APP_CONFIG, AppConfig } from '../app.config';
 
 import { Lesson }        from '../lesson';
+import { Book }          from '../book';
 import { LessonService } from '../lesson.service';
+
+import { NoteDialogComponent } from '../note-dialog.component';
 
 import * as moment from 'moment';
 
@@ -14,23 +21,36 @@ import templateString from './teacher-dashboard.component.html';
 })
 
 export class TeacherDashboardComponent implements OnInit {
-  lessons: any[] = [];
+  lessons: any[] = []; // TODO
+  books: any[] = []; // today's schedule
+  intervals: string[];
+  days: any[];
+  selected: Lesson;
 
-  constructor(private lessonService: LessonService) {}
+  constructor(
+    private lessonService: LessonService,
+    private sanitizer: DomSanitizer,
+    public dialog: MdDialog,
+    @Inject(APP_CONFIG) config: AppConfig
+  ) {
+    this.intervals = config.intervals;
+    this.days = config.days;
+  }
 
-  days = [0, 1, 2, 3, 4, 5, 6].map(function(x) { return moment().add(x, 'days') });
+  openDialog(book: Book) {
+    let dialogRef = this.dialog.open(NoteDialogComponent, { height: '460px', width: '600px' });
+    dialogRef.componentInstance.book = book;
+  }
 
-  intervals = [
-    '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00',
-    '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
-    '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00',
-    '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30',
-    '22:00', '22:30', '23:00', '23:30'
-  ];
-
-  toggle(data: any, event: any): void {
-    this.lessonService.update(data.start_time, event.checked)
-      .then(lesson => { console.log(lesson); });
+  toggle(lesson: Lesson): void {
+    this.selected = lesson;
+    this.lessonService.update(lesson.start_at)
+      .then(response => {
+        this.selected.aasm_state = response.aasm_state;
+        if (response.id == null) {
+          window.alert('unable to open lesson');
+        }
+      });
   }
 
   getLessons(): void {
@@ -38,22 +58,55 @@ export class TeacherDashboardComponent implements OnInit {
     this.lessonService.getLessons()
       .then(lessons => {
         for (let interval of this.intervals) {
-          let array = [];
+          let array: Lesson[] = [];
           for (let day of this.days) {
             let dt = day.format(`YYYY-MM-DDT${interval}:00Z`);
-            let lesson = lessons.find(function(x: any) { return moment.parseZone(x.start_time).local().format() === dt });
-            array.push({
-              start_time: dt,
-              canceled: (lesson === undefined || lesson.canceled) ? true : false,
-              disabled: now.utc().diff(dt, 'hours') > -2
-            });
+            let lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_at).local().format() === dt });
+            if (lesson === undefined) {
+              lesson = new Lesson();
+              lesson.start_at = dt;
+            }
+            array.push(lesson);
           }
           this.lessons.push(array);
         }
       });
   }
 
+  isDisabled(lesson: Lesson) {
+    if (lesson.aasm_state === 'booked') {
+      return true;
+    } else if (moment.parseZone(lesson.start_at).local() < moment().add(3, 'hours')) {
+      return true;
+    }
+    return false;
+  }
+
+  getDailySchedule(): void {
+    const now = moment();
+    let array: Lesson[] = [];
+    this.lessonService.getDailySchedule()
+      .then(lessons => {
+        for (let interval of this.intervals) {
+          let dt = now.format(`YYYY-MM-DDT${interval}:00Z`);
+          let lesson: Lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_at).local().format() === dt });
+          if (lesson === undefined) {
+            lesson = new Lesson();
+          }
+          lesson.start_at = interval;
+          array.push(lesson);
+          // array.push(lesson === undefined ? new Lesson() : lesson);
+        }
+        let morning = array.splice(0,14)
+        this.books = [morning, array];
+      });
+  }
+
+  skypeUrl(name: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(`skype:${name}?call`);
+  }
   ngOnInit(): void {
     this.getLessons();
+    this.getDailySchedule();
   }
 }

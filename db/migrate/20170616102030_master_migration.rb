@@ -3,10 +3,11 @@ class MasterMigration < ActiveRecord::Migration[5.1]
     create_table :teachers, options: 'ROW_FORMAT=DYNAMIC' do |t|
       t.string :given_name
       t.string :family_name
-      t.date :birth_date
-      t.boolean :sex
-      t.integer :nationality
+      t.date :birthdate
+      t.integer :gender, limit: 1
+      t.string :skype_name
       t.text :comment
+      t.string :timezone, null: false, default: 'Tokyo'
 
       t.string :email,              null: false, default: ''
       t.string :encrypted_password, null: false, default: ''
@@ -27,19 +28,21 @@ class MasterMigration < ActiveRecord::Migration[5.1]
 
     create_table :lessons, options: 'ROW_FORMAT=DYNAMIC' do |t|
       t.references :teacher, foreign_key: true
-      t.datetime :start_time
-      t.boolean :attended
-      t.boolean :canceled
-      t.boolean :missed
+      t.datetime :start_at
+      t.string :aasm_state
 
       t.timestamps
     end
+
+    add_index :lessons, [:teacher_id, :start_at], unique: true
 
     create_table :users, options: 'ROW_FORMAT=DYNAMIC' do |t|
       t.string :given_name
       t.string :family_name
       t.date :birthdate
-      t.boolean :sex
+      t.integer :gender, limit: 1
+      t.string :skype_name
+      t.string :timezone, null: false, default: 'Tokyo'
 
       t.string :email,              null: false, default: ''
       t.string :encrypted_password, null: false, default: ''
@@ -62,7 +65,6 @@ class MasterMigration < ActiveRecord::Migration[5.1]
       t.references :lesson, foreign_key: true
       t.references :user, foreign_key: true
       t.string :comment
-      t.boolean :canceled, default: false
 
       t.timestamps
     end
@@ -90,11 +92,19 @@ class MasterMigration < ActiveRecord::Migration[5.1]
       t.date :end_date
       t.string :customer_id
       t.string :subscription
-      t.boolean :canceled, default: false
+      t.string :aasm_state
 
       t.timestamps
     end
 
     add_index :subscriptions, :customer_id,     unique: true
+
+    create_table :notes, options: 'ROW_FORMAT=DYNAMIC' do |t|
+      t.references :lesson, foreign_key: true
+      t.references :teacher, foreign_key: true
+      t.text :content
+
+      t.timestamps
+    end
   end
 end

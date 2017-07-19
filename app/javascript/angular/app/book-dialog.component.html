@@ -1,13 +1,16 @@
-{{message}}
-<form method="post" #bookForm="ngForm">
-  <input type="hidden" name="book[lesson_id]" value="{{lesson.id}}">
+<span *ngFor="let e of emoji" [innerHtml]="e" class="emoji"></span>
+<form method="post" #f="ngForm" (ngSubmit)="onSubmit(lesson, f)">
+  <p>
+    <span>{{lesson.start_at | date:'yMdjm'}}</span>
+  </p>
   <p>
     <md-input-container class="full-width">
-      <textarea mdInput placeholder="comment" name="book[comment]"></textarea>
+      <textarea mdInput ngModel placeholder="comment" name="comment"></textarea>
     </md-input-container>
   </p>
   <p>
-    <button type="submit" (click)="onSubmit(lesson)" md-raised-button>Submit</button>
+    <button type="submit" md-raised-button>Submit</button>
     <button type="button" md-dialog-close md-raised-button>Close</button>
+    <span class="message">{{message}}</span>
   </p>
 </form>

@@ -1,16 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import templateString from './user.component.html';
 
+import { User } from '../user';
+import { UserService } from '../user.service';
+
 @Component({
-  template: templateString,
-  styles: [
-    `
-      .icon {
-        margin: 0 4px 0 4px;
-      }
-    `
-  ]
+  template: templateString
 })
 
-export class UserComponent { }
+export class UserComponent implements OnInit {
+  user: User = new User();
+  constructor(
+    private userService: UserService
+  ) { }
+
+  gotoSubscription(): void {
+    location.href ="/subscriptions/new";
+  }
+
+  ngOnInit(): void {
+    this.userService.getUser()
+      .then(user => this.user = user);
+  }
+}

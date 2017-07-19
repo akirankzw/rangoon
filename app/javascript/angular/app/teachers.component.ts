@@ -1,8 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MdDialog, MdDialogRef }     from '@angular/material';
+import { ActivatedRoute, Params }    from '@angular/router';
 
-import { Lesson }        from './lesson';
+import { APP_CONFIG, AppConfig } from './app.config';
+
+import { Lesson }  from './lesson';
+import { Teacher } from './teacher';
+
 import { LessonService } from './lesson.service';
+import { TeacherService } from './teacher.service';
+
 import { BookDialogComponent } from './book-dialog.component';
 
 import * as moment from 'moment';
@@ -15,25 +22,29 @@ import templateString from './teachers.component.html';
 
 export class TeachersComponent implements OnInit {
   lessons: any[] = [];
+  teacher: Teacher = new Teacher(); // TODO
+  intervals: string[];
+  days: any[];
+  wdays: any;
+  genders = [];
+  timezone = [];
 
   constructor(
     private lessonService: LessonService,
-    public dialog: MdDialog
-  ) {}
-
-  days = [0, 1, 2, 3, 4, 5, 6].map(function(x) { return moment().add(x, 'days') });
-
-  intervals = [
-    '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00',
-    '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
-    '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00',
-    '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30',
-    '22:00', '22:30', '23:00', '23:30'
-  ];
-
+    private teacherService: TeacherService,
+    private route: ActivatedRoute,
+    public dialog: MdDialog,
+    @Inject(APP_CONFIG) config: AppConfig
+  ) {
+    this.intervals = config.intervals;
+    this.days = config.days;
+    this.wdays = config.wdays;
+    this.genders = config.genders;
+    this.timezone = config.timezone;
+  }
 
   openDialog(lesson: Lesson) {
-    let dialogRef = this.dialog.open(BookDialogComponent, { height: '400px', width: '600px' });
+    let dialogRef = this.dialog.open(BookDialogComponent, { height: '460px', width: '600px' });
     dialogRef.componentInstance.lesson = lesson;
     dialogRef.afterClosed()
       .subscribe(result => { console.log(result); });
@@ -47,24 +58,22 @@ export class TeachersComponent implements OnInit {
           let array: Lesson[] = [];
           for (let day of this.days) {
             let dt = day.format(`YYYY-MM-DDT${interval}:00Z`);
-            let lesson: Lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_time).local().format() === dt });
-            console.log(lesson);
-            array.push({
-              id:         lesson === undefined ? 0 : lesson.id,
-              canceled:   lesson === undefined ? true : lesson.canceled,
-              user_id:    lesson === undefined ? null : lesson.user_id,
-              teacher_id: lesson === undefined ? null : lesson.teacher_id,
-              text:       lesson !== undefined && lesson.user_id ? 'BOOK' : 'OPEN',
-              disabled:   now.utc().diff(dt, 'hours') > -2,
-              start_time: dt,
-            });
+            let lesson: Lesson = lessons.find(function(x: Lesson) { return moment.parseZone(x.start_at).local().format() === dt });
+            array.push(lesson === undefined ? new Lesson() : lesson);
           }
           this.lessons.push(array);
         }
       });
   }
 
+  isDisabled(lesson: Lesson): boolean {
+    return lesson.aasm_state === 'opened' ? false : true
+  }
+
   ngOnInit(): void {
+    this.route.params
+      .switchMap((params: Params) => this.teacherService.getTeacher(+params['id']))
+      .subscribe(teacher => this.teacher = teacher);
     this.getLessons();
   }
 }

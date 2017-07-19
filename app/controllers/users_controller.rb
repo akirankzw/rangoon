@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  protect_from_forgery with: :null_session, only: proc { |c| c.request.format.json? }
   before_action :set_user, only: [:update]
   before_action :authenticate_user!
 
@@ -6,17 +7,17 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.joins(:subscription).find(current_user.id)
+    @user = User.joins(:subscription, :account_setting).find(current_user.id)
   end
 
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to dashboard_users_path, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        format.html { redirect_to dashboard_users_url } # TODO
+        format.json { render json: { status: :ok } }
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { redirect_to dashboard_users_url } # TODO
+        format.json { render json: { status: :unprocessable_entity } }
       end
     end
   end
@@ -28,6 +29,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:given_name, :family_name, :birthdate, :sex, :avatar)
+    params.require(:user).permit(:given_name, :family_name, :birthdate, :skype_name, :gender, :avatar, :timezone)
   end
 end

@@ -62,17 +62,12 @@ Rails.application.configure do
     Bullet.rails_logger = true
   end
 
-  config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.mailgun_settings = {
-    api_key: ENV['MAILGUN_API_KEY'],
-    domain: 'ihearsayenglish.com'
-  }
-
   config.paperclip_defaults = {
     storage: :s3,
     bucket: 'rangoon-dev',
     s3_host_name: 's3-ap-northeast-1.amazonaws.com',
-    s3_region: ENV['AWS_REGION']
+    s3_region: ENV['AWS_REGION'],
+    default_url: 'https://s3-ap-northeast-1.amazonaws.com/rangoon/missing.png'
   }
 
   config.web_console.whitelisted_ips = '0.0.0.0/0'

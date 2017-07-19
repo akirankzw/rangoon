@@ -4,8 +4,9 @@ import { FormsModule }    from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
 import { TeacherComponent }          from './teacher.component';
-import { TeacherSigninComponent }    from './teacher-signin.component';
+import { TeacherEditComponent }      from './teacher-edit.component';
 import { TeacherDashboardComponent } from './teacher-dashboard.component';
+import { UsersComponent }            from './users.component';
 
 import { TeacherRoutingModule } from './teacher-routing.module';
 
@@ -18,8 +19,9 @@ import { TeacherRoutingModule } from './teacher-routing.module';
   ],
   declarations: [
     TeacherComponent,
-    TeacherSigninComponent,
-    TeacherDashboardComponent
+    TeacherDashboardComponent,
+    TeacherEditComponent,
+    UsersComponent
   ]
 })
 

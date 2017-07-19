@@ -1,0 +1,17 @@
+<span *ngFor="let e of emoji" [innerHtml]="e" class="emoji"></span>
+<form method="post" #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <p>
+    <span>{{book.start_at | date:'yMdjm'}}</span>
+  </p>
+  <p>
+    <input type="hidden" [(ngModel)]="book.id" name="id">
+    <md-input-container>
+      <textarea mdInput ="book.comment" placeholder="コメント" [(ngModel)]="book.comment" name="comment"></textarea>
+    </md-input-container>
+  </p>
+  <p>
+    <button type="submit" md-raised-button>更新</button>
+    <button type="button" md-dialog-close md-raised-button>閉じる</button>
+    {{message}}
+  </p>
+</form>

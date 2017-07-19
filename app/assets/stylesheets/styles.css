@@ -1,0 +1,247 @@
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.mat-card {
+  margin: 10px;
+}
+
+.form-row {
+  width: 400px;
+}
+
+.order-button {
+  margin: 10px;
+  border: none;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2),
+  0 2px 2px 0 rgba(0, 0, 0, .14),
+  0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.order-submit {
+  background-color: #ffd740;
+  font-size: 14px;
+}
+
+.go-back {
+  background-color: #ff990e;
+  font-size: small;
+}
+
+.StripeElement {
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.space-4 {
+  margin-bottom: 24px;
+}
+.panel {
+  border: 1px solid #dce0e0;
+}
+
+.panel-header {
+  border-top: 0;
+  background-color: #edefed;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 16px;
+  border-bottom: 1px solid #dce0e0;
+  padding: 20px;
+}
+
+.panel-body {
+  border-top: none;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.42;
+  color: #484848;
+}
+
+.panel-footer {
+  text-align: right;
+  position: relative;
+  margin: 0;
+  padding: 4px;
+  border-top: 1px solid #dce0e0;
+  font-size: 14px;
+  line-height: 1.42;
+  color: #484848;
+  box-sizing: border-box;
+}
+
+.emoji {
+  padding: 0 2px 0 2px;
+  font-size: 20px;
+}
+
+th.head {
+  width: 90px;
+  background-color: #fafafa;
+}
+
+.day {
+  width: 90px;
+}
+
+.time {
+  width: 50px;
+  height: 38px;
+  text-align: center;
+}
+
+.dt {
+  display: block;
+}
+
+td.lesson {
+  text-align: center;
+  width: 50px;
+}
+
+.opened {
+  background-color: #3F51B5;
+  width: 60px;
+}
+
+.booked {
+  background-color: #FF9800 !important;
+  width: 60px;
+}
+
+.closed {
+  width: 60px;
+
+}
+
+.done {
+  width: 60px;
+}
+
+section.toggle {
+  margin: 10px;
+}
+
+.timezone {
+  padding-top: 30px;
+  width: 200px;
+}
+
+.hide {
+  display: none;
+}
+
+.avatar-small {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #ECEFF1;
+}
+
+.right-wing {
+  margin-left: auto;
+}
+
+.signin {
+  margin: auto;
+  margin-top: 60px;
+  width: 300px;
+}
+
+.signin tr {
+  height: 40px;
+}
+
+.signin input {
+  font-size: 19px;
+  width: 260px;
+}
+
+.profile {
+   display: flex;
+}
+
+.profile td {
+  height: 40px;
+}
+
+.icon {
+  margin: 0 4px 0 4px;
+}
+
+.comment {
+  width: 400px;
+  height: 400px;
+}
+
+.center {
+  margin: auto;
+}
+
+.center td {
+  padding: 4px;
+}
+
+.slide-toggle {
+  margin: 16px;
+}
+
+.unsubscribed {
+  background-color: #FF9800;
+}
+
+span.title {
+  margin: 0 10px 0 10px;
+  font-size: large;
+  font-family: Kanit sans-serif !important;
+}
+
+.msg {
+  color: white;
+  background-color: #4CAF50;
+  text-align: center;
+}
+
+.future-lesson {
+  background-color: #2196F3;
+}
+
+.lesson-list {
+  text-align: center;
+}
+
+.message {
+  color: #FF5722;
+  margin-left: 10px;
+}
+
+#notification {
+  background-color: #FA3E3E;
+  border-radius: 50%;
+  font-size: 14px;
+  text-align: center;
+  position: absolute;
+  top: 20px;
+  width: 14px;
+  height: 14px;
+  left: 306px;
+  display: none;
+}
+
+.mini-form {
+  height: 110px;
+  width: 200px;
+}
+
+.lfloat {
+  float: left;
+}

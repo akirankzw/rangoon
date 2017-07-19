@@ -1,0 +1,14 @@
+<span *ngFor="let e of emoji" [innerHtml]="e" class="emoji"></span>
+<form method="post" #f="ngForm" (ngSubmit)="onSubmit(book, f)">
+  <input type="hidden" [(ngModel)]="book.note.id" name="id" placeholder="id">
+  <p>
+    <md-input-container>
+      <textarea mdInput [(ngModel)]="book.note.content" placeholder="content" name="content"></textarea>
+    </md-input-container>
+  </p>
+  <p>
+    <button type="submit" md-raised-button>Submit</button>
+    <button type="button" md-dialog-close md-raised-button>Close</button>
+    {{message}}
+  </p>
+</form>

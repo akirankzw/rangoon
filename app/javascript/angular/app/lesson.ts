@@ -1,10 +1,13 @@
+import { Note } from './note';
+
 export class Lesson {
-  id: number;
-  canceled?: boolean;
-  user_id?: number;
-  teacher_id?: number;
-  text: string;
-  disabled: boolean;
-  start_time: string;
-  book_id?: number;
+  constructor(
+    public id: number = null,
+    public teacher_id: number = null,
+    public start_at: string = '',
+    public aasm_state: string = 'closed',
+    public user_id: number = null,
+    public user_name: string = '',
+    public note: Note = new Note()
+  ) { }
 }

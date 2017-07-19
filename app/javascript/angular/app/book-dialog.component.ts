@@ -1,46 +1,69 @@
-import { Component } from '@angular/core';
-import { Headers, Http } from '@angular/http';
-import { MdDialog, MdDialogRef } from '@angular/material';
-import { Lesson } from './lesson';
+import { Component, OnInit, Inject } from '@angular/core';
+import { NgForm }                    from '@angular/forms';
+import { Headers }                   from '@angular/http';
+import { MdDialog, MdDialogRef }     from '@angular/material';
+
+import { APP_CONFIG, AppConfig } from './app.config';
+
+import { Lesson }      from './lesson';
+import { BookService } from './book.service';
+
+import * as Clipboard from 'clipboard';
+
 import templateString from './book-dialog.component.html';
 
 @Component({
   template: templateString,
-  styles: [`
-textarea {
-  width: 550px;
-  height: 220px;
-}`]
+  styles: [
+    `
+    textarea {
+      width: 550px;
+      height: 160px;
+    }
+    `
+  ]
 })
 
-export class BookDialogComponent {
-  private headers = new Headers({ 'Content-Type': 'application/json' });
-  private bookUrl = '/books.json';
+export class BookDialogComponent implements OnInit {
+  headers = new Headers({ 'Content-Type': 'application/json' });
   lesson: Lesson;
-  message = '';
+  message: string;
+  emoji: string[];
 
   constructor(
     public dialogRef: MdDialogRef<BookDialogComponent>,
-    private http: Http
-  ) {}
-
-  onSubmit(lesson): Promise<any> {
-    return this.http
-      .post(this.bookUrl, JSON.stringify({book: { lesson_id: lesson.id }}), { headers: this.headers })
-      .toPromise()
-      .then(response => {
-        this.message = response.json().message;
-        // REFACTOR
-        if (response.json().status === 'ok') {
-          lesson.text = 'BOOK';
-          lesson.user_id = response.json().user_id;
-        }
-      })
-      .catch(this.handleError);
+    private bookService: BookService,
+    @Inject(APP_CONFIG) config: AppConfig
+  ) {
+    this.emoji = config.emoji;
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+  onSubmit(lesson: Lesson, f: NgForm): void {
+    this.bookService.book(lesson.id, f.value.comment)
+      .then(response => {
+        if (response.status === "precondition_failed") {
+          this.message = '氏名とスカイプ名を登録してください🙇';
+        } else {
+          this.lesson.aasm_state = response.aasm_state;
+          this.message = '予約しました🙆';
+        }
+      });
+  }
+
+  ngOnInit(): void {
+    new Clipboard('.emoji', {
+      target: function(trigger) {
+        return trigger;
+      }
+    }).on('success', function(e) {
+      let field = (<HTMLInputElement>document.forms[0].elements[0]);
+      if (field.selectionStart || field.selectionStart === 0) {
+        let startPos = field.selectionStart;
+        let endPos   = field.selectionEnd;
+        field.value = field.value.substring(0, startPos) + e.text + field.value.substring(endPos);
+      } else {
+        field.value += e.text;
+      }
+    });
   }
 }

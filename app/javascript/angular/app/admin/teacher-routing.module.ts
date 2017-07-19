@@ -2,24 +2,19 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { TeacherComponent }          from './teacher.component';
-import { TeacherSigninComponent }    from './teacher-signin.component';
+import { TeacherEditComponent }      from './teacher-edit.component';
 import { TeacherDashboardComponent } from './teacher-dashboard.component';
+import { UsersComponent }            from './users.component';
 
 const adminRoutes: Routes = [
-  {
-    path: 'admin/teachers',
+  { path: 'admin',
     component: TeacherComponent,
     children: [
-      {
-        path: 'sign_in',
+      { path: 'users', component: UsersComponent },
+      { path: 'teachers',
         children: [
-          { path: '', component: TeacherSigninComponent }
-        ]
-      },
-      {
-        path: 'dashboard',
-        children: [
-          { path: '', component: TeacherDashboardComponent }
+          { path: 'dashboard', component: TeacherDashboardComponent },
+          { path: 'profile', component: TeacherEditComponent }
         ]
       }
     ]
@@ -35,4 +30,4 @@ const adminRoutes: Routes = [
   ]
 })
 
-export class TeacherRoutingModule {}
+export class TeacherRoutingModule { }
